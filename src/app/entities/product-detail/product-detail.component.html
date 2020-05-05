@@ -1,13 +1,13 @@
 <section class="product-detail-page">
     <div class="details-and-purchase">
         <div class="listimage">
-            <img src="../../../assets/bosofa.png" alt="">
-            <img src="../../../assets/bosofa.png" alt="">
-            <img src="../../../assets/bosofa.png" alt="">
-            <img src="../../../assets/bosofa.png" alt="">
+            <img src="../../../assets/bosofa.png" alt="sofatrai">
+            <img src="../../../assets/bosofa.png" alt="sofaphai">
+            <img src="../../../assets/bosofa.png" alt="sofasau">
+            <img src="../../../assets/bosofa.png" alt="sofatren">
         </div>
         <div class="bigimage">
-            <img src="../../../assets/bosofa.png" alt="">
+            <img src="../../../assets/bosofa.png" alt="sofa truoc">
         </div>
         <div class="product-info">
 
@@ -70,6 +70,18 @@
 </section>
 <section class="product-introduction">
     <h2>Giới thiệu sản phẩm</h2>
+    <h5>Ngày nay, kệ sách gỗ đẹp là món đồ nội thất không thể thiếu trong không gian đọc sách. Những chiếc kệ gỗ hiện
+        đại
+        không chỉ dùng để lưu trữ sách mà còn có thể lưu trữ những đồ vật, đồ trang trí đẹp mắt khác. Với thiết kế đơn
+        giản của mẫu kệ, người dùng có thể sắp xếp nhiều kệ với nhau để tăng không gian lưu trữ sách. Đối với phòng có
+        diện tích hạn chế bạn nên lựa chọn những góc tường để xóa bỏ góc chết của tường nhà. Sản phẩm có nhiều màu sắc
+        đẹp mắt sẽ là ý tưởng sang tạo mới cho không gian gia đình.</h5>
+    <h5>Ngày nay, kệ sách gỗ đẹp là món đồ nội thất không thể thiếu trong không gian đọc sách. Những chiếc kệ gỗ hiện
+        đại
+        không chỉ dùng để lưu trữ sách mà còn có thể lưu trữ những đồ vật, đồ trang trí đẹp mắt khác. Với thiết kế đơn
+        giản của mẫu kệ, người dùng có thể sắp xếp nhiều kệ với nhau để tăng không gian lưu trữ sách. Đối với phòng có
+        diện tích hạn chế bạn nên lựa chọn những góc tường để xóa bỏ góc chết của tường nhà. Sản phẩm có nhiều màu sắc
+        đẹp mắt sẽ là ý tưởng sang tạo mới cho không gian gia đình.</h5>
     <h5>Ngày nay, kệ sách gỗ đẹp là món đồ nội thất không thể thiếu trong không gian đọc sách. Những chiếc kệ gỗ hiện
         đại
         không chỉ dùng để lưu trữ sách mà còn có thể lưu trữ những đồ vật, đồ trang trí đẹp mắt khác. Với thiết kế đơn
@@ -152,6 +164,25 @@
 
         </div>
         <div class="username">
+            <h3>Nhật Linh</h3>
+            <p>1 day ago</p>
+        </div>
+
+        <div class="review-content">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <h3>Sản phẩm rất đẹp</h3>
+            <p>Tôi rất hài lòng với sản phẩm này</p>
+        </div>
+    </div>
+    <div class="review-component">
+        <div class="user-info">
+            <i class="fa fa-user"></i>
+
+        </div>
+        <div class="username">
             <h3>Gia Hiếu</h3>
             <p>1 day ago</p>
         </div>
@@ -172,7 +203,7 @@
 
         </div>
         <div class="username">
-            <h3>Nhật Linh</h3>
+            <h3>Minh Đức</h3>
             <p>1 day ago</p>
         </div>
 
@@ -211,7 +242,7 @@
     <div class="row">
 
         <div class="col-3" *ngFor="let product of topProductList">
-            <img [src]="product.image[0].product_image" alt="">
+            <img [src]="product.image[0].product_image" [alt]="product.image[0].image_description">
             <div class="product-item-info">
                 <h5>{{product.product_name}}</h5>
                 <h5>{{product.product_price}} VNĐ</h5>
