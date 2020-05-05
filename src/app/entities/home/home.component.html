@@ -1,0 +1,113 @@
+<section class="kagu-carousel">
+    <div id="carouselId" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselId" data-slide-to="1"></li>
+            <li data-target="#carouselId" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+
+            <div class="carousel-item" *ngFor="let item of slideShowList;let i = index" [ngClass]="{active:i === 0}">
+                <img [src]="item.image" alt="">
+
+            </div>
+
+
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+<section class="kagu-product-carousel">
+    <h3>SẢN PHẨM BÁN CHẠY</h3>
+    <div id="carouselId1" class="carousel custom-carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselId1" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselId1" data-slide-to="1"></li>
+            <li data-target="#carouselId1" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item  active ">
+                <div class="row">
+
+                    <div class="col-3" *ngFor="let product of topProductList">
+                        <img [src]="product.image[0].product_image" alt="">
+                        <div class="product-item-info">
+                            <h5>{{product.product_name}}</h5>
+                            <h5>{{product.product_price}} VNĐ</h5>
+                            <p> <i class=" fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                    class="fa fa-star"></i><i class="fa fa-star"></i> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselId1" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselId1" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+<section class="top-product">
+    <h3>SẢN PHẨM NỔI BẬT</h3>
+    <div class="row">
+        <div class="col-6 content">
+            <h2>Sofa gỗ tự nhiên</h2>
+            <h3>Chất liệu: khung gỗ tự nhiên, lò xo lưới, mút xốp K35, nỉ nhập khẩu cao cấp</h3>
+        </div>
+        <div class="col-6 imagegrid">
+            <div class="imagetop">
+                <img src="../../../assets/bosofa.png" alt="">
+            </div>
+            <div class="imagebot">
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="top-product">
+
+    <div class="row">
+        <div class="col-6 imagegrid">
+            <div class="imagetop">
+                <img src="../../../assets/bosofa.png" alt="">
+            </div>
+            <div class="imagebot">
+
+            </div>
+        </div>
+        <div class="col-6 content">
+            <h2>Sofa gỗ tự nhiên</h2>
+            <h3>Chất liệu: khung gỗ tự nhiên, lò xo lưới, mút xốp K35, nỉ nhập khẩu cao cấp</h3>
+        </div>
+
+    </div>
+
+</section>
+<section class="some-products">
+    <h3>SẢN PHẨM MỚI</h3>
+    <div class="row">
+        <div class="col-3" *ngFor="let product of newProductList">
+            <img [src]="product.image[0].product_image" alt="">
+            <div class="product-item-info">
+                <h5>{{product.product_name}}</h5>
+                <h5 pattern="[0-9]">{{product.product_price}} VNĐ</h5>
+                <p> <i class=" fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> </p>
+            </div>
+        </div>
+    </div>
+</section>
