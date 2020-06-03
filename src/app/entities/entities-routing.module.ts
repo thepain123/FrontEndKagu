@@ -7,31 +7,39 @@ const routes: Routes = [
     loadChildren: "./home/home.module#HomeModule",
     // canActivate: [AuthGuard]
   },
+
   {
-    path: "product-detail",
+    path: "chi-tiet",
     loadChildren: "./product-detail/product-detail.module#ProductDetailModule",
     // canActivate: [AuthGuard]
   },
   {
-    path: "cart",
+    path: "xu-ly-thanh-toan",
+    loadChildren:
+      "./execute-payment/execute-payment.module#ExecutePaymentModule",
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: "gio-hang",
     loadChildren: "./cart/cart.module#CartModule",
     // canActivate: [AuthGuard]
   },
   {
-    path: "checkout",
+    path: "thanh-toan",
     loadChildren: "./checkout/checkout.module#CheckoutModule",
     // canActivate: [AuthGuard]
   },
   {
-    path: "shipping",
+    path: "thong-tin-dat-hang",
     loadChildren: "./address/address.module#AddressModule",
     // canActivate: [AuthGuard]
   },
   {
-    path: "categories",
+    path: ":categories",
     loadChildren: "./categories/categories.module#CategoriesModule",
     // canActivate: [AuthGuard]
   },
+
   // { path: "admin", loadChildren: "./admin/admin.module#AdminModule" }
 ];
 

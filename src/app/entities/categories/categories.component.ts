@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "src/app/shared/data.service";
 import { Router } from "@angular/router";
 import { Meta, Title } from "@angular/platform-browser";
+import { SharingDataService } from "src/app/shared/sharing-data.service";
+import { Subscription } from "rxjs";
 @Component({
   selector: "app-categories",
   templateUrl: "./categories.component.html",
@@ -12,49 +14,196 @@ export class CategoriesComponent implements OnInit {
     private _dataService: DataService,
     private router: Router,
     private title: Title,
-    private meta: Meta
+    private meta: Meta,
+    private sharingDataSerive: SharingDataService
   ) {}
-  newProductList: any = [];
-  topProductList: any = [];
-  slideShowList: any = [];
+  productList: any = [];
+  cat_id: any;
+  keyword: any;
+  typeLoad: any;
+  subcription: Subscription;
+  message = {
+    categoryId: 0,
+    page: 0,
+    sort: 0,
+    rating: 0,
+    minPrice: "0",
+    maxPrice: "0",
+  };
+  messageSearch = {
+    keyword: "",
+    page: 0,
+    sort: 0,
+    rating: 0,
+    minPrice: "0",
+    maxPrice: "0",
+  };
   ngOnInit() {
-    this.title.setTitle("Chi tiết sản phẩm");
+    this.title.setTitle("Danh mục sản phẩm");
     this.meta.updateTag({
       name: "description",
-      content: "Mô tả chi tiết bàn ghế sofa",
+      content: "Tủ quần áo các loại",
     });
-    this.getSlideShow();
+    this.detectTypeLoad();
   }
-  getNewProducts() {
-    const uri = "data/get-new-product";
-    this._dataService.get(uri).subscribe(
+  detectTypeLoad() {
+    this.sharingDataSerive.ShareTypeLoad.subscribe((data) => {
+      console.log(data);
+      this.typeLoad = data;
+      switch (data) {
+        case 1:
+          this.detectProductCat();
+
+          break;
+        case 2:
+          this.showSearchResult();
+
+          break;
+        default:
+          this.showProductByCategory(1);
+          break;
+      }
+    });
+  }
+  detectProductCat() {
+    console.log("detect ");
+
+    this.sharingDataSerive.ShareCatID.subscribe((data) => {
+      this.cat_id = data;
+      console.log(this.cat_id);
+    });
+    this.showProductByCategory(this.cat_id);
+  }
+  showSearchResult() {
+    console.log("showsearch");
+
+    this.sharingDataSerive.ShareKeyword.subscribe((data) => {
+      this.keyword = data;
+      console.log("sub");
+    });
+
+    if (this.keyword !== "0") {
+      this.getProductByKeyword(this.keyword);
+    } else {
+      this.showProductByCategory(1);
+    }
+  }
+  getProductByKeyword(keyword) {
+    console.log("api");
+    const uri = "data/search-product";
+    this.messageSearch.keyword = keyword;
+    console.log(this.messageSearch);
+    this._dataService.post(uri, this.messageSearch).subscribe(
       (data: any) => {
-        this.newProductList = data.data;
-        console.log(this.newProductList);
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString("de-DE");
+          this.productList[i].product_price = convert.toString();
+        }
+
+        console.log(this.productList);
       },
       (err: any) => {}
     );
   }
-  getTopProducts() {
-    const uri = "data/get-best-selling-products";
-    this._dataService.get(uri).subscribe(
+  showProductByCategory(
+    cat_id,
+    page = 0,
+    sort = 0,
+    rating = 0,
+    minPrice = 0,
+    maxPrice = 0
+  ) {
+    const uri = "data/get-product-by-category-id";
+    this.message = {
+      categoryId: cat_id,
+      page: page,
+      sort: 0,
+      rating: 0,
+      minPrice: "0",
+      maxPrice: "0",
+    };
+    this._dataService.post(uri, this.message).subscribe(
       (data: any) => {
-        this.topProductList = data.data;
-        console.log(this.topProductList);
-        this.getNewProducts();
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString("de-DE");
+          this.productList[i].product_price = convert.toString();
+        }
       },
       (err: any) => {}
     );
   }
-  getSlideShow() {
-    const uri = "data/get-slide-show";
-    this._dataService.get(uri).subscribe(
+  selectSearch(rating) {
+    if (this.keyword !== "0") {
+      this.showProductSearchByRating(rating);
+    } else {
+      this.showProductByRating(rating);
+    }
+  }
+  showProductByRating(rating) {
+    const uri = "data/get-product-by-category-id";
+    this.message.rating = rating;
+    this._dataService.post(uri, this.message).subscribe(
       (data: any) => {
-        this.slideShowList = data.data;
-        console.log(this.slideShowList);
-        this.getTopProducts();
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString();
+          console.log(convert);
+
+          this.productList[i].product_price = convert.toString();
+        }
+
+        console.log(this.productList);
       },
       (err: any) => {}
     );
   }
+  showProductSearchByRating(rating) {
+    console.log(this.messageSearch);
+
+    const uri = "data/search-product";
+    this.messageSearch.rating = rating;
+
+    this._dataService.post(uri, this.messageSearch).subscribe(
+      (data: any) => {
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString();
+          console.log(convert);
+
+          this.productList[i].product_price = convert.toString();
+        }
+
+        console.log(this.productList);
+        return;
+      },
+      (err: any) => {}
+    );
+  }
+
+  showProductDetail(product_id) {
+    this.router.navigate([`/chi-tiet`], {
+      queryParams: { maSP: product_id },
+    });
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 400); // how far to scroll on each step
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
+  }
+  // ngOnDestroy() {
+  //   this.subcription.unsubscribe();
+  // }
 }

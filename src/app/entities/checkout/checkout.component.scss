@@ -120,6 +120,20 @@ section {
       padding-top: 20px;
       padding-bottom: 20px;
     }
+    .form-check {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      input {
+        height: 25px;
+        width: 25px;
+      }
+      span {
+        padding-left: 20px;
+        padding-top: 10px;
+      }
+    }
   }
   .payment {
     .list-payment {
@@ -148,11 +162,7 @@ section {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border-radius: 5px;
     background: #6190e8; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #a7bfe8,
-      #6190e8
-    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #a7bfe8, #6190e8); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(
       to right,
       #a7bfe8,

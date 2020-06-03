@@ -19,8 +19,15 @@ export class DataService {
     urlApi = environment.urlApi;
   }
   HandleError(errCode) {
-    console.log(errCode.error);
+    console.log(errCode);
+
+    console.log(errCode.error.error.text);
+
     switch (errCode.status) {
+      case 200:
+        console.log("aloalo");
+        console.log("aloalo");
+        break;
       case 500:
         console.log(errCode.error);
         Swal.fire({
@@ -33,7 +40,7 @@ export class DataService {
 
         break;
       case 404:
-        console.log(errCode.error);
+        console.log(errCode.error.errors[0].errorMessage);
         Swal.fire({
           icon: "error",
           title: errCode.error.errors[0].errorMessage,

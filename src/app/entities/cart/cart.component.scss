@@ -48,7 +48,7 @@ section.cart {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
+      // flex-direction: column;
       padding-left: 20px;
       padding-right: 20px;
       width: 370px;
@@ -60,9 +60,9 @@ section.cart {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
   .amount {
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     margin-left: 40px;
-    padding-top: 20px;
+    padding-top: 15px;
     border-radius: 1px;
     display: flex;
     align-items: center;
@@ -110,7 +110,7 @@ section.cart {
     align-items: center;
     i {
       font-size: 25px;
-      margin-left: 200px;
+      margin-left: 150px;
       transition: all 0.5s;
     }
     i:hover {
@@ -135,11 +135,7 @@ section.cart {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border-radius: 5px;
     background: #6190e8; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #a7bfe8,
-      #6190e8
-    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #a7bfe8, #6190e8); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(
       to right,
       #a7bfe8,
