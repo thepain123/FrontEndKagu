@@ -2,77 +2,34 @@
     <div class="list-product">
         <h2>Giỏ hàng</h2>
 
-        <div class="product-cart-component">
+        <div class="product-cart-component" *ngFor="let product of cart">
             <div class="image-product-cart">
-                <img src="../../../assets/bosofa.png" alt="">
+                <img [src]="product.productImage" [alt]="product.productName">
 
             </div>
             <div class="product-name">
-                <h3>Ghế Sofa</h3>
+                <h4>{{product.productName}}</h4>
                 <p></p>
             </div>
 
             <div class="amount">
-                <button type="button" class="btn btn-down">-</button>
-                <input value="1" type="text">
-                <button type="button" class="btn btn-up">+</button>
+                <button (click)="reduceQuantity(product.productId)" type="button" class="btn btn-down">-</button>
+                <input value="{{product.quantity}}" type="text">
+                <button (click)="raiseQuantity(product.productId)" type="button" class="btn btn-up">+</button>
             </div>
             <div class="price">
-                <h3>$90</h3>
+                <h4>{{product.productPrice}} ₫</h4>
             </div>
             <div class="delete">
                 <i class="fa fa-times"></i>
             </div>
         </div>
-        <div class="product-cart-component">
-            <div class="image-product-cart">
-                <img src="../../../assets/bosofa.png" alt="">
 
-            </div>
-            <div class="product-name">
-                <h3>Ghế Sofa</h3>
-                <p></p>
-            </div>
-
-            <div class="amount">
-                <button type="button" class="btn btn-down">-</button>
-                <input value="1" type="text">
-                <button type="button" class="btn btn-up">+</button>
-            </div>
-            <div class="price">
-                <h3>$90</h3>
-            </div>
-            <div class="delete">
-                <i class="fa fa-times"></i>
-            </div>
-        </div>
-        <div class="product-cart-component">
-            <div class="image-product-cart">
-                <img src="../../../assets/bosofa.png" alt="">
-
-            </div>
-            <div class="product-name">
-                <h3>Ghế Sofa</h3>
-                <p></p>
-            </div>
-
-            <div class="amount">
-                <button type="button" class="btn btn-down">-</button>
-                <input value="1" type="text">
-                <button type="button" class="btn btn-up">+</button>
-            </div>
-            <div class="price">
-                <h3>$90</h3>
-            </div>
-            <div class="delete">
-                <i class="fa fa-times"></i>
-            </div>
-        </div>
     </div>
     <div class="sub-total">
-        <a href="/home">Tiếp tục mua hàng</a>
-        <h3>Tổng tiền : $90</h3>
-        <button class="checkout">Thanh toán</button>
+        <a href="/danh-muc">Tiếp tục mua hàng</a>
+        <h3>Tổng tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
+        <button (click)="checkOut()" class="checkout">Tiếp tục</button>
     </div>
 
 </section>

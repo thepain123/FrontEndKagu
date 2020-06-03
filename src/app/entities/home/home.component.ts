@@ -20,7 +20,12 @@ export class HomeComponent implements OnInit {
     this._dataService.get(uri).subscribe(
       (data: any) => {
         this.newProductList = data.data;
-        console.log(this.newProductList);
+        for (let i = 0; i < this.newProductList.length; i++) {
+          let temp, convert: number;
+          temp = +this.newProductList[i].product_price;
+          convert = temp.toLocaleString("de-DE");
+          this.newProductList[i].product_price = convert.toString();
+        }
       },
       (err: any) => {}
     );
@@ -30,8 +35,12 @@ export class HomeComponent implements OnInit {
     this._dataService.get(uri).subscribe(
       (data: any) => {
         this.topProductList = data.data;
-        console.log(this.topProductList);
-        // this.getNewProducts();
+        for (let i = 0; i < this.topProductList.length; i++) {
+          let temp, convert: number;
+          temp = +this.topProductList[i].product_price;
+          convert = temp.toLocaleString("de-DE");
+          this.topProductList[i].product_price = convert.toString();
+        }
       },
       (err: any) => {}
     );
@@ -41,10 +50,22 @@ export class HomeComponent implements OnInit {
     this._dataService.get(uri).subscribe(
       (data: any) => {
         this.slideShowList = data.data;
-        console.log(this.slideShowList);
         this.getTopProducts();
       },
       (err: any) => {}
     );
+  }
+  showProductDetail(product_id) {
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 400); // how far to scroll on each step
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
+    this.router.navigate([`/chi-tiet`], {
+      queryParams: { maSP: product_id },
+    });
   }
 }

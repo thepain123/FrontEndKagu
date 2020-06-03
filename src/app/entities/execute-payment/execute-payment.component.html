@@ -1,0 +1,18 @@
+<section *ngIf="successHTML; else ElseContent" class="success">
+
+    <h3>Thank you !</h3>
+    <h4>Cảm ơn quý khách đã tin tưởng Nội thất Kagu.</h4>
+    <a routerLink="">Trở về trang chủ</a>
+</section>
+
+
+<ng-template #ElseContent>
+    <section class="fail">
+
+        <h3>Sorry !</h3>
+        <h4> Đặt hàng không thành công, quý khách vi lòng kiểm tra lại số tiền trong tài khoản. <br>
+            Xin lỗi quý khách vì sự bất tiện này.</h4>
+
+        <a routerLink="">Trở về trang chủ</a>
+    </section>
+</ng-template>

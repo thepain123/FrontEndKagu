@@ -2,93 +2,71 @@
     <h2>Thông tin giao hàng</h2>
     <div class="address-page">
         <div class="address col-xl-6">
-
             <a href="/">Đăng nhập</a>
-            <select>
+            <form #formAddress="ngForm">
+                <input type="text" name="name" #username="ngModel" required ngModel placeholder="Họ tên khách hàng" />
+                <p class="alert alert-danger mt-2" *ngIf="name?.errors?.required  && (name.dirty || name.touched)">
+                    Vui lòng nhập họ tên </p>
+                <input placeholder="Số điện thoại" type="text" name="phone" #city="ngModel" required ngModel>
+                <p class="alert alert-danger mt-2" *ngIf="phone?.errors?.required  && (phone.dirty || phone.touched)">
+                    Vui lòng nhập số điện thoại </p>
+                <input placeholder="Email" type="email" name="email" required #email="ngModel"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" ngModel>
+                <p class="alert alert-danger mt-2" *ngIf="email?.errors?.required && (email.dirty || email.touched)">
+                    Vui lòng nhập email </p>
+                <p class="alert alert-danger mt-2" *ngIf="email?.errors?.pattern"> Email phải đúng định dạng
+                </p>
+                <input placeholder="Địa chỉ" type="text" name="address" #city="ngModel" required ngModel>
+                <p class="alert alert-danger mt-2"
+                    *ngIf="address?.errors?.required  && (address.dirty || address.touched)">
+                    Vui lòng nhập địa chỉ </p>
+
+            </form>
+
+            <!-- <select>
                 <option value="volvo">Thêm địa chỉ mới</option>
                 <option value="volvo">Địa chỉ cũ</option>
-            </select>
-            <input type="text" placeholder="Họ và tên">
-            <input type="text" placeholder="Số điện thoại">
-            <input type="text" placeholder="Địa chỉ">
-            <select>
+            </select> -->
+
+            <!-- <select>
                 <option value="volvo" placeholder="Tỉnh/ thành phố">Thêm địa chỉ mới</option>
                 <option value="volvo">Địa chỉ cũ</option>
             </select> <select>
                 <option value="volvo">Thêm địa chỉ mới</option>
                 <option value="volvo">Địa chỉ cũ</option>
-            </select>
+            </select> -->
 
             <div class="route">
-                <a href="/cart"> <i class="fa fa-angle-left"></i> Giỏ hàng</a>
+                <a href="/gio-hang"> <i class="fa fa-angle-left"></i> Giỏ hàng</a>
 
-                <button class="checkout">Thanh toán</button>
+                <button (click)="checkOut()" class="checkout">Thanh toán</button>
             </div>
 
 
         </div>
         <div class="cart">
-            <div class="product-cart-component">
+            <div class="product-cart-component" *ngFor="let product of cart">
                 <div class="image-product-cart">
-                    <img src="../../../assets/bosofa.png" alt="">
+                    <img [src]="product.productImage" [alt]="product.productName">
 
                 </div>
                 <div class="product-name">
-                    <h5>Ghế Sofa</h5>
-                    <p></p>
+                    <p>{{product.productName}}</p>
+
                 </div>
 
                 <div class="amount">
 
-                    <input value="1" type="text">
+                    <input readonly [value]="product.quantity" type="text">
 
                 </div>
                 <div class="price">
-                    <h5>$90</h5>
+                    <p>{{product.productPrice}} ₫</p>
                 </div>
 
             </div>
-            <div class="product-cart-component">
-                <div class="image-product-cart">
-                    <img src="../../../assets/bosofa.png" alt="">
 
-                </div>
-                <div class="product-name">
-                    <h5>Ghế Sofa</h5>
-                    <p></p>
-                </div>
-
-                <div class="amount">
-
-                    <input value="1" type="text">
-
-                </div>
-                <div class="price">
-                    <h5>$90</h5>
-                </div>
-
-            </div>
-            <div class="product-cart-component">
-                <div class="image-product-cart">
-                    <img src="../../../assets/bosofa.png" alt="">
-
-                </div>
-                <div class="product-name">
-                    <h5>Ghế Sofa</h5>
-                    <p></p>
-                </div>
-
-                <div class="amount">
-
-                    <input value="1" type="text">
-
-                </div>
-                <div class="price">
-                    <h5>$90</h5>
-                </div>
-
-            </div>
-            <h3>Tổng tiền : $90</h3>
+            <h3>Tổng tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
         </div>
 
     </div>

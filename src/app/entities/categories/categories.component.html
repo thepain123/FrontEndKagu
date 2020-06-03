@@ -2,20 +2,20 @@
     <div class="left-side">
         <div class="categories">
             <h5>Danh mục sản phẩm</h5>
-            <a href="">Tủ quần áo</a>
-            <a href="">Bàn ghế</a>
-            <a href="">Giường</a>
-            <a href="">Kệ rượu</a>
-            <a href="">Tủ quần áo</a>
+            <a routerLink="/giuong" (click)="showProductByCategory(1)">Giường</a>
+            <a routerLink="/ban-ghe" (click)="showProductByCategory(2,1)">Bàn ghế</a>
+            <a routerLink="/sofa" (click)="showProductByCategory(3)">Sofa</a>
+            <a routerLink="/tu-quan-ao" (click)="showProductByCategory(4)">Tủ quần áo</a>
+            <a routerLink="/ke" (click)="showProductByCategory(5)">Kệ</a>
         </div>
         <div class="evaluate">
             <h5>Đánh giá sản phẩm</h5>
-            <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                    class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 5 sao)</p>
-            <p class="fourstar"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                    class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 4 sao)</p>
-            <p class="threestar"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                    class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 3 sao)</p>
+            <p (click)="selectSearch(5)"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                    class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 5 sao)</p>
+            <p (click)="selectSearch(4)" class="fourstar"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                    class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 4 sao)</p>
+            <p (click)="selectSearch(3)" class="threestar"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                    class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 3 sao)</p>
 
         </div>
         <div class="price">
@@ -29,90 +29,17 @@
     <div class="products">
         <div class="row">
 
-            <div class="col-3">
-                <img src="../../../assets/keruougo.jpg" alt="">
+            <div class="col-3" *ngFor="let product of productList" (click)="showProductDetail(product.product_id)">
+                <img [src]="product.image[1].product_image" alt="product.image[1].image_description">
                 <div class="product-info">
-                    <h5>Ghế Sofa</h5>
-                    <h5>1.000.000</h5>
+                    <h5>{{product.product_name}}</h5>
+                    <h5>{{product.product_price}} ₫</h5>
                     <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
                             class="fa fa-star"></i><i class="fa fa-star"></i> </p>
                 </div>
 
             </div>
-            <div class="col-3">
-                <img src="../../../assets/keruougo.jpg" alt="">
-                <div class="product-info">
-                    <h5>Ghế Sofa</h5>
-                    <h5>1.000.000</h5>
-                    <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                            class="fa fa-star"></i><i class="fa fa-star"></i> </p>
-                </div>
 
-            </div>
-            <div class="col-3">
-                <img src="../../../assets/keruougo.jpg" alt="">
-                <div class="product-info">
-                    <h5>Ghế Sofa</h5>
-                    <h5>1.000.000</h5>
-                    <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                            class="fa fa-star"></i><i class="fa fa-star"></i></p>
-                </div>
-
-            </div>
-            <div class="col-3">
-                <img src="../../../assets/keruougo.jpg" alt="">
-                <div class="product-info">
-                    <h5>Ghế Sofa</h5>
-                    <h5>1.000.000</h5>
-                    <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                            class="fa fa-star"></i><i class="fa fa-star"></i></p>
-                </div>
-
-            </div>
         </div>
-        <div class="row">
-
-            <div class="col-3">
-                <img src="../../../assets/keruougo.jpg" alt="">
-                <div class="product-info">
-                    <h5>Ghế Sofa</h5>
-                    <h5>1.000.000</h5>
-                    <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                            class="fa fa-star"></i><i class="fa fa-star"></i> </p>
-                </div>
-
-            </div>
-            <div class="col-3">
-                <img src="../../../assets/keruougo.jpg" alt="">
-                <div class="product-info">
-                    <h5>Ghế Sofa</h5>
-                    <h5>1.000.000</h5>
-                    <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                            class="fa fa-star"></i><i class="fa fa-star"></i> </p>
-                </div>
-
-            </div>
-            <div class="col-3">
-                <img src="../../../assets/keruougo.jpg" alt="">
-                <div class="product-info">
-                    <h5>Ghế Sofa</h5>
-                    <h5>1.000.000</h5>
-                    <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                            class="fa fa-star"></i><i class="fa fa-star"></i> </p>
-                </div>
-
-            </div>
-            <div class="col-3">
-                <img src="../../../assets/keruougo.jpg" alt="">
-                <div class="product-info">
-                    <h5>Ghế Sofa</h5>
-                    <h5>1.000.000</h5>
-                    <p> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                            class="fa fa-star"></i><i class="fa fa-star"></i> </p>
-                </div>
-
-            </div>
-        </div>
-
     </div>
 </section>

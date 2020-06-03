@@ -1,3 +1,4 @@
+@import "./../app.component.scss";
 * {
   p,
   span {
@@ -17,11 +18,77 @@
   h2 {
     font-family: "Pacifico", cursive;
     font-size: 50px;
+    @media all and (max-width: 500px) {
+      font-size: 30px;
+    }
   }
 }
 .navigationbar {
   display: flex;
   font-family: "EB Garamond", serif;
+  /* Dropdown Button */
+  nav {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  ul {
+    align-items: center;
+  }
+  .dropbtn {
+    color: rgba(0, 0, 0, 0.9);
+    padding: 16px;
+    font-size: 23px;
+    border: none;
+    background-color: white;
+  }
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    .arrow-up {
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -15px;
+      left: 65px;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid #f1f1f1;
+    }
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    z-index: 1;
+  }
+
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 17px;
+  }
+
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+
   .custom-navbar {
     margin-left: 200px;
     .custom-ul {
@@ -31,9 +98,39 @@
       margin: 0 20px;
       font-size: 23px;
       padding-top: 10px;
+      button {
+        @media all and (max-width: 500px) {
+          font-size: 18px;
+        }
+      }
+      @media all and (max-width: 500px) {
+        font-size: 18px;
+      }
     }
     .kagu-form {
       margin-left: 25px;
+      display: flex;
+      border: 1px solid gray;
+      border-radius: 3px;
+      input {
+        margin-right: 0px;
+        border: none;
+      }
+      button {
+        border: none;
+        border-radius: 0px;
+        i {
+          color: #74b0f7;
+        }
+      }
+      button:hover {
+        border: none;
+        border-radius: 0px;
+        background-color: #74b0f7;
+        i {
+          color: white;
+        }
+      }
     }
   }
 }
@@ -43,18 +140,91 @@
   align-items: center;
   font-size: 20px;
   margin-left: -20px;
+  min-width: 298px;
+  @media all and (max-width: 480px) {
+    display: none;
+  }
   i {
     font-size: 25px;
+    color: #74b0f7;
+  }
+  i#notifi {
+    margin-bottom: 5px;
+    margin-left: 40px;
+    @media all and (max-width: 500px) {
+      display: none;
+    }
   }
   .user {
     display: flex;
     align-items: center;
+    margin-left: 30px;
+    margin-right: 50px;
+
     p {
       padding-left: 10px;
       margin-bottom: 0px;
     }
-    margin-left: 30px;
-    margin-right: 50px;
+    button {
+      background-color: white;
+      border: none;
+      margin-left: 5px;
+      color: rgba(0, 0, 0, 0.9);
+      font-size: 20px;
+    }
+  }
+  .dropbtn {
+    color: black;
+    padding: 16px;
+    font-size: 20px;
+    border: none;
+    background-color: white;
+  }
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    .arrow-up {
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -15px;
+      left: 65px;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid #f1f1f1;
+    }
+    display: none;
+    position: absolute;
+
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    z-index: 1;
+  }
+
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 17px;
+  }
+
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
   }
 }
 .footer {
@@ -97,3 +267,37 @@
     color: #1da1f2;
   }
 }
+
+div#login {
+  h2,
+  a,
+  th,
+  span,
+  input {
+    font-family: "EB Garamond", serif;
+  }
+
+  input {
+    width: 100%;
+    padding: 15px;
+    margin: 5px;
+    padding-right: 20px;
+    border-radius: 1px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+  }
+
+  h2 {
+    font-family: "EB Garamond", serif;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+  button {
+    font-family: "EB Garamond", serif;
+  }
+  .btn {
+    font-family: "EB Garamond", serif;
+  }
+}
+
+// responsive
