@@ -1,20 +1,22 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
+import { ProductDetailsComponent } from "./product-details/product-details.component";
+import { EntitiesComponent } from "./entities.component";
+
 const routes: Routes = [
   {
-    path: "",
-    loadChildren: "./home/home.module#HomeModule",
-    // canActivate: [AuthGuard]
+    path: "chi-tiet",
+    component: ProductDetailsComponent,
   },
 
-  {
-    path: "chi-tiet",
-    loadChildren: "./product-detail/product-detail.module#ProductDetailModule",
-    // canActivate: [AuthGuard]
-  },
+  // {
+  //   // loadChildren: "./product-detail/product-detail.module#ProductDetailModule",
+  //   // // canActivate: [AuthGuard]
+  // },
   {
     path: "xu-ly-thanh-toan",
+
     loadChildren:
       "./execute-payment/execute-payment.module#ExecutePaymentModule",
     // canActivate: [AuthGuard]
