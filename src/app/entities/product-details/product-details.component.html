@@ -1,0 +1,243 @@
+<div class="holder" *ngIf="!product_detail"></div>
+<ng-container *ngIf="product_detail">
+
+    <section class="product-detail-page">
+        <div class="details-and-purchase">
+            <div class="listimage">
+                <ng-container *ngFor="let image of product_detail.image">
+                    <img (click)="pickImage(image.product_image)" [src]="image.product_image" alt="image_description">
+                </ng-container>
+
+            </div>
+            <div class="bigimage">
+                <img [src]="bigImage" alt="sofa truoc">
+            </div>
+            <div class="product-info">
+
+                <div class="price">
+                    <h2>{{product_detail.product_name}} </h2>
+                    <span>Giá : <h4>{{product_detail.product_price}} ₫</h4>
+                    </span>
+                    <p> Tích kiệm 20%</p>
+                    <p> Giá thị trường</p>
+                </div>
+                <div class="purchase-function">
+                    <span>Số lượng:</span>
+                    <div class="amount">
+                        <button (click)="reduceQuantity()" type="button" class="btn btn-down">-</button>
+                        <input [value]="quantity" type="text">
+                        <button (click)="raiseQuantity()" type="button" class="btn btn-up">+</button>
+                    </div>
+                    <button (click)="addToCart()" class="checkout">Mua ngay</button>
+
+                </div>
+                <div class="promotion">
+                    <h5>Các dịch vụ liên quan</h5>
+                    <p>
+                        Thời gian bảo hành: 12 Tháng.
+
+                    </p>
+                    <p>
+                        Hình thức bảo hành: Bảo hành bằng phiếu bảo hành và phiếu mua hàng tại Kagu.
+                    </p>
+                    <p>
+                        HOTLINE: 0868 39 30 39 (100.000đ/phút, 8-21h cả T7, CN)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="product-details">
+        <h2>Thông tin chi tiết</h2>
+        <table class="table">
+
+
+            <tbody>
+                <tr>
+
+                    <td>Chất liệu</td>
+                    <td>{{product_detail.material}}</td>
+                </tr>
+                <tr>
+
+                    <td>Kích thước( DxSxC)</td>
+                    <td>{{product_detail.size}}</td>
+                </tr>
+                <tr>
+
+                    <td>Màu sắc</td>
+                    <td>{{product_detail.color}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="product-introduction">
+        <h2>Giới thiệu sản phẩm</h2>
+        <h5>{{product_detail.infor}}</h5>
+
+    </section>
+    <section class="product-review">
+        <h2>Đánh giá sản phẩm</h2>
+        <div class="stars-reviews">
+            <div class="general">
+                <h2>5 trên 5</h2>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <h5>200 lượt đánh giá</h5>
+            </div>
+            <div class="review-details">
+
+                <div class="five-stars">
+                    <div>
+                        <span>5</span><i class="fa fa-star"></i>
+                    </div>
+
+                    <div class="total">
+                        <div class="five-stars-percent"></div>
+                    </div>
+                </div>
+                <div class="four-stars">
+                    <div> <span>4</span><i class="fa fa-star"></i></div>
+                    <div class="total">
+                        <div class="four-stars-percent"></div>
+                    </div>
+                </div>
+                <div class="three-stars">
+                    <div> <span>3</span><i class="fa fa-star"></i></div>
+                    <div class="total">
+                        <div class="three-stars-percent"></div>
+                    </div>
+                </div>
+                <div class="two-stars">
+                    <div> <span>2</span><i class="fa fa-star"></i></div>
+                    <div class="total">
+                        <div class="two-stars-percent"></div>
+                    </div>
+                </div>
+                <div class="one-star">
+                    <div> <span>1</span><i class="fa fa-star"></i></div>
+                    <div class="total">
+                        <div class="one-star-percent"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="review-component">
+            <div class="user-info">
+                <i class="fa fa-user"></i>
+
+            </div>
+            <div class="username">
+                <h3>Hoàng Quân</h3>
+                <p>1 day ago</p>
+            </div>
+
+            <div class="review-content">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <h3>Sản phẩm rất đẹp</h3>
+                <p>Tôi rất hài lòng với sản phẩm này</p>
+            </div>
+        </div>
+        <div class="review-component">
+            <div class="user-info">
+                <i class="fa fa-user"></i>
+
+            </div>
+            <div class="username">
+                <h3>Nhật Linh</h3>
+                <p>1 day ago</p>
+            </div>
+
+            <div class="review-content">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <h3>Sản phẩm rất đẹp</h3>
+                <p>Tôi rất hài lòng với sản phẩm này</p>
+            </div>
+        </div>
+        <div class="review-component">
+            <div class="user-info">
+                <i class="fa fa-user"></i>
+
+            </div>
+            <div class="username">
+                <h3>Gia Hiếu</h3>
+                <p>1 day ago</p>
+            </div>
+
+            <div class="review-content">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <h3>Sản phẩm rất đẹp</h3>
+                <p>Tôi rất hài lòng với sản phẩm này</p>
+            </div>
+        </div>
+
+        <div class="review-component">
+            <div class="user-info">
+                <i class="fa fa-user"></i>
+
+            </div>
+            <div class="username">
+                <h3>Minh Đức</h3>
+                <p>1 day ago</p>
+            </div>
+
+            <div class="review-content">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <h3>Sản phẩm rất đẹp</h3>
+                <p>Tôi rất hài lòng với sản phẩm này</p>
+            </div>
+        </div>
+        <div class="review-component">
+            <div class="user-info">
+                <i class="fa fa-user"></i>
+
+            </div>
+            <div class="username">
+                <h3>Lê Vy</h3>
+                <p>1 day ago</p>
+            </div>
+
+            <div class="review-content">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <h3>Sản phẩm rất đẹp</h3>
+                <p>Tôi rất hài lòng với sản phẩm này</p>
+            </div>
+        </div>
+
+    </section>
+</ng-container>
+
+<section class="recommend-product">
+    <h2>Các sản phẩm tương tự</h2>
+    <div class="row">
+
+        <div class="col-3" *ngFor="let product of relatedProductList" (click)="showProductDetail(product.product_id)">
+            <img [src]="product.image[0].product_image" [alt]="product.image[0].image_description">
+            <div class="product-item-info">
+                <h5>{{product.product_name}}</h5>
+                <h5>{{product.product_price}} ₫</h5>
+                <p> <i class=" fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> </p>
+            </div>
+        </div>
+    </div>
+</section>
