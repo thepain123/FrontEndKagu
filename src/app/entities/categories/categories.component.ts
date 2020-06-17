@@ -22,6 +22,7 @@ export class CategoriesComponent implements OnInit {
   keyword: any;
   typeLoad: any;
   subcription: Subscription;
+  typePage: any;
   message = {
     categoryId: 0,
     page: 0,
@@ -38,6 +39,9 @@ export class CategoriesComponent implements OnInit {
     minPrice: "0",
     maxPrice: "0",
   };
+  totalPage: any = [];
+  currentPage: any;
+
   ngOnInit() {
     this.title.setTitle("Danh mục sản phẩm");
     this.meta.updateTag({
@@ -45,6 +49,22 @@ export class CategoriesComponent implements OnInit {
       content: "Tủ quần áo các loại",
     });
     this.detectTypeLoad();
+  }
+  nextPage(item) {
+    switch (this.typePage) {
+      case 1:
+        this.messageSearch.page = item;
+        this.getProductByKeyword(this.keyword);
+        break;
+      case 2:
+        this.showProductByCategory(this.cat_id, item);
+        break;
+      case 3:
+        break;
+
+      default:
+        break;
+    }
   }
   detectTypeLoad() {
     this.sharingDataSerive.ShareTypeLoad.subscribe((data) => {
@@ -76,7 +96,7 @@ export class CategoriesComponent implements OnInit {
   }
   showSearchResult() {
     console.log("showsearch");
-
+    this.typePage = 1;
     this.sharingDataSerive.ShareKeyword.subscribe((data) => {
       this.keyword = data;
       console.log("sub");
@@ -102,6 +122,12 @@ export class CategoriesComponent implements OnInit {
           convert = temp.toLocaleString("de-DE");
           this.productList[i].product_price = convert.toString();
         }
+        let i = 0;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
 
         console.log(this.productList);
       },
@@ -116,6 +142,10 @@ export class CategoriesComponent implements OnInit {
     minPrice = 0,
     maxPrice = 0
   ) {
+    this.typePage = 2;
+    this.currentPage = page;
+    console.log(this.currentPage);
+
     const uri = "data/get-product-by-category-id";
     this.message = {
       categoryId: cat_id,
@@ -134,6 +164,12 @@ export class CategoriesComponent implements OnInit {
           convert = temp.toLocaleString("de-DE");
           this.productList[i].product_price = convert.toString();
         }
+        let i = 1;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
       },
       (err: any) => {}
     );
@@ -146,6 +182,7 @@ export class CategoriesComponent implements OnInit {
     }
   }
   showProductByRating(rating) {
+    this.typePage = 3;
     const uri = "data/get-product-by-category-id";
     this.message.rating = rating;
     this._dataService.post(uri, this.message).subscribe(

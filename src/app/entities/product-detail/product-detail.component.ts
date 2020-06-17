@@ -15,6 +15,7 @@ export class ProductDetailComponent implements OnInit {
   product_detail: any;
   bigImage: any;
   quantity: number = 1;
+  comment_list: any;
   constructor(
     private _dataService: DataService,
     private router: Router,
@@ -32,6 +33,23 @@ export class ProductDetailComponent implements OnInit {
 
     this.getParamsFromURL();
     this.getRelatedProducts();
+    this.getProductReview();
+  }
+  getProductReview() {
+    let uri = "data/get-comment-product";
+    let message = {
+      productId: this.product_id,
+      page: 0,
+    };
+    this._dataService.post(uri, message).subscribe(
+      (data: any) => {
+        console.log(data);
+
+        this.comment_list = data.data;
+        console.log(this.comment_list);
+      },
+      (err: any) => {}
+    );
   }
   getParamsFromURL() {
     // this.maPhim = this.activeatedRoute.snapshot.paramMap.get("id");
