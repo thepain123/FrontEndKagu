@@ -47,7 +47,7 @@
             </div>
         </div>
     </section>
-    <section class="product-details">
+    <div class="product-details">
         <h2>Thông tin chi tiết</h2>
         <table class="table">
 
@@ -70,7 +70,7 @@
                 </tr>
             </tbody>
         </table>
-    </section>
+    </div>
     <section class="product-introduction">
         <h2>Giới thiệu sản phẩm</h2>
         <h5>{{product_detail.infor}}</h5>
@@ -80,7 +80,7 @@
         <h2>Đánh giá sản phẩm</h2>
         <div class="stars-reviews">
             <div class="general">
-                <h2>5 trên 5</h2>
+                <h2>{{product_detail.rating}} trên 5</h2>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -126,14 +126,14 @@
 
             </div>
         </div>
-        <div class="review-component">
+        <div *ngFor="let item of comment_list" class="review-component">
             <div class="user-info">
                 <i class="fa fa-user"></i>
 
             </div>
             <div class="username">
-                <h3>Hoàng Quân</h3>
-                <p>1 day ago</p>
+                <h3>{{item.name}}</h3>
+                <!-- <p>1 day ago</p> -->
             </div>
 
             <div class="review-content">
@@ -141,103 +141,32 @@
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <h3>Sản phẩm rất đẹp</h3>
-                <p>Tôi rất hài lòng với sản phẩm này</p>
-            </div>
-        </div>
-        <div class="review-component">
-            <div class="user-info">
-                <i class="fa fa-user"></i>
-
-            </div>
-            <div class="username">
-                <h3>Nhật Linh</h3>
-                <p>1 day ago</p>
-            </div>
-
-            <div class="review-content">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <h3>Sản phẩm rất đẹp</h3>
-                <p>Tôi rất hài lòng với sản phẩm này</p>
-            </div>
-        </div>
-        <div class="review-component">
-            <div class="user-info">
-                <i class="fa fa-user"></i>
-
-            </div>
-            <div class="username">
-                <h3>Gia Hiếu</h3>
-                <p>1 day ago</p>
-            </div>
-
-            <div class="review-content">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <h3>Sản phẩm rất đẹp</h3>
-                <p>Tôi rất hài lòng với sản phẩm này</p>
+                <!-- <h3></h3> -->
+                <p>{{item.comment}}</p>
             </div>
         </div>
 
-        <div class="review-component">
-            <div class="user-info">
-                <i class="fa fa-user"></i>
-
-            </div>
-            <div class="username">
-                <h3>Minh Đức</h3>
-                <p>1 day ago</p>
-            </div>
-
-            <div class="review-content">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <h3>Sản phẩm rất đẹp</h3>
-                <p>Tôi rất hài lòng với sản phẩm này</p>
-            </div>
-        </div>
-        <div class="review-component">
-            <div class="user-info">
-                <i class="fa fa-user"></i>
-
-            </div>
-            <div class="username">
-                <h3>Lê Vy</h3>
-                <p>1 day ago</p>
-            </div>
-
-            <div class="review-content">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <h3>Sản phẩm rất đẹp</h3>
-                <p>Tôi rất hài lòng với sản phẩm này</p>
-            </div>
-        </div>
 
     </section>
 </ng-container>
 
 <section class="recommend-product">
     <h2>Các sản phẩm tương tự</h2>
+
+
     <div class="row">
 
-        <div class="col-3" *ngFor="let product of relatedProductList" (click)="showProductDetail(product.product_id)">
-            <img [src]="product.image[0].product_image" [alt]="product.image[0].image_description">
+        <div class="col-custom col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-12"
+            *ngFor="let product of relatedProductList" (click)="showProductDetail(product.product_id)">
+            <img [src]="product.image[0].product_image" alt="product.image[0].image_description">
             <div class="product-item-info">
                 <h5>{{product.product_name}}</h5>
                 <h5>{{product.product_price}} ₫</h5>
-                <p> <i class=" fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                        class="fa fa-star"></i><i class="fa fa-star"></i> </p>
+                <p>{{product.rating}} <i class="fa fa-star"></i> </p>
             </div>
         </div>
+
+
     </div>
+
 </section>

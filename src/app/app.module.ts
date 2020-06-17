@@ -6,13 +6,16 @@ import { AppComponent } from "./app.component";
 import { EntitiesModule } from "./entities/entities.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpClientModule } from "@angular/common/http";
+import {
+  LocationStrategy,
+  HashLocationStrategy,
+  PathLocationStrategy,
+} from "@angular/common";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, EntitiesModule, HttpClientModule],
-  providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  ],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

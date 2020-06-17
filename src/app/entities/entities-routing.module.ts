@@ -1,13 +1,24 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { ProductDetailsComponent } from "./product-details/product-details.component";
+// import { ProductDetailsComponent } from "./product-details/product-details.component";
 import { EntitiesComponent } from "./entities.component";
 
 const routes: Routes = [
   {
+    path: "",
+    loadChildren: "./home/home.module#HomeModule",
+    // canActivate: [AuthGuard]
+  },
+  // {
+  //   path: "chi-tiet-1",
+  //   component: ProductDetailsComponent,
+  //   // canActivate: [AuthGuard]
+  // },
+  {
     path: "chi-tiet",
-    component: ProductDetailsComponent,
+    loadChildren: "./product-detail/product-detail.module#ProductDetailModule",
+    // canActivate: [AuthGuard]
   },
 
   // {
@@ -37,7 +48,17 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
+    path: "tai-khoan",
+    loadChildren: "./user-info/user-info.module#UserInfoModule",
+    // canActivate: [AuthGuard]
+  },
+  {
     path: ":categories",
+    loadChildren: "./categories/categories.module#CategoriesModule",
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: "tai-khoan",
     loadChildren: "./categories/categories.module#CategoriesModule",
     // canActivate: [AuthGuard]
   },
