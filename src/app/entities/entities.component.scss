@@ -11,10 +11,31 @@
   justify-content: space-between;
   padding-bottom: 10px;
   padding-top: 10px;
+  @media all and (max-width: 576px) {
+    flex-direction: column;
+  }
 }
 .logo {
   margin-left: 40px;
 
+  @media all and (max-width: 576px) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 0px;
+  }
+  button {
+    margin-left: -30px;
+    @media all and (max-width: 992px) {
+      display: none;
+    }
+    @media all and (max-width: 768px) {
+      display: none;
+    }
+    @media all and (max-width: 576px) {
+      display: inline;
+    }
+  }
   font-family: "Slabo 27px", serif;
   color: rgb(116, 176, 247);
   a {
@@ -43,6 +64,10 @@
   font-family: "EB Garamond", serif;
   justify-content: space-around;
   /* Dropdown Button */
+  @media all and (max-width: 768px) {
+    display: flex;
+    width: 100%;
+  }
   nav {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -150,6 +175,10 @@
       @media all and (max-width: 768px) {
         height: 40px;
       }
+      @media all and (max-width: 576px) {
+        width: 350px;
+        margin-left: 0px;
+      }
       overflow: hidden;
       // height: x;
       input {
@@ -157,9 +186,13 @@
         border: none;
         padding-left: 10px;
         width: 340px;
+
         @media all and (max-width: 768px) {
           width: 170px;
           font-size: 15px;
+        }
+        @media all and (max-width: 576px) {
+          width: 300px;
         }
       }
       input:focus {
@@ -207,6 +240,23 @@
   @media all and (max-width: 576px) {
     display: none;
   }
+  div.cart {
+    position: relative;
+    span {
+      position: absolute;
+      display: flex;
+      background-color: rgba($color: #74b0f7, $alpha: 0.3);
+      color: black;
+      width: 20px !important;
+      height: 20px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      top: -5px;
+      left: 22px;
+    }
+  }
+
   i {
     font-size: 25px;
     color: #74b0f7;
@@ -306,18 +356,32 @@
   padding: 100px;
   padding-top: 50px;
   padding-bottom: 20px;
-  background-color: rgba($color: #7ec0f650, $alpha: 0.3);
-  .row {
-    // @media all and (max-width: 992px) {
-    //   // flex-direction: column;
-    // }
-    // @media all and (max-width: 768px) {
-    //   padding-top: 50px;
-    // }
-    // @media all and (max-width: 576px) {
-    //   flex-direction: column;
-    // }
+
+  h2,
+  h3,
+  h4 {
+    width: 100%;
+    text-align: center;
+
+    padding-bottom: 20px;
   }
+
+  background-color: rgba($color: #7ec0f650, $alpha: 0.3);
+  @media all and (max-width: 576px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  // .row {
+  //   // @media all and (max-width: 992px) {
+  //   //   // flex-direction: column;
+  //   // }
+  //   // @media all and (max-width: 768px) {
+  //   //   padding-top: 50px;
+  //   // }
+  //   // @media all and (max-width: 576px) {
+  //   //   flex-direction: column;
+  //   // }
+  // }
   button {
     margin-top: 10px;
     background-color: #193960;
@@ -340,6 +404,9 @@
     padding-left: 7px;
     padding-right: 15px;
     padding-bottom: 10px;
+    @media all and (max-width: 576px) {
+      padding-left: 0px;
+    }
   }
   i#fb {
     color: #4267b2;
@@ -369,7 +436,7 @@ div#login {
     padding-right: 20px;
     border-radius: 1px;
     border: 1px solid #ccc;
-    font-family: inherit;
+    font-family: "EB Garamond", serif;
   }
 
   h2 {

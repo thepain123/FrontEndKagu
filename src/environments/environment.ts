@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApi: "http://noithatkagu.store/public/api",
+  urlApi: "https://wobtqobo.nethost-3311.000nethost.com/api/public/api",
   // urlApi: "http://localhost:800/noithatkagu/public/api",
 };
 

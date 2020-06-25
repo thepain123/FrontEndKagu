@@ -1,15 +1,16 @@
 <div class="logo-navbar">
     <div class="logo">
+        <div></div>
         <h2><a routerLink="">Kagu</a></h2>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span><i class="fa fa-bars"></i></span>
+        </button>
     </div>
     <div class="navigationbar">
         <nav class="navbar navbar-expand-sm navbar-light ">
 
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
-                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
             <div class="collapse navbar-collapse custom-navbar" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto  custom-ul">
 
@@ -46,8 +47,10 @@
         </nav>
     </div>
     <div class="cart-user">
+        <div class="cart">
+            <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i> </a><span>{{productQuantity}}</span>
 
-        <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i></a>
+        </div>
 
         <i id="notifi" class="fa fa-bell"></i>
         <div class="user">
@@ -73,9 +76,12 @@
 
 <router-outlet></router-outlet>
 <section class="footer">
+    <h2>THƯƠNG MẠI ĐIỆN TỬ VÀ TRIỂN KHAI ỨNG DỤNG</h2>
+    <h3>Giảng viên hướng dẫn : Trần Tuấn Dũng </h3>
+    <h4><a href="https://www.dungtran.top">https://www.dungtran.top</a></h4>
     <div class="row">
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-            <h4>Social Network</h4>
+            <h4>Các kênh của cửa hàng</h4>
             <i id="fb" class="fab fa-facebook"> </i>
             <span> facebook.com/kagu</span><br>
             <i id="yt" class="fab fa-youtube"> </i>
@@ -84,27 +90,30 @@
             <span>twitter.com/kagu</span>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-            <h4>Hotline</h4>
-            <p>9000876766</p>
-            <p>9000876766</p>
-            <p>9000876766</p>
+            <h4>Liên hệ</h4>
+            <p>0399295198</p>
+            <p>0942013068</p>
 
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-            <h4>Service</h4>
-            <p> Introduction</p>
-            <p> Introduction</p>
-            <p> Introduction</p>
-            <p> Any question ?</p>
 
 
         </div>
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-            <h4>Contact us</h4>
+            <h4>Dịch vụ</h4>
+            <p> Tư vấn, thiết kế nội thất</p>
+            <p> Cung cấp nội thất chất lượng cao</p>
+            <p> Dịch vụ bảo hành</p>
+            <p> Hỗ trợ thanh toán trực tuyến</p>
+
+
+
+
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <h4>Đăng ký nhận thông báo</h4>
             <div class="form-group">
                 <label for=""></label>
                 <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                <button>Submit</button>
+                <button>Gửi</button>
             </div>
 
         </div>

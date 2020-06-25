@@ -1,13 +1,13 @@
-<section class="cart">
-    <div class="list-product">
+<section ng class="cart">
+    <div *ngIf="!cartNull; else ElseContentName3" class="list-product">
         <h2>Giỏ hàng</h2>
-
         <div class="product-cart-component" *ngFor="let product of cart">
             <div class="image-product-cart">
                 <img [src]="product.productImage" [alt]="product.productName">
 
             </div>
             <div class="product-name">
+
                 <h4>{{product.productName}}</h4>
                 <p></p>
             </div>
@@ -21,15 +21,22 @@
                 <h4>{{product.productPrice}} ₫</h4>
             </div>
             <div class="delete">
-                <i class="fa fa-times"></i>
+                <i (click)="deleteProduct(product.productId)" class="fa fa-times"></i>
             </div>
         </div>
-
-    </div>
-    <div class="sub-total">
-        <a href="/danh-muc">Tiếp tục mua hàng</a>
         <h3>Tổng tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
-        <button (click)="checkOut()" class="checkout">Tiếp tục</button>
+    </div>
+
+    <ng-template #ElseContentName3>
+        <div class="cartNull">
+            <img src="../../../assets/Picture3.png" alt="cartnull">
+            <h2>Giỏ hàng đang trống</h2>
+        </div>
+    </ng-template>
+    <div class="sub-total">
+        <a routerLink="/danh-muc">Tiếp tục mua hàng</a>
+
+        <button *ngIf="!cartNull;" (click)=" checkOut()" class="checkout">Tiếp tục</button>
     </div>
 
 </section>

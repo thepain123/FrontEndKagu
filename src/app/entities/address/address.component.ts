@@ -26,10 +26,10 @@ export class AddressComponent implements OnInit {
     this.showUserInfo();
   }
   showUserInfo() {
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("userKagu")) {
       console.log(this.formAddress.value);
 
-      this.user = JSON.parse(localStorage.getItem("user"));
+      this.user = JSON.parse(localStorage.getItem("userKagu"));
       setTimeout(() => {
         this.formAddress.setValue({
           name: this.user.data.user.name,

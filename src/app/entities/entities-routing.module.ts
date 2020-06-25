@@ -57,11 +57,11 @@ const routes: Routes = [
     loadChildren: "./categories/categories.module#CategoriesModule",
     // canActivate: [AuthGuard]
   },
-  {
-    path: "tai-khoan",
-    loadChildren: "./categories/categories.module#CategoriesModule",
-    // canActivate: [AuthGuard]
-  },
+  // {
+  //   path: "tai-khoan",
+  //   loadChildren: "./categories/categories.module#CategoriesModule",
+  //   // canActivate: [AuthGuard]
+  // },
 
   // { path: "admin", loadChildren: "./admin/admin.module#AdminModule" }
 ];

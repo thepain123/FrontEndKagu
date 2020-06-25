@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "src/app/shared/data.service";
 import { Router } from "@angular/router";
 import { SharingDataService } from "src/app/shared/sharing-data.service";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-cart",
@@ -10,7 +11,7 @@ import { SharingDataService } from "src/app/shared/sharing-data.service";
 })
 export class CartComponent implements OnInit {
   cart: any;
-  cartNull: boolean = false;
+  cartNull: boolean = true;
   price: number;
   totalPriceOfAllProduct: number = 0;
   totalPriceOfAllProductFormat: string;
@@ -24,10 +25,15 @@ export class CartComponent implements OnInit {
     this.showCart();
     this.calculateTotalPrice();
   }
-
+  ngDoCheck() {
+    // this.ngOnInit();
+  }
   showCart() {
     if (localStorage.getItem("cart")) {
       this.cart = JSON.parse(localStorage.getItem("cart"));
+      if (this.cart.length != 0) {
+        this.cartNull = false;
+      }
       for (let i = 0; i < this.cart.length; i++) {
         let temp, convert: number;
         temp = +this.cart[i].totalPrice;
@@ -52,6 +58,24 @@ export class CartComponent implements OnInit {
           this.cart[i] = { ...this.cart[i], totalPriceFormat: convert };
         }
       }
+    }
+    this.calculateTotalPrice();
+  }
+  deleteProduct(productId) {
+    console.log("delete");
+    console.log(productId);
+
+    for (let i = 0; i < this.cart.length; i++) {
+      if (this.cart[i].productId == productId) {
+        this.cart.splice(i, 1);
+        localStorage.setItem("cart", JSON.stringify(this.cart));
+      }
+    }
+    if (this.cart.length == 0) {
+      console.log("alo");
+      location.reload();
+      // window.location.reload;
+      // this.router.navigateByUrl("/gio-hang");
     }
     this.calculateTotalPrice();
   }

@@ -28,7 +28,7 @@
                         <input [value]="quantity" type="text">
                         <button (click)="raiseQuantity()" type="button" class="btn btn-up">+</button>
                     </div>
-                    <button (click)="addToCart()" class="checkout">Mua ngay</button>
+                    <button (click)="addToCart()" class="checkout">Thêm vào giỏ hàng</button>
 
                 </div>
                 <div class="promotion">
@@ -47,7 +47,7 @@
             </div>
         </div>
     </section>
-    <div class="product-details">
+    <section class="product-details">
         <h2>Thông tin chi tiết</h2>
         <table class="table">
 
@@ -70,7 +70,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </section>
     <section class="product-introduction">
         <h2>Giới thiệu sản phẩm</h2>
         <h5>{{product_detail.infor}}</h5>

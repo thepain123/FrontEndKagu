@@ -44,7 +44,7 @@
   padding-right: 60px;
   text-align: center;
   h2 {
-    font-family: "Merriweather", serif;
+    font-family: "EB Garamond", serif;
   }
 
   .row {
@@ -135,26 +135,26 @@
 }
 a.carousel-control-prev span {
   margin-left: -100px;
-  @media all and (max-width: 576px) {
-    margin-left: -20px;
+  @media all and (max-width: 992px) {
+    margin-left: -50px;
   }
   @media all and (max-width: 768px) {
     margin-left: -40px;
   }
-  @media all and (max-width: 992px) {
-    margin-left: -50px;
+  @media all and (max-width: 576px) {
+    margin-left: -20px;
   }
 }
 a.carousel-control-next span {
   margin-right: -100px;
-  @media all and (max-width: 576px) {
-    margin-right: -20px;
+  @media all and (max-width: 992px) {
+    margin-right: -50px;
   }
   @media all and (max-width: 768px) {
     margin-right: -40px;
   }
-  @media all and (max-width: 992px) {
-    margin-right: -50px;
+  @media all and (max-width: 576px) {
+    margin-right: -20px;
   }
 }
 
@@ -171,7 +171,10 @@ a.carousel-control-next span {
   @media all and (max-width: 576px) {
     padding-bottom: 40px;
   }
-
+  h3 {
+    width: 100%;
+    text-align: center;
+  }
   padding-top: 10px;
   img {
     max-width: 100%;
@@ -193,7 +196,8 @@ a.carousel-control-next span {
       }
     }
     h3 {
-      text-align: center;
+      // text-align: center !important;
+      // width: 100%;
       padding-bottom: 20px;
       padding-top: 10px;
       @media all and (max-width: 992px) {
@@ -259,7 +263,7 @@ a.carousel-control-next span {
   }
 }
 .content {
-  font-family: "Merriweather", serif;
+  font-family: "EB Garamond", serif;
   padding: 50px;
   @media all and (max-width: 992px) {
     padding-right: 30px;

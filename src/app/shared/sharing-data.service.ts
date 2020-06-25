@@ -12,6 +12,7 @@ export class SharingDataService {
   private catid = new BehaviorSubject(0);
   private searchKeyword = new BehaviorSubject("0");
   private typeload = new BehaviorSubject(0);
+  private flag = new BehaviorSubject(1);
 
   ShareCart = this.cart.asObservable();
   ShareTotalPrice = this.totalPrice.asObservable();
@@ -20,6 +21,7 @@ export class SharingDataService {
   ShareCatID = this.catid.asObservable();
   ShareKeyword = this.searchKeyword.asObservable();
   ShareTypeLoad = this.typeload.asObservable();
+  LoadHTML = this.flag.asObservable();
 
   constructor() {}
   sharingDataDetailCart(total: string) {
@@ -34,15 +36,11 @@ export class SharingDataService {
   sharingDataOrderID(orderid) {
     this.orderId.next(orderid);
   }
-  sharingDataCatID(_catid) {
-    this.catid.next(_catid);
-  }
-  sharingDataKeyword(_searchKeyword) {
-    console.log("share key");
 
-    this.searchKeyword.next(_searchKeyword);
-  }
   sharingTypeLoad(typeload) {
     this.typeload.next(typeload);
+  }
+  loadingFlag(flag) {
+    this.flag.next(flag);
   }
 }
