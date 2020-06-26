@@ -1,15 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "src/app/shared/data.service";
 import { Router } from "@angular/router";
 import { Meta, Title } from "@angular/platform-browser";
 import { SharingDataService } from "src/app/shared/sharing-data.service";
 import { Subscription } from "rxjs";
+import { NgForm } from "@angular/forms";
+import { min } from "rxjs/operators";
 @Component({
   selector: "app-categories",
   templateUrl: "./categories.component.html",
   styleUrls: ["./categories.component.scss"],
 })
 export class CategoriesComponent implements OnInit {
+  @ViewChild("formCostRange", { static: false }) formCostRange: NgForm;
+
   constructor(
     private _dataService: DataService,
     private router: Router,
@@ -21,11 +25,13 @@ export class CategoriesComponent implements OnInit {
   cat_id: any;
   keyword: any;
   typeLoad: any;
+  firstTime: boolean = false;
   subcription: Subscription;
   typePage: any;
+  loadCheck: boolean = false;
   message = {
     categoryId: 0,
-    page: 0,
+    page: 1,
     sort: 0,
     rating: 0,
     minPrice: "0",
@@ -33,7 +39,7 @@ export class CategoriesComponent implements OnInit {
   };
   messageSearch = {
     keyword: "",
-    page: 0,
+    page: 1,
     sort: 0,
     rating: 0,
     minPrice: "0",
@@ -48,67 +54,65 @@ export class CategoriesComponent implements OnInit {
       name: "description",
       content: "Tủ quần áo các loại",
     });
-    this.detectTypeLoad();
+    this.firstLoad();
+    this.reloadPage();
+    // this.detectTypeLoad();
   }
-  nextPage(item) {
-    switch (this.typePage) {
-      case 1:
-        this.messageSearch.page = item;
-        this.getProductByKeyword(this.keyword);
-        break;
-      case 2:
-        this.showProductByCategory(this.cat_id, item);
-        break;
-      case 3:
-        break;
+  firstLoad() {
+    if (this.firstTime === false) {
+      console.log("first");
 
-      default:
-        break;
+      this.sharingDataSerive.LoadHTML.subscribe((data) => {
+        this.typeLoad = data;
+        this.firstTime = true;
+        this.loadHTML();
+      });
     }
   }
-  detectTypeLoad() {
-    this.sharingDataSerive.ShareTypeLoad.subscribe((data) => {
+  reloadPage() {
+    this.sharingDataSerive.LoadHTML.subscribe((data) => {
+      console.log(this.typeLoad);
       console.log(data);
-      this.typeLoad = data;
-      switch (data) {
-        case 1:
-          this.detectProductCat();
 
-          break;
-        case 2:
-          this.showSearchResult();
-
-          break;
-        default:
-          this.showProductByCategory(1);
-          break;
+      console.log("reload");
+      if (this.typeLoad !== data) {
+        this.typeLoad = data;
+        this.loadHTML();
       }
     });
   }
-  detectProductCat() {
-    console.log("detect ");
-
-    this.sharingDataSerive.ShareCatID.subscribe((data) => {
-      this.cat_id = data;
-      console.log(this.cat_id);
-    });
-    this.showProductByCategory(this.cat_id);
-  }
-  showSearchResult() {
-    console.log("showsearch");
-    this.typePage = 1;
-    this.sharingDataSerive.ShareKeyword.subscribe((data) => {
-      this.keyword = data;
-      console.log("sub");
-    });
-
-    if (this.keyword !== "0") {
-      this.getProductByKeyword(this.keyword);
+  // ngOnDestroy() {
+  //   sessionStorage.removeItem("catid");
+  //   sessionStorage.removeItem("keyword");
+  // }
+  loadHTML() {
+    if (sessionStorage.getItem("catid")) {
+      this.message = JSON.parse(sessionStorage.getItem("catid"));
+      this.showProductByCategory();
     } else {
-      this.showProductByCategory(1);
+      this.messageSearch = JSON.parse(sessionStorage.getItem("keyword"));
+      this.getProductByKeyword(this.messageSearch.keyword);
+    }
+    this.loadCheck = true;
+  }
+
+  nextPage(item) {
+    console.log(this.totalPage);
+    if (sessionStorage.getItem("catid")) {
+      this.message.page = item;
+      this.cat_id = JSON.parse(sessionStorage.getItem("catid"));
+      this.showProductByCategory();
+    } else {
+      this.keyword = JSON.parse(sessionStorage.getItem("keyword"));
+      this.messageSearch.page = item;
+      this.getProductByKeyword(this.keyword.keyword);
     }
   }
+
   getProductByKeyword(keyword) {
+    console.log(this.totalPage);
+    this.currentPage = this.messageSearch.page;
+
     console.log("api");
     const uri = "data/search-product";
     this.messageSearch.keyword = keyword;
@@ -122,7 +126,7 @@ export class CategoriesComponent implements OnInit {
           convert = temp.toLocaleString("de-DE");
           this.productList[i].product_price = convert.toString();
         }
-        let i = 0;
+        let i = 1;
         this.totalPage = [];
         while (i <= data.data.numPage) {
           this.totalPage.push(i);
@@ -134,27 +138,22 @@ export class CategoriesComponent implements OnInit {
       (err: any) => {}
     );
   }
-  showProductByCategory(
-    cat_id,
-    page = 0,
-    sort = 0,
-    rating = 0,
-    minPrice = 0,
-    maxPrice = 0
-  ) {
-    this.typePage = 2;
-    this.currentPage = page;
-    console.log(this.currentPage);
-
-    const uri = "data/get-product-by-category-id";
+  selectCat(catId) {
     this.message = {
-      categoryId: cat_id,
-      page: page,
+      categoryId: catId,
+      page: 1,
       sort: 0,
       rating: 0,
       minPrice: "0",
       maxPrice: "0",
     };
+    this.currentPage = this.message.page;
+
+    sessionStorage.setItem("catid", JSON.stringify(this.message));
+    sessionStorage.removeItem("keyword");
+
+    const uri = "data/get-product-by-category-id";
+
     this._dataService.post(uri, this.message).subscribe(
       (data: any) => {
         this.productList = data.data.data;
@@ -174,17 +173,82 @@ export class CategoriesComponent implements OnInit {
       (err: any) => {}
     );
   }
-  selectSearch(rating) {
-    if (this.keyword !== "0") {
-      this.showProductSearchByRating(rating);
-    } else {
+  showProductByCategory(catId = 0) {
+    this.currentPage = this.message.page;
+    if (catId !== 0) {
+      this.message.categoryId = catId;
+    }
+    sessionStorage.setItem("catid", JSON.stringify(this.message));
+    sessionStorage.removeItem("keyword");
+
+    const uri = "data/get-product-by-category-id";
+
+    this._dataService.post(uri, this.message).subscribe(
+      (data: any) => {
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString("de-DE");
+          this.productList[i].product_price = convert.toString();
+        }
+        let i = 1;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
+      },
+      (err: any) => {}
+    );
+  }
+  selectSearchFunc(rating) {
+    if (sessionStorage.getItem("catid")) {
+      // this.cat_id = JSON.parse(sessionStorage.getItem("catid"));
       this.showProductByRating(rating);
+    } else {
+      // this.keyword = JSON.parse(sessionStorage.getItem("keyword"));
+      this.showProductSearchByRating(rating);
     }
   }
+  selectCostRange() {
+    console.log(this.formCostRange.value);
+    let minPrice = this.formCostRange.value.minPrice;
+    let maxPrice = this.formCostRange.value.maxPrice;
+    if (minPrice <= 0 || minPrice == null) {
+      minPrice = 0;
+    }
+    if (maxPrice <= 0 || maxPrice == null) {
+      maxPrice = 0;
+    }
+    if (sessionStorage.getItem("catid")) {
+      // this.cat_id = JSON.parse(sessionStorage.getItem("catid"));
+      this.showProductByCostRange(minPrice, maxPrice);
+    } else {
+      // this.keyword = JSON.parse(sessionStorage.getItem("keyword"));
+      this.showProductSearchByCostRange(minPrice, maxPrice);
+    }
+  }
+  selectSortFunc(sort) {
+    if (sessionStorage.getItem("catid")) {
+      // this.cat_id = JSON.parse(sessionStorage.getItem("catid"));
+      this.sortProductByCost(sort);
+    } else {
+      // this.keyword = JSON.parse(sessionStorage.getItem("keyword"));
+      this.sortProductSearchByCost(sort);
+    }
+  }
+
   showProductByRating(rating) {
-    this.typePage = 3;
+    console.log(this.totalPage);
+    // this.typePage = 3;
     const uri = "data/get-product-by-category-id";
     this.message.rating = rating;
+    this.message.page = 1;
+    this.currentPage = this.messageSearch.page;
+
+    sessionStorage.setItem("catid", JSON.stringify(this.message));
+
     this._dataService.post(uri, this.message).subscribe(
       (data: any) => {
         this.productList = data.data.data;
@@ -196,17 +260,23 @@ export class CategoriesComponent implements OnInit {
 
           this.productList[i].product_price = convert.toString();
         }
-
-        console.log(this.productList);
+        let i = 1;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
       },
       (err: any) => {}
     );
   }
   showProductSearchByRating(rating) {
-    console.log(this.messageSearch);
-
     const uri = "data/search-product";
     this.messageSearch.rating = rating;
+    this.messageSearch.page = 1;
+    this.currentPage = this.messageSearch.page;
+
+    sessionStorage.setItem("keyword", JSON.stringify(this.messageSearch));
 
     this._dataService.post(uri, this.messageSearch).subscribe(
       (data: any) => {
@@ -220,7 +290,141 @@ export class CategoriesComponent implements OnInit {
           this.productList[i].product_price = convert.toString();
         }
 
-        console.log(this.productList);
+        let i = 1;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
+        return;
+      },
+      (err: any) => {}
+    );
+  }
+
+  showProductByCostRange(minPrice, maxPrice) {
+    console.log(this.totalPage);
+    // this.typePage = 3;
+    const uri = "data/get-product-by-category-id";
+    this.message.minPrice = minPrice.toString();
+    this.message.maxPrice = maxPrice.toString();
+    this.message.page = 1;
+    this.currentPage = this.messageSearch.page;
+
+    sessionStorage.setItem("catid", JSON.stringify(this.message));
+
+    this._dataService.post(uri, this.message).subscribe(
+      (data: any) => {
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString();
+          console.log(convert);
+
+          this.productList[i].product_price = convert.toString();
+        }
+        let i = 1;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
+      },
+      (err: any) => {}
+    );
+  }
+  showProductSearchByCostRange(minPrice, maxPrice) {
+    const uri = "data/search-product";
+    this.messageSearch.maxPrice = maxPrice.toString();
+    this.messageSearch.minPrice = minPrice.toString();
+
+    this.messageSearch.page = 1;
+    this.currentPage = this.messageSearch.page;
+
+    sessionStorage.setItem("keyword", JSON.stringify(this.messageSearch));
+
+    this._dataService.post(uri, this.messageSearch).subscribe(
+      (data: any) => {
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString();
+          console.log(convert);
+
+          this.productList[i].product_price = convert.toString();
+        }
+
+        let i = 1;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
+        return;
+      },
+      (err: any) => {}
+    );
+  }
+
+  sortProductByCost(sort) {
+    console.log(this.totalPage);
+    // this.typePage = 3;
+    const uri = "data/get-product-by-category-id";
+    this.message.sort = sort;
+    this.message.page = 1;
+    this.currentPage = this.messageSearch.page;
+
+    sessionStorage.setItem("catid", JSON.stringify(this.message));
+
+    this._dataService.post(uri, this.message).subscribe(
+      (data: any) => {
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString();
+          console.log(convert);
+
+          this.productList[i].product_price = convert.toString();
+        }
+        let i = 1;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
+      },
+      (err: any) => {}
+    );
+  }
+  sortProductSearchByCost(sort) {
+    const uri = "data/search-product";
+    this.messageSearch.sort = sort;
+    this.messageSearch.page = 1;
+    this.currentPage = this.messageSearch.page;
+
+    sessionStorage.setItem("keyword", JSON.stringify(this.messageSearch));
+
+    this._dataService.post(uri, this.messageSearch).subscribe(
+      (data: any) => {
+        this.productList = data.data.data;
+        for (let i = 0; i < this.productList.length; i++) {
+          let temp, convert: number;
+          temp = +this.productList[i].product_price;
+          convert = temp.toLocaleString();
+          console.log(convert);
+
+          this.productList[i].product_price = convert.toString();
+        }
+
+        let i = 1;
+        this.totalPage = [];
+        while (i <= data.data.numPage) {
+          this.totalPage.push(i);
+          i++;
+        }
         return;
       },
       (err: any) => {}
@@ -240,7 +444,4 @@ export class CategoriesComponent implements OnInit {
       }
     }, 16);
   }
-  // ngOnDestroy() {
-  //   this.subcription.unsubscribe();
-  // }
 }

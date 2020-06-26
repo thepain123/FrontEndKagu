@@ -14,11 +14,31 @@ div.list-product {
   h2 {
     padding-bottom: 20px;
   }
+  h3 {
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 section.cart {
-  background-image: linear-gradient(to right, #e0eafc, #cfdef3);
+  // background-image: linear-gradient(to right, #e0eafc, #cfdef3);
   // background-image: repeating-radial-gradient(#ADA996, yellow 10%, green 15%);
+  border-top: 3px solid rgba($color: #6190e8, $alpha: 0.2);
+
+  .cartNull {
+    text-align: center;
+    h2 {
+      width: 100%;
+      text-align: center;
+      // padding-top: 20px;
+    }
+    img {
+      padding-top: 20px;
+      width: 230px;
+      height: 230px;
+    }
+  }
   .image-product-cart {
     display: flex;
     align-items: center;

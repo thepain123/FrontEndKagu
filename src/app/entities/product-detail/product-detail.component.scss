@@ -10,6 +10,15 @@ td,
 }
 section {
   padding: 25px 100px 25px 100px;
+  @media all and (max-width: 576px) {
+    padding: 25px 20px 25px 20px;
+  }
+  // @media all and (max-width: 768px) {
+  //   display: none;
+  // }
+  // @media all and (max-width: 992px) {
+  //   display: none;
+  // }
   h2 {
     padding-bottom: 20px;
   }
@@ -39,13 +48,22 @@ section {
     .listimage {
       display: flex;
       flex-direction: column;
-      // width: 100px;
+
+      @media all and (max-width: 992px) {
+        // margin-left: 30px;
+        // padding-left: 30px;
+      }
+      @media all and (max-width: 768px) {
+        // margin-left: 30px;
+        // padding-left: 30px;
+      }
       @media all and (max-width: 576px) {
         order: 2;
-      }
-      @media all and (max-width: 576px) {
         flex-direction: row;
+        justify-content: space-around;
+        padding-top: 20px;
       }
+
       img {
         display: block;
         max-width: 100%;
@@ -70,7 +88,11 @@ section {
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       border-radius: 5px;
       background: #6190e8; /* fallback for old browsers */
-      background: -webkit-linear-gradient(to right, #a7bfe8, #6190e8); /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(
+        to right,
+        #a7bfe8,
+        #6190e8
+      ); /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(
         to right,
         #a7bfe8,
@@ -79,7 +101,8 @@ section {
       // font-weight: 800;
     }
     .checkout:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
     }
     .promotion {
       margin-top: 10px;
@@ -87,17 +110,33 @@ section {
       border-top: 1px solid #efefef;
     }
     .bigimage {
+      margin-left: 20px;
       @media all and (max-width: 576px) {
+        width: 100%;
         order: 1;
+        margin-left: 0px;
+        width: 100%;
+        height: 350px;
       }
       img {
-        margin-left: 20px;
         display: block;
         max-width: 100%;
         max-height: 100%;
         width: auto;
         height: 475px;
         width: 600px;
+        // @media all and (max-width: 992px) {
+        //   // margin-left: 30px;
+        //   // padding-left: 30px;
+        // }
+        // @media all and (max-width: 768px) {
+        //   // margin-left: 30px;
+        //   // padding-left: 30px;
+        // }
+        @media all and (max-width: 576px) {
+          width: 100%;
+          height: 350px;
+        }
       }
     }
     .product-info {
@@ -106,14 +145,37 @@ section {
       padding-left: 30px;
       width: 450px;
       display: block;
+      @media all and (max-width: 992px) {
+        margin-left: 30px;
+        padding-left: 30px;
+      }
+      @media all and (max-width: 768px) {
+        margin-left: 30px;
+        padding-left: 30px;
+      }
       @media all and (max-width: 576px) {
         order: 3;
+        margin-left: 0px;
+        padding-left: 0px;
+        width: 100%;
       }
+
       // border-left: 2px solid #efefef;
       h2 {
         padding-bottom: 15px;
         border-bottom: 2px solid #efefef;
         width: 400px;
+        @media all and (max-width: 992px) {
+          // margin-left: 30px;
+          // padding-left: 30px;
+        }
+        @media all and (max-width: 768px) {
+          // margin-left: 30px;
+          // padding-left: 30px;
+        }
+        @media all and (max-width: 576px) {
+          width: 100%;
+        }
       }
       h4 {
         display: inline;
@@ -189,6 +251,13 @@ section {
   i {
     font-size: 40px;
   }
+  // @media all and (max-width: 992px) {
+  //   flex-direction: column;
+  // }
+  // @media all and (max-width: 768px) {
+  //   flex-direction: column;
+  // }
+
   .stars-reviews {
     text-align: center;
     display: flex;
@@ -196,16 +265,24 @@ section {
     justify-content: space-between;
     padding-left: 100px;
     padding-right: 100px;
-
+    @media all and (max-width: 576px) {
+      flex-direction: column;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
     .general {
       // border: 1px solid;
       padding: 20px;
+      @media all and (max-width: 576px) {
+        margin-bottom: 10px;
+      }
       background-color: white;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .general:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
     }
     h5 {
       padding-top: 20px;
@@ -300,7 +377,8 @@ section {
       }
     }
     .review-details:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
     }
   }
   .review-component {
@@ -372,7 +450,8 @@ section {
     }
 
     .col-custom:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
     }
     img {
       max-width: 100%;

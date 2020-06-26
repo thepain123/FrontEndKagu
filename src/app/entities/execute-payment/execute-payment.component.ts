@@ -23,7 +23,8 @@ export class ExecutePaymentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    localStorage.removeItem("cart");
+    let cart: any = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
     this.orderId = JSON.parse(localStorage.getItem("orderid"));
     console.log(this.orderId);
 
@@ -49,7 +50,7 @@ export class ExecutePaymentComponent implements OnInit {
           this.successHTML = true;
           console.log(this.orderId);
 
-          this.executePayment(this.orderId, this.PayerID, this.paymentId);
+          // this.executePayment(this.orderId, this.PayerID, this.paymentId);
         } else {
           this.successHTML = false;
         }

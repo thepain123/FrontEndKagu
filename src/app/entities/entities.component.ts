@@ -18,30 +18,48 @@ export class EntitiesComponent implements OnInit {
   user: any;
   productCatRouteList: any = ["giuong", "ban-ghe", "sofa", "tu-quan-ao", "ke"];
   usernameContent: string = "Đăng nhập";
+  productQuantity: any;
   constructor(
     private _dataService: DataService,
     private sharingDataSerive: SharingDataService,
     private title: Title,
     private meta: Meta,
     private router: Router
-  ) {
+  ) {}
+  ngOnChanges() {
+    this.showUser();
+  }
+  ngOnInit() {
+    this.showUser();
+    this.getProductCategory();
+    this.showCart();
+  }
+  ngDoCheck() {
+    this.showCart();
+  }
+  showUser() {
     if (!localStorage.getItem("cart")) {
       let cart: any = [];
       localStorage.setItem("cart", JSON.stringify(cart));
     }
     if (localStorage.getItem("userKagu")) {
       this.loginCheck = true;
-      this.user = JSON.parse(localStorage.getItem("user"));
+      console.log("loged");
+
+      this.user = JSON.parse(localStorage.getItem("userKagu"));
       this.usernameContent = `Chào ${this.user.data.user.name} !`;
     } else {
       this.loginCheck = false;
     }
   }
-
-  ngOnInit() {
-    this.getProductCategory();
+  showCart() {
+    if (localStorage.getItem("cart")) {
+      let cart = JSON.parse(localStorage.getItem("cart"));
+      this.productQuantity = cart.length;
+    } else {
+      this.productQuantity = 0;
+    }
   }
-
   getProductCategory() {
     const uri = "data/get-product-category";
 
@@ -60,24 +78,39 @@ export class EntitiesComponent implements OnInit {
     );
   }
   selectCategory(catid) {
-    this.sharingDataSerive.sharingDataCatID(catid);
-    this.sharingDataSerive.sharingTypeLoad(1);
+    let productByCat = {
+      categoryId: catid,
+      page: 1,
+      sort: 0,
+      rating: 0,
+      minPrice: "0",
+      maxPrice: "0",
+    };
+    sessionStorage.setItem("catid", JSON.stringify(productByCat));
+
+    sessionStorage.removeItem("keyword");
+    this.sharingDataSerive.loadingFlag(catid);
   }
   search(keyword) {
-    console.log("search");
-    this.sharingDataSerive.sharingDataKeyword(keyword);
-    this.sharingDataSerive.sharingTypeLoad(2);
-
+    let productByKeyword = {
+      keyword: keyword,
+      page: 1,
+      sort: 0,
+      rating: 0,
+      minPrice: "0",
+      maxPrice: "0",
+    };
+    sessionStorage.removeItem("catid");
+    sessionStorage.setItem("keyword", JSON.stringify(productByKeyword));
+    this.sharingDataSerive.loadingFlag(11);
     this.router.navigate([`/tim-kiem`]);
   }
   searchButton() {
     var keyword = (document.getElementById("inputSearch") as HTMLInputElement)
       .value;
-
-    console.log("searchButton");
-    this.sharingDataSerive.sharingDataKeyword(keyword);
-    this.sharingDataSerive.sharingTypeLoad(2);
-
+    sessionStorage.removeItem("catid");
+    sessionStorage.setItem("keyword", JSON.stringify(keyword));
+    this.sharingDataSerive.loadingFlag(10);
     this.router.navigate([`/tim-kiem`]);
   }
   login() {
@@ -95,8 +128,9 @@ export class EntitiesComponent implements OnInit {
         });
         console.log(data);
 
-        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("userKagu", JSON.stringify(data));
         this.usernameContent = `Chào ${data.data.user.name} !`;
+        this.ngOnInit();
         console.log(this.usernameContent);
       },
       (err: any) => {

@@ -181,7 +181,7 @@ export class CheckoutComponent implements OnInit {
       onBeforeOpen: () => {
         Swal.showLoading();
       },
-      timer: 7000,
+      timer: 20000,
     });
 
     let uri = "payment/create-payment";
@@ -197,9 +197,11 @@ export class CheckoutComponent implements OnInit {
         // this.router.navigate([`/chi-tiet`]);
         localStorage.setItem("orderid", JSON.stringify(order_id));
         // this.sharingData.sharingDataOrderID(order_id);
-        window.open(data.links[1].href, "_self");
+        window.open(data.href, "_self");
       },
       (err: any) => {
+        console.log(err);
+
         console.log("error");
       }
     );
