@@ -1,0 +1,11 @@
+User-agent: *
+
+Disallow: /admin/
+Disallow: /gio-hang/
+Disallow: /thong-tin-dat-hang/
+Disallow: /thanh-toan/
+Disallow: /xu-ly-thanh-toan/
+
+Allow: /
+
+Sitemap: http://noithatkagu.store/sitemap.xml
