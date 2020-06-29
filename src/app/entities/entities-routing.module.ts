@@ -53,8 +53,33 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: ":categories",
+    path: "giuong",
     loadChildren: "./categories/categories.module#CategoriesModule",
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: "ban-ghe",
+    loadChildren: "./categories/categories.module#CategoriesModule",
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: "sofa",
+    loadChildren: "./categories/categories.module#CategoriesModule",
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: "tu-quan-ao",
+    loadChildren: "./categories/categories.module#CategoriesModule",
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: "ke",
+    loadChildren: "./categories/categories.module#CategoriesModule",
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: ":notfound",
+    loadChildren: "./page-not-found/page-not-found.module#PageNotFoundModule",
     // canActivate: [AuthGuard]
   },
   // {
