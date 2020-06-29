@@ -54,7 +54,9 @@ export class CategoriesComponent implements OnInit {
       name: "description",
       content: "Tủ quần áo các loại",
     });
+    this.firstAnalisisUrl();
     this.firstLoad();
+
     this.reloadPage();
     // this.detectTypeLoad();
   }
@@ -85,13 +87,61 @@ export class CategoriesComponent implements OnInit {
   //   sessionStorage.removeItem("catid");
   //   sessionStorage.removeItem("keyword");
   // }
+  firstAnalisisUrl() {
+    let currentLink = this.router.url;
+    console.log(`"${currentLink}"`);
+    console.log(sessionStorage.getItem("url"));
+
+    if (sessionStorage.getItem("url")) {
+      if (sessionStorage.getItem("url") != `"${currentLink}"`) {
+        sessionStorage.removeItem("catid");
+        sessionStorage.removeItem("keyword");
+        this.analisisUrl();
+        this.showProductByCategory();
+        console.log("aloaloalo");
+      }
+    } else {
+      sessionStorage.setItem("url", JSON.stringify(currentLink));
+    }
+  }
+  analisisUrl() {
+    let currentLink = this.router.url;
+    console.log(currentLink);
+    sessionStorage.setItem("url", JSON.stringify(currentLink));
+
+    switch (currentLink) {
+      case "/giuong":
+        this.message.categoryId = 1;
+        break;
+      case "/ban-ghe":
+        this.message.categoryId = 2;
+        break;
+      case "/sofa":
+        this.message.categoryId = 3;
+        break;
+      case "/tu-quan-ao":
+        this.message.categoryId = 4;
+        break;
+      case "/ke":
+        this.message.categoryId = 5;
+        break;
+      default:
+        break;
+    }
+    this.showProductByCategory();
+  }
+  ngOnChanges() {
+    console.log("destroy");
+  }
   loadHTML() {
     if (sessionStorage.getItem("catid")) {
       this.message = JSON.parse(sessionStorage.getItem("catid"));
       this.showProductByCategory();
-    } else {
+    } else if (sessionStorage.getItem("keyword")) {
       this.messageSearch = JSON.parse(sessionStorage.getItem("keyword"));
       this.getProductByKeyword(this.messageSearch.keyword);
+    } else {
+      this.analisisUrl();
     }
     this.loadCheck = true;
   }
