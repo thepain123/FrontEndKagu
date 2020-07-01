@@ -163,14 +163,23 @@ a.carousel-control-next span {
   padding: 50px 50px;
   padding-bottom: 200px;
   @media all and (max-width: 992px) {
-    padding-bottom: 150px;
+    display: none;
   }
   @media all and (max-width: 768px) {
-    padding-bottom: 100px;
+    display: none;
   }
   @media all and (max-width: 576px) {
-    padding-bottom: 40px;
+    display: none;
   }
+  // @media all and (max-width: 992px) {
+  //   padding-bottom: 150px;
+  // }
+  // @media all and (max-width: 768px) {
+  //   padding-bottom: 100px;
+  // }
+  // @media all and (max-width: 576px) {
+  //   padding-bottom: 40px;
+  // }
   h3 {
     width: 100%;
     text-align: center;

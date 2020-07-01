@@ -113,6 +113,12 @@ export class CategoriesComponent implements OnInit {
       case "/giuong":
         this.message.categoryId = 1;
         break;
+      case "/tim-kiem":
+        this.message.categoryId = 1;
+        break;
+      case "/danh-muc":
+        this.message.categoryId = 1;
+        break;
       case "/ban-ghe":
         this.message.categoryId = 2;
         break;

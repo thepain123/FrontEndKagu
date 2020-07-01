@@ -78,6 +78,16 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
+    path: "tim-kiem",
+    loadChildren: "./categories/categories.module#CategoriesModule",
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: "danh-muc",
+    loadChildren: "./categories/categories.module#CategoriesModule",
+    // canActivate: [AuthGuard]
+  },
+  {
     path: ":notfound",
     loadChildren: "./page-not-found/page-not-found.module#PageNotFoundModule",
     // canActivate: [AuthGuard]
