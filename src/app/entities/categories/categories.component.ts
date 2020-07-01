@@ -5,7 +5,7 @@ import { Meta, Title } from "@angular/platform-browser";
 import { SharingDataService } from "src/app/shared/sharing-data.service";
 import { Subscription } from "rxjs";
 import { NgForm } from "@angular/forms";
-import { min } from "rxjs/operators";
+// import { min } from "rxjs/operators";
 @Component({
   selector: "app-categories",
   templateUrl: "./categories.component.html",
