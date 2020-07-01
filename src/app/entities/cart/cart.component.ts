@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "src/app/shared/data.service";
 import { Router } from "@angular/router";
 import { SharingDataService } from "src/app/shared/sharing-data.service";
-import { Location } from "@angular/common";
+// import { Location } from "@angular/common";
 
 @Component({
   selector: "app-cart",
@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   totalPriceOfAllProduct: number = 0;
   totalPriceOfAllProductFormat: string;
   constructor(
-    private _dataService: DataService,
+    // private _dataService: DataService,
     private router: Router,
     private sharingDataSerive: SharingDataService
   ) {}
