@@ -48,7 +48,9 @@ export class EntitiesComponent implements OnInit {
 
       this.user = JSON.parse(localStorage.getItem("userKagu"));
       this.usernameContent = `Chào ${this.user.data.user.name} !`;
+      console.log(this.usernameContent);
     } else {
+      this.usernameContent = `Tài khoản`;
       this.loginCheck = false;
     }
   }
@@ -130,7 +132,7 @@ export class EntitiesComponent implements OnInit {
 
         localStorage.setItem("userKagu", JSON.stringify(data));
         this.usernameContent = `Chào ${data.data.user.name} !`;
-        this.ngOnInit();
+        location.reload();
         console.log(this.usernameContent);
       },
       (err: any) => {

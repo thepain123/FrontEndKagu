@@ -24,6 +24,15 @@
                 <i (click)="deleteProduct(product.productId)" class="fa fa-times"></i>
             </div>
         </div>
+        <div class="discountCode">
+            <h4>Nhập mã giảm giá</h4>
+            <form #formDiscountCode="ngForm">
+                <input name="discountCode" #discountCode="ngModel" ngModel type="text">
+                <button (click)="enterDiscountCode()">Xác nhận</button>
+            </form>
+
+
+        </div>
         <h3>Tổng tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
     </div>
 

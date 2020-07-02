@@ -50,7 +50,7 @@ export class ExecutePaymentComponent implements OnInit {
           this.successHTML = true;
           console.log(this.orderId);
 
-          // this.executePayment(this.orderId, this.PayerID, this.paymentId);
+          this.executePayment(this.orderId, this.PayerID, this.paymentId);
         } else {
           this.successHTML = false;
         }

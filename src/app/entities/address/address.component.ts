@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { SharingDataService } from "src/app/shared/sharing-data.service";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-address",
@@ -11,6 +10,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class AddressComponent implements OnInit {
   @ViewChild("formAddress", { static: true }) formAddress: NgForm;
+
   constructor(
     private sharingData: SharingDataService,
     private router: Router
@@ -21,6 +21,7 @@ export class AddressComponent implements OnInit {
   totalPriceOfAllProduct: any;
   totalPriceOfAllProductFormat: string;
   user: any;
+
   ngOnInit() {
     this.showCart();
     this.showUserInfo();

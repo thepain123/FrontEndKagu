@@ -38,7 +38,8 @@
                 <img [src]="product.image[0].product_image" alt="product.image[0].image_description">
                 <div class="product-item-info">
                     <h5>{{product.product_name}}</h5>
-                    <h5>{{product.product_price}} ₫</h5>
+                    <h5>{{product.priceFormat}} ₫ <span class="percentReduce">(-{{product.pricePercent}}%)</span></h5>
+                    <span class="oldPrice"> {{product.fakePriceFormat}} ₫ </span>
                     <p>{{product.rating}} <i class="fa fa-star"></i> </p>
                 </div>
             </div>
@@ -98,7 +99,9 @@
             <img [src]="product.image[0].product_image" [alt]="product.image[0].image_description">
             <div class="product-item-info">
                 <h5>{{product.product_name}}</h5>
-                <h5 pattern="[0-9]">{{product.product_price}} ₫</h5>
+                <h5>{{product.priceFormat}} ₫ <span class="percentReduce">(-{{product.pricePercent}}%)</span></h5>
+                <span class="oldPrice"> {{product.fakePriceFormat}} ₫ </span>
+
                 <p>{{product.rating}} <i class="fa fa-star"></i> </p>
             </div>
         </div>

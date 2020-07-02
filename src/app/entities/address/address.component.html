@@ -4,10 +4,8 @@
         <div class="address col-xl-6">
             <a href="/">Đăng nhập</a>
             <form #formAddress="ngForm">
-                <input type="text" name="username" #username="ngModel" required ngModel
-                    placeholder="Họ tên khách hàng" />
-                <p class="alert alert-danger mt-2"
-                    *ngIf="username?.errors?.required  && (username.dirty || username.touched)">
+                <input type="text" name="name" #name="ngModel" required ngModel placeholder="Họ tên khách hàng" />
+                <p class="alert alert-danger mt-2" *ngIf="name?.errors?.required  && (name.dirty || name.touched)">
                     Vui lòng nhập họ tên </p>
                 <input placeholder="Số điện thoại" type="text" name="phone" #phone="ngModel" required ngModel>
                 <p class="alert alert-danger mt-2" *ngIf="phone?.errors?.required  && (phone.dirty || phone.touched)">
