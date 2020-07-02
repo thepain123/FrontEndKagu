@@ -20,12 +20,12 @@ export class HomeComponent implements OnInit {
     this._dataService.get(uri).subscribe(
       (data: any) => {
         this.newProductList = data.data;
-        for (let i = 0; i < this.newProductList.length; i++) {
-          let temp, convert: number;
-          temp = +this.newProductList[i].product_price;
-          convert = temp.toLocaleString("de-DE");
-          this.newProductList[i].product_price = convert.toString();
-        }
+        // for (let i = 0; i < this.newProductList.length; i++) {
+        //   let temp, convert: number;
+        //   temp = +this.newProductList[i].product_price;
+        //   convert = temp.toLocaleString("de-DE");
+        //   this.newProductList[i].product_price = convert.toString();
+        // }
       },
       (err: any) => {}
     );
@@ -35,12 +35,12 @@ export class HomeComponent implements OnInit {
     this._dataService.get(uri).subscribe(
       (data: any) => {
         this.topProductList = data.data;
-        for (let i = 0; i < this.topProductList.length; i++) {
-          let temp, convert: number;
-          temp = +this.topProductList[i].product_price;
-          convert = temp.toLocaleString("de-DE");
-          this.topProductList[i].product_price = convert.toString();
-        }
+        // for (let i = 0; i < this.topProductList.length; i++) {
+        //   let temp, convert: number;
+        //   temp = +this.topProductList[i].product_price;
+        //   convert = temp.toLocaleString("de-DE");
+        //   this.topProductList[i].product_price = convert.toString();
+        // }
       },
       (err: any) => {}
     );

@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "src/app/shared/data.service";
 import { Router } from "@angular/router";
 import { SharingDataService } from "src/app/shared/sharing-data.service";
+import { NgForm } from "@angular/forms";
 // import { Location } from "@angular/common";
 
 @Component({
@@ -10,17 +11,18 @@ import { SharingDataService } from "src/app/shared/sharing-data.service";
   styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent implements OnInit {
+  @ViewChild("formDiscountCode", { static: false }) form: NgForm;
   cart: any;
   cartNull: boolean = true;
   price: number;
   totalPriceOfAllProduct: number = 0;
   totalPriceOfAllProductFormat: string;
   constructor(
-    // private _dataService: DataService,
+    private _dataService: DataService,
     private router: Router,
     private sharingDataSerive: SharingDataService
   ) {}
-
+  ngAfterViewInit() {}
   ngOnInit() {
     this.showCart();
     this.calculateTotalPrice();
@@ -112,5 +114,33 @@ export class CartComponent implements OnInit {
     this.sharingDataSerive.sharingDataDetailCart(
       this.totalPriceOfAllProductFormat
     );
+  }
+  enterDiscountCode() {
+    this.calculateTotalPrice;
+    let uri = "data/check-discount-code";
+    let message = {
+      discountCode: this.form.value.discountCode,
+      totalMoney: this.totalPriceOfAllProduct.toString(),
+    };
+    console.log(this.totalPriceOfAllProduct);
+
+    this._dataService.post(uri, message).subscribe(
+      (data: any) => {
+        this.totalPriceOfAllProduct = data.data.lastMoney;
+        let temp, convert: number;
+        console.log(this.totalPriceOfAllProduct);
+
+        temp = this.totalPriceOfAllProduct;
+        console.log(temp);
+        convert = temp.toLocaleString("de-DE");
+        this.totalPriceOfAllProductFormat = convert.toString();
+      },
+      (err: any) => {
+        console.log(err);
+
+        console.log("error");
+      }
+    );
+    console.log(this.form.value);
   }
 }

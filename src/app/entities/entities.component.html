@@ -56,16 +56,24 @@
         <div class="user">
 
             <div class="dropdown">
-                <button class="dropbtn" data-toggle="modal" data-target="#login">{{usernameContent}}</button>
+                <button class="dropbtn">{{usernameContent}}</button>
                 <div class="dropdown-content login">
-
                     <div class="arrow-up"></div>
-                    <div>
+                    <div *ngIf="loginCheck; else ElseContent ">
                         <!-- <a *ngFor="let item of productCatList, let i = index" [routerLink]="item.routeLink"
                             (click)="selectCategory(i + 1)">{{item.cat_name}}</a> -->
+                        <button class="dropbtn" data-toggle="modal" data-target="#login">Đăng nhập</button>
                         <button class="dropbtn" data-toggle="modal" data-target="#login">Đăng ký</button>
 
                     </div>
+
+                    <ng-template #ElseContent>
+                        <div>
+                            <button class="dropbtn"><a routerLink="tai-khoan">Quản lý tài khoản</a></button>
+                            <button class="dropbtn" (click)="logout()">Đăng xuất</button>
+                        </div>
+
+                    </ng-template>
                 </div>
             </div>
 

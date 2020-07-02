@@ -197,7 +197,7 @@ export class CheckoutComponent implements OnInit {
         // this.router.navigate([`/chi-tiet`]);
         localStorage.setItem("orderid", JSON.stringify(order_id));
         // this.sharingData.sharingDataOrderID(order_id);
-        window.open(data.href, "_self");
+        window.open(data["0"], "_self");
       },
       (err: any) => {
         console.log(err);
