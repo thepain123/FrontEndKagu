@@ -27,6 +27,8 @@ export class CheckoutComponent implements OnInit {
   temp: any;
   discountCode: any;
   totalPriceOfAllProduct: number;
+  totalPriceOfAllProductFormat: string;
+  srcImage: any;
   constructor(
     private _dataService: DataService,
     private sharingData: SharingDataService,
@@ -34,8 +36,13 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.calculateTotalPrice();
+    this.cartProtect = JSON.parse(localStorage.getItem("cart"));
+    this.totalPriceOfAllProductFormat = JSON.parse(
+      sessionStorage.getItem("priceFormat")
+    );
 
+    this.calculateTotalPrice();
+    this.srcImage = "../../../assets/article_1546001113_751.png";
     this.sharingData.ShareOrderInfo.subscribe((data) => {
       this.temp = data;
       this.cartInfo.name = this.temp.name;
@@ -54,16 +61,21 @@ export class CheckoutComponent implements OnInit {
 
     console.log(this.cartInfo);
   }
+
   selectDeliveryOption(id) {
     switch (id) {
       case 1:
         this.cartInfo.deliveryOption = "Viet Nam Post";
+        this.srcImage = "../../../assets/article_1546001113_751.png";
         break;
       case 2:
         this.cartInfo.deliveryOption = "GHN Express";
+        this.srcImage =
+          "../../../assets/ghn_express__logo_mau_tren_nen_trong_suot_b01a2d72f3c240c2967208db370508de.png";
         break;
       case 3:
         this.cartInfo.deliveryOption = "Viettel Post";
+        this.srcImage = "../../../assets/1536138107_final_3.png";
         break;
 
       default:
@@ -90,7 +102,9 @@ export class CheckoutComponent implements OnInit {
 
     this.totalPriceOfAllProduct = 0;
     let cart = JSON.parse(localStorage.getItem("cart"));
-    this.cartProtect = cart;
+
+    console.log(this.cartProtect);
+
     const uri = "data/get-product-detail";
     let message = {
       productId: 1,
@@ -108,6 +122,10 @@ export class CheckoutComponent implements OnInit {
               this.cartInfo.discountCode = JSON.parse(
                 sessionStorage.getItem("discountCode")
               );
+              let temp, convert: number;
+              temp = this.totalPriceOfAllProduct;
+              convert = temp.toLocaleString("de-DE");
+              this.totalPriceOfAllProductFormat = convert.toString();
               this.enterDiscountCodeFunc(this.cartInfo.discountCode);
               console.log("discount");
             } else {
@@ -138,6 +156,7 @@ export class CheckoutComponent implements OnInit {
         console.log(data);
 
         this.cartInfo.totalPrice = data.data.lastMoney;
+        this.totalPriceOfAllProductFormat = data.data.lastMoneyFormat;
       },
       (err: any) => {
         console.log(err);

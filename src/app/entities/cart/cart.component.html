@@ -1,29 +1,70 @@
 <section ng class="cart">
     <div *ngIf="!cartNull; else ElseContentName3" class="list-product">
         <h2>Giỏ hàng</h2>
-        <div class="product-cart-component" *ngFor="let product of cart">
-            <div class="image-product-cart">
-                <img [src]="product.productImage" [alt]="product.productName">
+        <div class="desktop">
+            <div class="product-cart-component " *ngFor="let product of cart">
+                <div class="image-product-cart">
+                    <img [src]="product.productImage" [alt]="product.productName">
 
-            </div>
-            <div class="product-name">
+                </div>
+                <div class="product-name">
 
-                <h4>{{product.productName}}</h4>
-                <p></p>
+                    <h4>{{product.productName}}</h4>
+                    <p></p>
+                </div>
+
+                <div class="amount">
+                    <button (click)="reduceQuantity(product.productId)" type="button" class="btn btn-down">-</button>
+                    <input value="{{product.quantity}}" type="text">
+                    <button (click)="raiseQuantity(product.productId)" type="button" class="btn btn-up">+</button>
+                </div>
+                <div class="price">
+                    <h4>{{product.productPrice}} ₫</h4>
+                </div>
+                <div class="delete">
+                    <i (click)="deleteProduct(product.productId)" class="fa fa-times"></i>
+                </div>
             </div>
 
-            <div class="amount">
-                <button (click)="reduceQuantity(product.productId)" type="button" class="btn btn-down">-</button>
-                <input value="{{product.quantity}}" type="text">
-                <button (click)="raiseQuantity(product.productId)" type="button" class="btn btn-up">+</button>
-            </div>
-            <div class="price">
-                <h4>{{product.productPrice}} ₫</h4>
-            </div>
-            <div class="delete">
-                <i (click)="deleteProduct(product.productId)" class="fa fa-times"></i>
-            </div>
         </div>
+
+
+
+        <div class="product-cart-component-mobile-cart" *ngFor="let product of cart">
+            <div class="row">
+                <div class="image-product-cart">
+                    <img [src]="product.productImage" [alt]="product.productName">
+
+                </div>
+                <div class="row">
+                    <div class="product-name">
+
+                        <h4>{{product.productName}}</h4>
+                        <p></p>
+                    </div>
+                    <div class="price">
+                        <h4>{{product.productPrice}} ₫</h4>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="quatityFunc row">
+
+                <div class="amount">
+                    <button (click)="reduceQuantity(product.productId)" type="button" class="btn btn-down">-</button>
+                    <input value="{{product.quantity}}" type="text">
+                    <button (click)="raiseQuantity(product.productId)" type="button" class="btn btn-up">+</button>
+                </div>
+
+                <div class="delete">
+                    <i (click)="deleteProduct(product.productId)" class="fa fa-times"></i>
+                </div>
+            </div>
+
+        </div>
+
+
         <div class="discountCode">
             <h4>Nhập mã giảm giá</h4>
             <form #formDiscountCode="ngForm">

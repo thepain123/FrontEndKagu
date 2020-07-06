@@ -3,6 +3,7 @@ import { SharingDataService } from "src/app/shared/sharing-data.service";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { DataService } from "src/app/shared/data.service";
+import { stringify } from "querystring";
 
 @Component({
   selector: "app-address",
@@ -27,7 +28,8 @@ export class AddressComponent implements OnInit {
   ngOnInit() {
     this.showCart();
     this.showUserInfo();
-    this.showDiscountCode();
+    // this.showDiscountCode();
+    this.calculateTotalPrice();
   }
   showUserInfo() {
     if (sessionStorage.getItem("userKagu")) {
@@ -59,7 +61,6 @@ export class AddressComponent implements OnInit {
   }
 
   enterDiscountCodeFunc(code) {
-    this.calculateTotalPrice();
     let uri = "data/check-discount-code";
     console.log(code);
 
@@ -74,6 +75,10 @@ export class AddressComponent implements OnInit {
       (data: any) => {
         this.totalPriceOfAllProduct = data.data.lastMoney;
         this.totalPriceOfAllProductFormat = data.data.lastMoneyFormat;
+        sessionStorage.setItem(
+          "priceFormat",
+          JSON.stringify(this.totalPriceOfAllProductFormat)
+        );
       },
       (err: any) => {
         console.log(err);
@@ -102,6 +107,15 @@ export class AddressComponent implements OnInit {
     this.totalPriceOfAllProduct = 0;
     for (let i = 0; i < this.cart.length; i++) {
       this.totalPriceOfAllProduct += this.cart[i].totalPrice;
+      if (i == this.cart.length - 1) {
+        if (sessionStorage.getItem("discountCode")) {
+          this.discountCodeHTML = JSON.parse(
+            sessionStorage.getItem("discountCode")
+          );
+          console.log(this.discountCodeHTML);
+          this.enterDiscountCodeFunc(this.discountCodeHTML);
+        }
+      }
     }
     let temp, convert: number;
     temp = this.totalPriceOfAllProduct;

@@ -69,5 +69,31 @@
             <h3>Tổng tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
         </div>
 
+
+        <div class="cart-mobile">
+            <div class="product-cart-component" *ngFor="let product of cart">
+                <div class="row">
+                    <div class="image-product-cart">
+                        <img [src]="product.productImage" [alt]="product.productName">
+
+                    </div>
+                    <div class="column">
+                        <div class="product-name">
+                            <p>{{product.productName}}</p>
+                        </div>
+                        <div class="price">
+                            <p>{{product.productPrice}} ₫</p>
+                        </div>
+                        <div class="amount">
+
+                            <input readonly [value]="product.quantity" type="text">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3>Tổng tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
+        </div>
+
     </div>
 </section>
