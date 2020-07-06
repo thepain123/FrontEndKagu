@@ -21,8 +21,6 @@ export class DataService {
   HandleError(errCode) {
     console.log(errCode);
 
-    console.log(errCode.error.error.text);
-
     switch (errCode.status) {
       case 200:
         console.log("aloalo");

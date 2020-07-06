@@ -25,7 +25,8 @@ export class ExecutePaymentComponent implements OnInit {
   ngOnInit() {
     let cart: any = [];
     localStorage.setItem("cart", JSON.stringify(cart));
-    this.orderId = JSON.parse(localStorage.getItem("orderid"));
+    sessionStorage.removeItem("discountCode");
+    this.orderId = JSON.parse(sessionStorage.getItem("orderid"));
     console.log(this.orderId);
 
     this._getParamsFromURL();
