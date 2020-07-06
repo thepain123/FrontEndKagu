@@ -4,10 +4,10 @@
         <div class="address col-xl-6">
             <a href="/">Đăng nhập</a>
             <form #formAddress="ngForm">
-                <input type="text" name="name" #username="ngModel" required ngModel placeholder="Họ tên khách hàng" />
+                <input type="text" name="name" #name="ngModel" required ngModel placeholder="Họ tên khách hàng" />
                 <p class="alert alert-danger mt-2" *ngIf="name?.errors?.required  && (name.dirty || name.touched)">
                     Vui lòng nhập họ tên </p>
-                <input placeholder="Số điện thoại" type="text" name="phone" #city="ngModel" required ngModel>
+                <input placeholder="Số điện thoại" type="text" name="phone" #phone="ngModel" required ngModel>
                 <p class="alert alert-danger mt-2" *ngIf="phone?.errors?.required  && (phone.dirty || phone.touched)">
                     Vui lòng nhập số điện thoại </p>
                 <input placeholder="Email" type="email" name="email" required #email="ngModel"
@@ -16,7 +16,7 @@
                     Vui lòng nhập email </p>
                 <p class="alert alert-danger mt-2" *ngIf="email?.errors?.pattern"> Email phải đúng định dạng
                 </p>
-                <input placeholder="Địa chỉ" type="text" name="address" #city="ngModel" required ngModel>
+                <input placeholder="Địa chỉ" type="text" name="address" #address="ngModel" required ngModel>
                 <p class="alert alert-danger mt-2"
                     *ngIf="address?.errors?.required  && (address.dirty || address.touched)">
                     Vui lòng nhập địa chỉ </p>

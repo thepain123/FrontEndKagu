@@ -25,7 +25,70 @@ section.cart {
   // background-image: linear-gradient(to right, #e0eafc, #cfdef3);
   // background-image: repeating-radial-gradient(#ADA996, yellow 10%, green 15%);
   border-top: 3px solid rgba($color: #6190e8, $alpha: 0.2);
+  .discountCode {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    input {
+      height: 50px;
+      width: 200px;
+      border-radius: 10px;
+    }
+    button {
+      margin-left: 20px;
+      height: 40px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    button:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+    }
+    .display {
+      display: none;
+    }
+    .enterCode {
+      display: flex;
+    }
+    .usedCode {
+      margin-top: 20px;
+      padding: 3px;
+      background-color: rgba($color: #6190e8, $alpha: 0.5);
+      border-radius: 10px;
+      width: 110px;
+      .code {
+        border-right: solid 1px gray;
+        padding-left: 3px;
+        padding-right: 3px;
+        font-weight: bolder;
+      }
+      span.icon {
+        padding-left: 3px;
+        padding-right: 3px;
+        i:hover {
+          transform: rotate(180deg);
+          color: #ff3c36;
+        }
+        i {
+          transition: all 0.5s;
+        }
+      }
+    }
 
+    .delete {
+      align-items: center;
+      i {
+        font-size: 25px;
+        margin-left: 150px;
+        transition: all 0.5s;
+      }
+      i:hover {
+        transform: rotate(180deg);
+        color: #ff3c36;
+      }
+    }
+  }
   .cartNull {
     text-align: center;
     h2 {

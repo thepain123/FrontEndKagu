@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "src/app/shared/data.service";
 import { Router } from "@angular/router";
 import { SharingDataService } from "src/app/shared/sharing-data.service";
+import { NgForm } from "@angular/forms";
 // import { Location } from "@angular/common";
 
 @Component({
@@ -10,23 +11,35 @@ import { SharingDataService } from "src/app/shared/sharing-data.service";
   styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent implements OnInit {
+  @ViewChild("formDiscountCode", { static: false }) form: NgForm;
   cart: any;
   cartNull: boolean = true;
   price: number;
   totalPriceOfAllProduct: number = 0;
   totalPriceOfAllProductFormat: string;
+  enterDiscountcode: boolean = false;
+  discountCodeHTML;
   constructor(
-    // private _dataService: DataService,
+    private _dataService: DataService,
     private router: Router,
     private sharingDataSerive: SharingDataService
   ) {}
-
+  ngAfterViewInit() {}
   ngOnInit() {
     this.showCart();
-    this.calculateTotalPrice();
+
+    this.showDiscountCode();
   }
-  ngDoCheck() {
-    // this.ngOnInit();
+  showDiscountCode() {
+    if (sessionStorage.getItem("discountCode")) {
+      this.discountCodeHTML = JSON.parse(
+        sessionStorage.getItem("discountCode")
+      );
+
+      this.enterDiscountCodeFunc(this.discountCodeHTML);
+    } else {
+      this.calculateTotalPrice();
+    }
   }
   showCart() {
     if (localStorage.getItem("cart")) {
@@ -72,10 +85,7 @@ export class CartComponent implements OnInit {
       }
     }
     if (this.cart.length == 0) {
-      console.log("alo");
       location.reload();
-      // window.location.reload;
-      // this.router.navigateByUrl("/gio-hang");
     }
     this.calculateTotalPrice();
   }
@@ -100,11 +110,11 @@ export class CartComponent implements OnInit {
     this.totalPriceOfAllProduct = 0;
     for (let i = 0; i < this.cart.length; i++) {
       this.totalPriceOfAllProduct += this.cart[i].totalPrice;
-      let temp, convert: number;
-      temp = this.totalPriceOfAllProduct;
-      convert = temp.toLocaleString("de-DE");
-      this.totalPriceOfAllProductFormat = convert.toString();
     }
+    let temp, convert: number;
+    temp = this.totalPriceOfAllProduct;
+    convert = temp.toLocaleString("de-DE");
+    this.totalPriceOfAllProductFormat = convert.toString();
   }
   checkOut() {
     localStorage.setItem("cart", JSON.stringify(this.cart));
@@ -112,5 +122,45 @@ export class CartComponent implements OnInit {
     this.sharingDataSerive.sharingDataDetailCart(
       this.totalPriceOfAllProductFormat
     );
+    this.sharingDataSerive.sharingDiscountCode(this.discountCodeHTML);
+  }
+  enterDiscountCodeFunc(code?) {
+    if (this.enterDiscountcode == false) {
+      this.calculateTotalPrice();
+      let uri = "data/check-discount-code";
+      console.log(code);
+      if (!code) {
+        code = this.form.value.discountCode;
+      }
+      console.log(code);
+      let message = {
+        discountCode: code,
+        totalMoney: this.totalPriceOfAllProduct.toString(),
+      };
+      console.log(this.totalPriceOfAllProduct);
+
+      this._dataService.post(uri, message).subscribe(
+        (data: any) => {
+          this.totalPriceOfAllProduct = data.data.lastMoney;
+          this.totalPriceOfAllProductFormat = data.data.lastMoneyFormat;
+          this.discountCodeHTML = code;
+          this.enterDiscountcode = true;
+          if (!sessionStorage.getItem("discountCode")) {
+            sessionStorage.setItem(
+              "discountCode",
+              JSON.stringify(this.form.value.discountCode)
+            );
+          }
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+  }
+  deleteDiscountCode() {
+    this.enterDiscountcode = true;
+    location.reload();
+    sessionStorage.removeItem("discountCode");
   }
 }

@@ -12,20 +12,19 @@ export class HomeComponent implements OnInit {
   topProductList: any = [];
   slideShowList: any = [];
   ngOnInit() {
-    this.getSlideShow();
-    this.getNewProducts();
+    // this.getSlideShow();
+  }
+  ngAfterViewInit() {
+    this.getTopProducts();
+    if (window.innerWidth > 800) {
+      this.getNewProducts();
+    }
   }
   getNewProducts() {
     const uri = "data/get-new-product";
     this._dataService.get(uri).subscribe(
       (data: any) => {
         this.newProductList = data.data;
-        for (let i = 0; i < this.newProductList.length; i++) {
-          let temp, convert: number;
-          temp = +this.newProductList[i].product_price;
-          convert = temp.toLocaleString("de-DE");
-          this.newProductList[i].product_price = convert.toString();
-        }
       },
       (err: any) => {}
     );
@@ -35,12 +34,6 @@ export class HomeComponent implements OnInit {
     this._dataService.get(uri).subscribe(
       (data: any) => {
         this.topProductList = data.data;
-        for (let i = 0; i < this.topProductList.length; i++) {
-          let temp, convert: number;
-          temp = +this.topProductList[i].product_price;
-          convert = temp.toLocaleString("de-DE");
-          this.topProductList[i].product_price = convert.toString();
-        }
       },
       (err: any) => {}
     );
@@ -50,7 +43,7 @@ export class HomeComponent implements OnInit {
     this._dataService.get(uri).subscribe(
       (data: any) => {
         this.slideShowList = data.data;
-        this.getTopProducts();
+        console.log(data.data);
       },
       (err: any) => {}
     );

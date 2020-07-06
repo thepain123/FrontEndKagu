@@ -15,6 +15,16 @@ button.checkout {
   background-color: rgba($color: #6190e8, $alpha: 0.2);
   border-top: 3px solid rgba($color: #6190e8, $alpha: 0.2);
   display: flex;
+  flex-direction: row;
+  // @media all and (max-width: 992px) {
+  //   margin-left: -50px;
+  // }
+  // @media all and (max-width: 768px) {
+  //   margin-left: -40px;
+  // }
+  @media all and (max-width: 576px) {
+    flex-direction: column;
+  }
   .left-side {
     padding: 10px;
     border-radius: 8px;
@@ -22,6 +32,15 @@ button.checkout {
     background-color: white;
     border-right: 3px solid rgba($color: #6190e8, $alpha: 0.2);
     // width: 500px;
+    @media all and (max-width: 576px) {
+      width: 100%;
+      .first {
+        display: flex;
+      }
+      .second {
+        display: flex;
+      }
+    }
     .categories {
       display: flex;
       flex-direction: column;
@@ -36,11 +55,21 @@ button.checkout {
 
         color: rgba($color: #6190e8, $alpha: 0.8);
       }
+      @media all and (max-width: 576px) {
+        width: 50%;
+      }
     }
     .evaluate {
       padding-top: 10px;
       padding-bottom: 10px;
       border-top: 3px solid rgba($color: #6190e8, $alpha: 0.2);
+      @media all and (max-width: 576px) {
+        width: 50%;
+        border-top: none;
+        padding-top: 0px;
+        border-left: 3px solid rgba($color: #6190e8, $alpha: 0.2);
+        padding-left: 10px;
+      }
       p {
         font-size: 18px;
         cursor: pointer;
@@ -68,10 +97,17 @@ button.checkout {
       padding-bottom: 10px;
       width: 215px;
       margin-right: 0px;
+      @media all and (max-width: 576px) {
+        width: 50%;
+        text-align: center;
+      }
       span {
         color: #6190e8;
         padding-left: 5px;
         padding-right: 5px;
+        @media all and (max-width: 576px) {
+          display: block;
+        }
       }
       input,
       button {
@@ -83,6 +119,9 @@ button.checkout {
       button {
         margin-left: 50px;
         margin-top: 10px;
+        @media all and (max-width: 576px) {
+          margin-left: 0px;
+        }
       }
     }
     .sort {
@@ -90,6 +129,11 @@ button.checkout {
       padding-top: 10px;
       width: 215px;
       margin-right: 0px;
+      @media all and (max-width: 576px) {
+        width: 50%;
+        border-left: 3px solid rgba($color: #6190e8, $alpha: 0.2);
+        padding-left: 10px;
+      }
       span {
         color: #6190e8;
         padding-left: 5px;

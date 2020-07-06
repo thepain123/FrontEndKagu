@@ -11,17 +11,21 @@ import Swal from "sweetalert2";
 })
 export class CheckoutComponent implements OnInit {
   cartInfo: any = {
+    userId: 1,
     name: "string",
     phone: "string",
     email: "string",
     address: "string",
     deliveryOption: "Viet Nam Post",
     totalPrice: 0,
+    discountCode: "string",
+    firstPrice: 0,
     paymentMethod: "cash",
   };
   cartProtect: any;
   orderID: number;
   temp: any;
+  discountCode: any;
   totalPriceOfAllProduct: number;
   constructor(
     private _dataService: DataService,
@@ -39,6 +43,15 @@ export class CheckoutComponent implements OnInit {
       this.cartInfo.email = this.temp.email;
       this.cartInfo.address = this.temp.address;
     });
+
+    if (sessionStorage.getItem("userKagu")) {
+      this.cartInfo.userId = JSON.parse(
+        sessionStorage.getItem("userKagu")
+      ).data.user.id;
+    } else {
+      this.cartInfo.userId = "";
+    }
+
     console.log(this.cartInfo);
   }
   selectDeliveryOption(id) {
@@ -73,44 +86,78 @@ export class CheckoutComponent implements OnInit {
     console.log(this.cartInfo);
   }
   calculateTotalPrice() {
+    console.log("calculate");
+
     this.totalPriceOfAllProduct = 0;
     let cart = JSON.parse(localStorage.getItem("cart"));
     this.cartProtect = cart;
+    const uri = "data/get-product-detail";
+    let message = {
+      productId: 1,
+    };
     for (let i = 0; i < cart.length; i++) {
-      const uri = "data/get-product-detail";
-      let message = {
+      message = {
         productId: cart[i].productId,
       };
       this._dataService.post(uri, message).subscribe(
         (data: any) => {
-          this.cartProtect[
-            i
-          ].product_price = data.data[0].product_price.toString();
-          this.totalPriceOfAllProduct +=
+          this.cartInfo.firstPrice +=
             +data.data[0].product_price * cart[i].quantity;
-          console.log(this.totalPriceOfAllProduct);
-          this.cartInfo.totalPrice = this.totalPriceOfAllProduct;
-          console.log(this.cartProtect);
+          if (i == cart.length - 1) {
+            if (sessionStorage.getItem("discountCode")) {
+              this.cartInfo.discountCode = JSON.parse(
+                sessionStorage.getItem("discountCode")
+              );
+              this.enterDiscountCodeFunc(this.cartInfo.discountCode);
+              console.log("discount");
+            } else {
+              this.cartInfo.discountCode = "";
+            }
+          }
         },
         (err: any) => {}
       );
     }
   }
-  checkOut() {
-    if (this.cartInfo.totalPrice == 0) {
-      this.sharingData.ShareCart.subscribe((data) => {
-        this.cartInfo.totalPrice = data;
-      });
-    }
-    let uri = "cart/post-user-infor";
-    console.log(this.cartInfo);
 
-    this._dataService.post(uri, this.cartInfo).subscribe(
+  enterDiscountCodeFunc(code) {
+    let uri = "data/check-discount-code";
+    console.log(code);
+
+    console.log(code);
+    console.log(this.totalPriceOfAllProduct);
+
+    let message = {
+      discountCode: code,
+      totalMoney: this.cartInfo.firstPrice.toString(),
+    };
+    console.log(this.totalPriceOfAllProduct);
+
+    this._dataService.post(uri, message).subscribe(
       (data: any) => {
         console.log(data);
 
+        this.cartInfo.totalPrice = data.data.lastMoney;
+      },
+      (err: any) => {
+        console.log(err);
+
+        console.log("error");
+      }
+    );
+  }
+
+  checkOut() {
+    if (this.cartInfo.totalPrice == 0) {
+      this.cartInfo.totalPrice = this.cartInfo.firstPrice;
+    }
+    let uri = "cart/post-user-infor";
+    console.log(this.cartInfo);
+    console.log(this.cartProtect);
+
+    this._dataService.post(uri, this.cartInfo).subscribe(
+      (data: any) => {
         this.orderID = data.data[0].order_id;
-        console.log(this.orderID);
 
         for (let i = 0; i < this.cartProtect.length; i++) {
           if (i == this.cartProtect.length - 1) {
@@ -119,7 +166,7 @@ export class CheckoutComponent implements OnInit {
               this.orderID,
               this.cartProtect[i].productId,
               this.cartProtect[i].quantity,
-              this.cartProtect[i].product_price,
+              this.cartProtect[i].priceNum,
               this.cartProtect[i].productName,
               true
             );
@@ -129,7 +176,7 @@ export class CheckoutComponent implements OnInit {
               this.orderID,
               this.cartProtect[i].productId,
               this.cartProtect[i].quantity,
-              this.cartProtect[i].product_price,
+              this.cartProtect[i].priceNum,
               this.cartProtect[i].productName,
               false
             );
@@ -195,9 +242,9 @@ export class CheckoutComponent implements OnInit {
         console.log(order_id);
 
         // this.router.navigate([`/chi-tiet`]);
-        localStorage.setItem("orderid", JSON.stringify(order_id));
+        sessionStorage.setItem("orderid", JSON.stringify(order_id));
         // this.sharingData.sharingDataOrderID(order_id);
-        window.open(data.href, "_self");
+        window.open(data["0"], "_self");
       },
       (err: any) => {
         console.log(err);

@@ -24,6 +24,26 @@
                 <i (click)="deleteProduct(product.productId)" class="fa fa-times"></i>
             </div>
         </div>
+        <div class="discountCode">
+            <h4>Nhập mã giảm giá</h4>
+            <form #formDiscountCode="ngForm">
+                <input name="discountCode" #discountCode="ngModel" ngModel type="text">
+                <button [disabled]="enterDiscountcode" (click)="enterDiscountCodeFunc()">Xác
+                    nhận</button>
+                <div class="enterCode">
+
+
+                </div>
+
+
+            </form>
+
+            <div *ngIf="enterDiscountcode" class="usedCode">
+                <span class="code">{{discountCodeHTML}}</span><span class="icon"> <i (click)="deleteDiscountCode()"
+                        class="fa fa-times"></i></span>
+            </div>
+
+        </div>
         <h3>Tổng tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
     </div>
 
