@@ -5,6 +5,7 @@ import { SharingDataService } from "src/app/shared/sharing-data.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import Swal from "sweetalert2";
+import * as Category from '../../category.json';
 @Component({
   selector: "app-entities",
   templateUrl: "./entities.component.html",
@@ -28,8 +29,9 @@ export class EntitiesComponent implements OnInit {
     private meta: Meta,
     private router: Router
   ) {}
-
   ngOnInit() {
+  }
+  ngAfterViewInit() {
     this.showCart();
     this.showUser();
 
@@ -48,15 +50,11 @@ export class EntitiesComponent implements OnInit {
     }
     if (sessionStorage.getItem("userKagu")) {
       this.loginCheck = true;
-      console.log("loged");
-      console.log(this.loginCheck);
       this.user = JSON.parse(sessionStorage.getItem("userKagu"));
       this.usernameContent = `Chào ${this.user.data.user.name} !`;
-      console.log(this.usernameContent);
     } else {
       this.usernameContent = `Tài khoản`;
       this.loginCheck = false;
-      console.log(this.loginCheck);
     }
   }
   showCart() {
@@ -68,21 +66,13 @@ export class EntitiesComponent implements OnInit {
     }
   }
   getProductCategory() {
-    const uri = "data/get-product-category";
-
-    this._dataService.get(uri).subscribe(
-      (data: any) => {
-        this.productCatList = data.data;
-        console.log(this.productCatList);
-        for (let i = 0; i < this.productCatList.length; i++) {
-          this.productCatList[i] = {
-            ...this.productCatList[i],
-            routeLink: this.productCatRouteList[i],
-          };
-        }
-      },
-      (err: any) => {}
-    );
+    this.productCatList = Category.data;
+    for (let i = 0; i < this.productCatList.length; i++) {
+      this.productCatList[i] = {
+        ...this.productCatList[i],
+        routeLink: this.productCatRouteList[i],
+      };
+    }
   }
   selectCategory(catid) {
     let productByCat = {
@@ -133,15 +123,12 @@ export class EntitiesComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
-        console.log(data);
 
         sessionStorage.setItem("userKagu", JSON.stringify(data));
         this.usernameContent = `Chào ${data.data.user.name} !`;
         location.reload();
-        console.log(this.usernameContent);
       },
       (err: any) => {
-        console.log(err);
       }
     );
   }
@@ -162,15 +149,12 @@ export class EntitiesComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
-        console.log(data);
 
         sessionStorage.setItem("userKagu", JSON.stringify(data));
         this.usernameContent = `Chào ${data.data.user.name} !`;
         location.reload();
-        console.log(this.usernameContent);
       },
       (err: any) => {
-        console.log(err);
       }
     );
   }
@@ -180,7 +164,6 @@ export class EntitiesComponent implements OnInit {
 
     this._dataService.post(uri).subscribe(
       (data: any) => {
-        console.log(data);
 
         Swal.fire({
           icon: "success",
@@ -193,7 +176,6 @@ export class EntitiesComponent implements OnInit {
         sessionStorage.removeItem("userKagu");
       },
       (err: any) => {
-        console.log(err);
       }
     );
   }
@@ -204,10 +186,6 @@ export class EntitiesComponent implements OnInit {
       {},
       (googleUser) => {
         let profile = googleUser.getBasicProfile();
-        console.log("Token || " + googleUser.getAuthResponse().id_token);
-        console.log("ID: " + profile.getId());
-        console.log("Name: " + profile.getName());
-        console.log("Email: " + profile.getEmail());
         //YOUR CODE HERE
         let email = profile.getEmail();
         let name = profile.getName();
@@ -248,7 +226,6 @@ export class EntitiesComponent implements OnInit {
   login() {
     window["FB"].login(
       (response) => {
-        console.log("login response", response);
         if (response.authResponse) {
           window["FB"].api(
             "/me",
@@ -256,15 +233,12 @@ export class EntitiesComponent implements OnInit {
               fields: "last_name, first_name, email",
             },
             (userInfo) => {
-              console.log("user information");
-              console.log(userInfo);
               let name = `${userInfo.last_name} ${userInfo.first_name}`;
               let email = userInfo.email;
               this.loginAPIFG(email, name);
             }
           );
         } else {
-          console.log("User login failed");
         }
       },
       { scope: "email" }

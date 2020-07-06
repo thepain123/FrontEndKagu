@@ -1,0 +1,26 @@
+{
+  "error": false,
+  "data": [
+    {
+      "cat_id": 1,
+      "cat_name": "Giường"
+    },
+    {
+      "cat_id": 2,
+      "cat_name": "Bàn ghế"
+    },
+    {
+      "cat_id": 3,
+      "cat_name": "Sofa"
+    },
+    {
+      "cat_id": 4,
+      "cat_name": "Tủ quần áo"
+    },
+    {
+      "cat_id": 5,
+      "cat_name": "Kệ"
+    }
+  ],
+  "errors": []
+}

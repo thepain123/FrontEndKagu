@@ -1,0 +1,78 @@
+{
+  "error": false,
+  "data": [
+    {
+      "product_id": 50,
+      "product_name": "Kệ trang trí KTT02",
+      "product_fk_price": "1800000",
+      "product_price": "1300000",
+      "rating": "0.00",
+      "priceFormat": "1,300,000",
+      "fakePriceFormat": "1,800,000",
+      "pricePercent": 28,
+      "image": [
+        {
+          "id": 145,
+          "product_id": "50",
+          "product_image": "/assets/ketivigiasach/ketrangtri/1.jpg",
+          "image_description": "mat truoc 2"
+        }
+      ]
+    },
+    {
+      "product_id": 49,
+      "product_name": "Kệ rượu gỗ KRG01",
+      "product_fk_price": "5500000",
+      "product_price": "5000000",
+      "rating": "0.00",
+      "priceFormat": "5,000,000",
+      "fakePriceFormat": "5,500,000",
+      "pricePercent": 9,
+      "image": [
+        {
+          "id": 142,
+          "product_id": "49",
+          "product_image": "/assets/ketivigiasach/keruougo/1.jpg",
+          "image_description": "mat truoc 2"
+        }
+      ]
+    },
+    {
+      "product_id": 48,
+      "product_name": "Kệ gỗ thông KGT01",
+      "product_fk_price": "2000000",
+      "product_price": "1500000",
+      "rating": "0.00",
+      "priceFormat": "1,500,000",
+      "fakePriceFormat": "2,000,000",
+      "pricePercent": 25,
+      "image": [
+        {
+          "id": 139,
+          "product_id": "48",
+          "product_image": "/assets/ketivigiasach/kegothong/1.jpg",
+          "image_description": "mat truoc 2"
+        }
+      ]
+    },
+    {
+      "product_id": 47,
+      "product_name": "Kệ trang trí gỗ KTT01",
+      "product_fk_price": "11000000",
+      "product_price": "10000000",
+      "rating": "0.00",
+      "priceFormat": "10,000,000",
+      "fakePriceFormat": "11,000,000",
+      "pricePercent": 9,
+      "image": [
+        {
+          "id": 136,
+          "product_id": "47",
+          "product_image": "/assets/ketivigiasach/ketrangtrigo/4.jpg",
+          "image_description": "mat truoc 2"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
