@@ -47,7 +47,7 @@
 
 # 1 Month for most static assets
 <filesMatch ".(css|jpg|webp|jpeg|png|gif|js|ico)$">
-    Header set Cache-Control "max-age=2592000, public"
+    Header set Cache-Control "max-age=31536000, public"
 </filesMatch>
 #------------ BROWSER CACHING (optional)
 # Disable browser caching in production. You can add/remove file extension as you wish.
