@@ -2,20 +2,22 @@
     <div class="row">
         <div class="col-3">
             <div class="userfuction">
-                <h4>Tài khoản của </h4>
+                <h4>Tài khoản của {{this.user.data.user.name}} </h4>
 
             </div>
         </div>
         <div class="col-8 user-info">
 
             <h4>Thông tin tài khoản</h4>
-
-            <div class="form-group">
-                <p>Họ tên: </p><input type="text"> <br>
-                <p>Email: </p><input type="text"><br>
-                <p>Điện thoại: </p><input type="text"><br>
-                <p>Địa chỉ:</p> <input type="text"><br>
-            </div>
+            <form #formUserInfo="ngForm">
+                <div class="form-group">
+                    <p>Họ tên: </p><input name="name" #name="ngModel" ngModel type="text"> <br>
+                    <p>Email: </p><input name="email" #email="ngModel" ngModel type="text"><br>
+                    <p>Điện thoại: </p><input name="phone" #phone="ngModel" ngModel type="text"><br>
+                    <p>Địa chỉ:</p> <input name="address" #address="ngModel" ngModel type="text"><br>
+                </div>
+            </form>
+            <button (click)="updateUserInfo()">Cập nhập</button>
         </div>
     </div>
 </div>

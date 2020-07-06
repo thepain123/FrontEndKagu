@@ -1,53 +1,61 @@
 <section class="categories-page">
     <div class="left-side">
-        <div class="categories">
-            <h5>Danh mục sản phẩm</h5>
-            <a routerLink="/giuong" (click)="selectCat(1)">Giường</a>
-            <a routerLink="/ban-ghe" (click)="selectCat(2)">Bàn ghế</a>
-            <a routerLink="/sofa" (click)="selectCat(3)">Sofa</a>
-            <a routerLink="/tu-quan-ao" (click)="selectCat(4)">Tủ quần áo</a>
-            <a routerLink="/ke" (click)="selectCat(5)">Kệ</a>
+        <div class="first">
+            <div class="categories">
+                <h5>Danh mục sản phẩm</h5>
+                <a routerLink="/giuong" (click)="selectCat(1)">Giường</a>
+                <a routerLink="/ban-ghe" (click)="selectCat(2)">Bàn ghế</a>
+                <a routerLink="/sofa" (click)="selectCat(3)">Sofa</a>
+                <a routerLink="/tu-quan-ao" (click)="selectCat(4)">Tủ quần áo</a>
+                <a routerLink="/ke" (click)="selectCat(5)">Kệ</a>
+            </div>
+            <div class="evaluate">
+                <h5>Đánh giá sản phẩm</h5>
+                <p (click)="selectSearchFunc(5)"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 5 sao)</p>
+                <p (click)="selectSearchFunc(4)" class="fourstar"> <i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i> (Từ 4 sao)</p>
+                <p (click)="selectSearchFunc(3)" class="threestar"> <i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i> (Từ 3 sao)</p>
+
+            </div>
         </div>
-        <div class="evaluate">
-            <h5>Đánh giá sản phẩm</h5>
-            <p (click)="selectSearchFunc(5)"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                    class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 5 sao)</p>
-            <p (click)="selectSearchFunc(4)" class="fourstar"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                    class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 4 sao)</p>
-            <p (click)="selectSearchFunc(3)" class="threestar"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                    class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 3 sao)</p>
+        <div class="second">
+            <div class="price">
+                <h5>Giá</h5>
+                <p>Chọn khoảng giá</p>
 
-        </div>
-        <div class="price">
-            <h5>Giá</h5>
-            <p>Chọn khoảng giá</p>
+                <form #formCostRange="ngForm">
 
-            <form #formCostRange="ngForm">
 
+                    <!-- <input type="text"> <span>-</span> <input type="text"> -->
+
+                    <input type="number" name="minPrice" required #minPrice="ngModel" pattern="[0-9]$" ngModel>
+                    <span>-</span>
+                    <input type="number" name="maxPrice" required #maxPrice="ngModel" pattern="[0-9]$" ngModel>
+
+                    <!-- <p class="alert alert-danger mt-2" *ngIf="email?.errors?.required && (email.dirty || email.touched)">
+                        Vui lòng nhập email </p>
+                    <p class="alert alert-danger mt-2" *ngIf="email?.errors?.pattern"> Email phải đúng định dạng -->
+
+
+
+                </form>
 
                 <!-- <input type="text"> <span>-</span> <input type="text"> -->
+                <button (click)="selectCostRange()">OK</button>
+            </div>
+            <div class="sort">
+                <h5>Sắp xếp</h5>
+                <p (click)="selectSortFunc(2)">Giá tăng dần <i class="fa fa-sort-amount-up"></i></p>
+                <p (click)="selectSortFunc(3)">Giá giảm dần <i class="fa fa-sort-amount-down"></i></p>
 
-                <input type="number" name="minPrice" required #minPrice="ngModel" pattern="[0-9]$" ngModel>
-                <span>-</span>
-                <input type="number" name="maxPrice" required #maxPrice="ngModel" pattern="[0-9]$" ngModel>
-
-                <!-- <p class="alert alert-danger mt-2" *ngIf="email?.errors?.required && (email.dirty || email.touched)">
-                    Vui lòng nhập email </p>
-                <p class="alert alert-danger mt-2" *ngIf="email?.errors?.pattern"> Email phải đúng định dạng -->
-
-
-
-            </form>
-
-            <!-- <input type="text"> <span>-</span> <input type="text"> -->
-            <button (click)="selectCostRange()">OK</button>
+            </div>
         </div>
-        <div class="sort">
-            <h5>Sắp xếp</h5>
-            <p (click)="selectSortFunc(2)">Giá tăng dần <i class="fa fa-sort-amount-up"></i></p>
-            <p (click)="selectSortFunc(3)">Giá giảm dần <i class="fa fa-sort-amount-down"></i></p>
 
-        </div>
+
     </div>
 
     <div class="products">
@@ -63,15 +71,6 @@
                 </div>
             </div>
 
-            <!-- <div class="col-3" *ngFor="let product of productList" (click)="showProductDetail(product.product_id)">
-                <img [src]="product.image[1].product_image" alt="product.image[1].image_description">
-                <div class="product-info">
-                    <h5>{{product.product_name}}</h5>
-                    <h5>{{product.product_price}} ₫</h5>
-                    <p>{{product.rating}} <i class="fa fa-star"></i> </p>
-                </div>
-
-            </div> -->
 
         </div>
         <ul class="pagination justify-content-center">

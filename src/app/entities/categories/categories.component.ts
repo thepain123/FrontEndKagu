@@ -83,10 +83,6 @@ export class CategoriesComponent implements OnInit {
       }
     });
   }
-  // ngOnDestroy() {
-  //   sessionStorage.removeItem("catid");
-  //   sessionStorage.removeItem("keyword");
-  // }
   firstAnalisisUrl() {
     let currentLink = this.router.url;
     console.log(`"${currentLink}"`);

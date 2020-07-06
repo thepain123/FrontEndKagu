@@ -13,6 +13,7 @@ export class SharingDataService {
   private searchKeyword = new BehaviorSubject("0");
   private typeload = new BehaviorSubject(0);
   private flag = new BehaviorSubject(1);
+  private discountCode = new BehaviorSubject("0");
 
   ShareCart = this.cart.asObservable();
   ShareTotalPrice = this.totalPrice.asObservable();
@@ -22,6 +23,7 @@ export class SharingDataService {
   ShareKeyword = this.searchKeyword.asObservable();
   ShareTypeLoad = this.typeload.asObservable();
   LoadHTML = this.flag.asObservable();
+  ShareDiscountCode = this.discountCode.asObservable();
 
   constructor() {}
   sharingDataDetailCart(total: string) {
@@ -42,5 +44,9 @@ export class SharingDataService {
   }
   loadingFlag(flag) {
     this.flag.next(flag);
+  }
+
+  sharingDiscountCode(discountCode) {
+    this.discountCode.next(discountCode);
   }
 }
