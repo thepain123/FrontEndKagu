@@ -2,47 +2,73 @@
     <div class="ship">
         <h2>1. Chọn hình thức giao hàng</h2>
         <div class="list-shipper">
-            <img src="../../../assets/article_1546001113_751.png" alt="">
+            <img src="../../../assets/article_1546001113_751.png" alt="Viet Nam Post">
             <div class="form-check">
-                <input (click)="selectDeliveryOption(1)" class="form-check-input" type="radio" name="exampleRadios"
-                    id="exampleRadios1" value="option1" checked>
+                <input (click)="selectDeliveryOption(1)" checked class="form-check-input" type="radio"
+                    name="exampleRadios" id="exampleRadios1" value="option1">
                 <label class="checkmark" for="exampleRadios1">
 
                 </label>
             </div>
             <img src="../../../assets/ghn_express__logo_mau_tren_nen_trong_suot_b01a2d72f3c240c2967208db370508de.png"
-                alt="">
+                alt="GHN Express">
             <div class="form-check">
                 <input (click)="selectDeliveryOption(2)" class="form-check-input" type="radio" name="exampleRadios"
-                    id="exampleRadios1" value="option3">
+                    id="exampleRadios2" value="option2">
                 <label class="checkmark" for="exampleRadios2">
 
                 </label>
             </div>
-            <img src="../../../assets/1536138107_final_3.png" alt="">
+            <img src="../../../assets/1536138107_final_3.png" alt="Viettel Post">
             <div class="form-check">
                 <input (click)="selectDeliveryOption(3)" class="form-check-input" type="radio" name="exampleRadios"
-                    id="exampleRadios1" value="option3">
-                <label class="checkmark" for="exampleRadios2">
+                    id="exampleRadios3" value="option3">
+                <label class="checkmark" for="exampleRadios3">
 
                 </label>
             </div>
 
         </div>
+        <div class="list-shipper-mobile">
 
+            <div class="form-check">
+                <input (click)="selectDeliveryOption(1)" class="form-check-input" type="radio" name="exampleRadios1"
+                    id="exampleRadios1" value="option1" checked>
+                <label class="checkmark" for="exampleRadios1">
+                    VIETNAM POST
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input (click)="selectDeliveryOption(2)" class="form-check-input" type="radio" name="exampleRadios1"
+                    id="exampleRadios2" value="option2">
+                <label class="checkmark" for="exampleRadios2">
+                    GHN EXPRESS
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input (click)="selectDeliveryOption(3)" class="form-check-input" type="radio" name="exampleRadios1"
+                    id="exampleRadios3" value="option3">
+                <label class="checkmark" for="exampleRadios3">
+                    VIETTEL POST
+                </label>
+            </div>
+
+        </div>
 
     </div>
-    <div class="row">
-        <div class="payment-step">
 
+    <div class="payment-part">
+        <div class="payment-step">
             <div class="payment">
                 <h2>2. Chọn hình thức thanh toán</h2>
                 <div class="list-payment">
                     <div class="form-check">
                         <div>
                             <input (click)="selectCheckoutOption(2)" class="form-check-input" type="radio"
-                                name="exampleRadios1" id="exampleRadios2" value="option2" checked>
-                            <label class="checkmark" for="exampleRadios2">
+                                name="exampleRadios3" id="exampleRadios4" value="option1" checked>
+                            <label class="checkmark" for="exampleRadios4">
 
                             </label>
                         </div>
@@ -51,8 +77,8 @@
                     <div class="form-check">
                         <div>
                             <input (click)="selectCheckoutOption(3)" class="form-check-input" type="radio"
-                                name="exampleRadios1" id="exampleRadios2" value="option2">
-                            <label class="checkmark" for="exampleRadios2">
+                                name="exampleRadios3" id="exampleRadios5" value="option2">
+                            <label class="checkmark" for="exampleRadios5">
 
                             </label>
                         </div>
@@ -69,19 +95,23 @@
             <div class="flip-card-inner">
                 <div class="order-front">
                     <h3>Đơn hàng</h3>
-                    <h5>Người nhận: Vũ Minh Đức</h5>
-                    <h5>SĐT: 0942013068</h5>
-                    <h5>Địa chỉ : Tân Hoà, EaBlang, Thị xã Buôn Hồ</h5>
+                    <h5>Người nhận: {{cartInfo.name}}</h5>
+                    <h5>SĐT: {{cartInfo.phone}}</h5>
+                    <h5>Địa chỉ : {{cartInfo.address}}</h5>
 
                     <h5>Mặt hàng:</h5>
-                    <h5>Ghế sofa, số lượng: 1</h5>
-                    <h5>Giường gỗ, số lượng: 1</h5>
-                    <h5>Tủ rượu, số lượng: 1</h5>
-                    <h5>Thành tiền: 1.000.000 VNĐ </h5>
+
+                    <div *ngFor="let product of cartProtect">
+
+                        <h5>{{product.productName}}, số lượng {{product.quantity}}</h5>
+                    </div>
+                    <h5>Thành tiền: {{totalPriceOfAllProductFormat}} VNĐ </h5>
                 </div>
                 <div class="order-back">
                     <h2>Đơn hàng</h2>
-                    <img src="../../../assets/article_1546001113_751.png" alt="">
+                    <img [src]="srcImage" alt="don-vi-van-chuyen">
+
+                    <!-- ../../../assets/article_1546001113_751.png -->
                     <!-- <img src="../../../assets/ghn_express__logo_mau_tren_nen_trong_suot_b01a2d72f3c240c2967208db370508de.png"
                         alt=""> -->
                     <!-- <img src="../../../assets/1536138107_final_3.png" alt=""> -->

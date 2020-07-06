@@ -11,14 +11,30 @@ button.checkout {
 }
 section {
   padding: 25px 100px 25px 100px;
+  @media all and (max-width: 576px) {
+    padding: 25px 20px 25px 20px;
+  }
   border-top: 3px solid rgba($color: #6190e8, $alpha: 0.2);
   h2 {
     // padding-bottom: 10px;
     margin-bottom: 0px;
+    @media all and (max-width: 576px) {
+      font-size: 25px;
+    }
+  }
+  .payment-part {
+    display: flex;
+  }
+  .payment {
+    margin-top: 20px;
   }
   .ship {
     .list-shipper {
+      @media all and (max-width: 576px) {
+        display: none;
+      }
       display: flex;
+
       justify-content: space-around;
       align-items: center;
       img {
@@ -26,11 +42,31 @@ section {
         height: 200px;
         max-width: 100%;
         max-height: 100%;
-        // margin-right: 50px;
       }
       input {
         height: 25px;
         width: 25px;
+      }
+    }
+
+    .list-shipper-mobile {
+      @media all and (min-width: 576px) {
+        display: none;
+      }
+      display: flex;
+      justify-content: space-around;
+
+      flex-direction: column;
+      .form-check {
+        margin-top: 10px;
+      }
+      input {
+        height: 25px;
+        width: 25px;
+      }
+      label {
+        padding-top: 5px;
+        padding-left: 20px;
       }
     }
 
@@ -40,6 +76,9 @@ section {
   }
   .payment-step {
     padding-top: 50px;
+    @media all and (max-width: 576px) {
+      padding-top: 0px;
+    }
   }
   .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
@@ -48,6 +87,9 @@ section {
     margin-left: 100px;
   }
   .flip-card {
+    @media all and (max-width: 576px) {
+      display: none;
+    }
     // padding-left: 150px;
     background-color: transparent;
     width: 100%;
@@ -139,6 +181,9 @@ section {
     .list-payment {
       padding-left: 20px;
       padding-top: 20px;
+      @media all and (max-width: 576px) {
+        padding-left: 0px;
+      }
       .form-check {
         margin-bottom: 20px;
         display: flex;

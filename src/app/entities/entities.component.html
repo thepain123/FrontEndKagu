@@ -42,7 +42,14 @@
                             class="fa fa-search"></i></button>
                 </div>
 
+                <div class="cart-user-mobile">
+                    <div class="cart">
+                        <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i>
+                        </a><span>{{productQuantity}}</span>
 
+                    </div>
+                    <i class="fa fa-user"></i>
+                </div>
             </div>
         </nav>
     </div>
@@ -86,7 +93,7 @@
 <section class="footer">
     <div class="subject">
         <h2>THƯƠNG MẠI ĐIỆN TỬ VÀ TRIỂN KHAI ỨNG DỤNG</h2>
-        <h3>Giảng viên hướng dẫn : Trần Tuấn Dũng </h3>
+        <h3>Giảng viên : Trần Tuấn Dũng </h3>
         <h4><a href="https://www.dungtran.top">https://www.dungtran.top</a></h4>
     </div>
 
@@ -145,11 +152,10 @@
 
                 <div class="col">
                     <button (click)="login()" class="fb btn">
-                        <i class="fa fa-facebook fa-fw"></i> Đăng nhập với Facebook
+                        Đăng nhập với Facebook
                     </button>
 
-                    <button #loginRef class="google btn"><i class="fa fa-google fa-fw">
-                        </i> Đăng nhập với Google+
+                    <button #loginRef class="google btn"> Đăng nhập với Google+
                     </button>
                 </div>
 
