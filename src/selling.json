@@ -1,0 +1,78 @@
+{
+  "error": false,
+  "data": [
+    {
+      "product_id": "17",
+      "product_name": "Bộ bàn ăn 6 ghế màu tự nhiên B6G01",
+      "product_fk_price": "7500000",
+      "product_price": "7000000",
+      "rating": "0.00",
+      "priceFormat": "7,000,000",
+      "fakePriceFormat": "7,500,000",
+      "pricePercent": 7,
+      "image": [
+        {
+          "id": 49,
+          "product_id": "17",
+          "product_image": "/assets/banghean/bobanan6ghemautunhien/1.jpg",
+          "image_description": "mat truoc fa-rotate-180"
+        }
+      ]
+    },
+    {
+      "product_id": "16",
+      "product_name": "Bộ bàn ăn chân gỗ sồi BGS01",
+      "product_fk_price": "6000000",
+      "product_price": "5000000",
+      "rating": "0.00",
+      "priceFormat": "5,000,000",
+      "fakePriceFormat": "6,000,000",
+      "pricePercent": 17,
+      "image": [
+        {
+          "id": 46,
+          "product_id": "16",
+          "product_image": "/assets/banghean/bobananchangosoi/1.jpg",
+          "image_description": "mat truoc fa-rotate-180"
+        }
+      ]
+    },
+    {
+      "product_id": "2",
+      "product_name": "Giường gia đình gỗ sồi GGD01",
+      "product_fk_price": "6500000",
+      "product_price": "5500000",
+      "rating": "3.00",
+      "priceFormat": "5,500,000",
+      "fakePriceFormat": "6,500,000",
+      "pricePercent": 15,
+      "image": [
+        {
+          "id": 4,
+          "product_id": "2",
+          "product_image": "/assets/giuong/giadinhgosoi/4.jpg",
+          "image_description": "mat truoc fa-rotate-180"
+        }
+      ]
+    },
+    {
+      "product_id": "36",
+      "product_name": "Tủ quần áo gỗ tự nhiên TTN01",
+      "product_fk_price": "8500000",
+      "product_price": "8000000",
+      "rating": "0.00",
+      "priceFormat": "8,000,000",
+      "fakePriceFormat": "8,500,000",
+      "pricePercent": 6,
+      "image": [
+        {
+          "id": 104,
+          "product_id": "36",
+          "product_image": "/assets/tuquanao/tuquanaogotunhien/1.jpg",
+          "image_description": "mat truoc fa-rotate-180"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
