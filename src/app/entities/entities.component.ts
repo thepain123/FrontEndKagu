@@ -35,7 +35,7 @@ export class EntitiesComponent implements OnInit {
     this.showCart();
     this.showUser();
 
-    this.googleSDK();
+    // this.googleSDK();
     this.fbLibrary();
     this.getProductCategory();
   }
