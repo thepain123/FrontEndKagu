@@ -88,11 +88,7 @@ section {
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       border-radius: 5px;
       background: #6190e8; /* fallback for old browsers */
-      background: -webkit-linear-gradient(
-        to right,
-        #a7bfe8,
-        #6190e8
-      ); /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(to right, #a7bfe8, #6190e8); /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(
         to right,
         #a7bfe8,
@@ -101,8 +97,7 @@ section {
       // font-weight: 800;
     }
     .checkout:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-        0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
     .promotion {
       margin-top: 10px;
@@ -281,8 +276,7 @@ section {
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .general:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-        0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
     h5 {
       padding-top: 20px;
@@ -377,8 +371,7 @@ section {
       }
     }
     .review-details:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-        0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
   }
   .review-component {
@@ -450,8 +443,7 @@ section {
     }
 
     .col-custom:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-        0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
     img {
       max-width: 100%;

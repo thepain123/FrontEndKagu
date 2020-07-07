@@ -40,7 +40,7 @@
 
             <div class="col-custom col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-12"
                 *ngFor="let product of topProductList" (click)="showProductDetail(product.product_id)">
-                <img [src]="product.image[0].product_image" alt="product.image[0].image_description">
+                <img [src]="product.image[0].product_image" [alt]="product.image[0].image_description">
                 <div class="product-item-info">
                     <h5>{{product.product_name}}</h5>
                     <h5>{{product.priceFormat}} ₫ <span class="percentReduce">(-{{product.pricePercent}}%)</span></h5>

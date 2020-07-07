@@ -1,4 +1,3 @@
-@import "./../app.component.scss";
 * {
   p,
   span {
@@ -36,7 +35,7 @@
       display: inline;
     }
   }
-  font-family: "Slabo 27px", serif;
+  font-family: "EB Garamond", serif;
   color: rgb(116, 176, 247);
   a {
     color: rgb(116, 176, 247);
@@ -46,7 +45,6 @@
     text-decoration: none;
   }
   h2 {
-    font-family: "Pacifico", cursive;
     font-size: 50px;
     @media all and (max-width: 480px) {
       font-size: 20px;
@@ -62,6 +60,7 @@
 .navigationbar {
   display: flex;
   font-family: "EB Garamond", serif;
+
   justify-content: space-around;
   /* Dropdown Button */
   @media all and (max-width: 768px) {
@@ -230,6 +229,7 @@
 .cart-user-mobile {
   display: flex;
   font-family: "EB Garamond", serif;
+
   align-items: center;
   justify-content: space-around;
   padding-top: 15px;
@@ -358,6 +358,7 @@
 .cart-user {
   display: flex;
   font-family: "EB Garamond", serif;
+
   align-items: center;
 
   min-width: 0px;
@@ -591,6 +592,7 @@ div#login {
 
   h2 {
     font-family: "EB Garamond", serif;
+
     margin-left: 30px;
     margin-top: 30px;
   }
