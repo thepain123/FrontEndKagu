@@ -32,7 +32,8 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/fonts/font-file.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

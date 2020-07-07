@@ -22,12 +22,12 @@
                                     <div class="cart">
                                         <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i>
                                         </a><span>{{productQuantity}}</span>
-                
+
                                     </div>
                                     <i class="fa fa-user"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="dropdown-content">
                                 <div class="arrow-up"></div>
                                 <div>
@@ -38,13 +38,6 @@
                             </div>
                         </div>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li> -->
-
                 </ul>
                 <div class="kagu-form">
                     <input id="inputSearch" (keydown.enter)="search($event.target.value)" type="text"
@@ -53,7 +46,41 @@
                             class="fa fa-search"></i></button>
                 </div>
 
-               
+                <div class="cart-user-mobile">
+                    <div class="cart">
+                        <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i>
+                        </a><span>{{productQuantity}}</span>
+
+                    </div>
+
+
+                    <div class="user">
+
+                        <div class="dropdown">
+                            <i class="fa fa-user dropbtn"></i>
+
+                            <div class="dropdown-content login">
+                                <div class="arrow-up"></div>
+                                <div *ngIf="!loginCheck; else ElseContent">
+                                    <!-- <a *ngFor="let item of productCatList, let i = index" [routerLink]="item.routeLink"
+                                        (click)="selectCategory(i + 1)">{{item.cat_name}}</a> -->
+                                    <button class="dropbtn" data-toggle="modal" data-target="#login">Đăng nhập</button>
+                                    <button class="dropbtn" data-toggle="modal" data-target="#login">Đăng ký</button>
+
+                                </div>
+
+                                <ng-template #ElseContent>
+                                    <div>
+                                        <button class="dropbtn"><a routerLink="tai-khoan">Quản lý tài khoản</a></button>
+                                        <button class="dropbtn" (click)="logOut()">Đăng xuất</button>
+                                    </div>
+
+                                </ng-template>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </nav>
     </div>
@@ -115,9 +142,6 @@
             <h4>Liên hệ</h4>
             <p>0399295198</p>
             <p>0942013068</p>
-
-
-
         </div>
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
             <h4>Dịch vụ</h4>
@@ -125,10 +149,6 @@
             <p> Cung cấp nội thất chất lượng cao</p>
             <p> Dịch vụ bảo hành</p>
             <p> Hỗ trợ thanh toán trực tuyến</p>
-
-
-
-
         </div>
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
             <h4>Đăng ký nhận thông báo</h4>
@@ -137,7 +157,6 @@
                 <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
                 <button>Gửi</button>
             </div>
-
         </div>
     </div>
 </section>
@@ -149,31 +168,21 @@
         <h2 style="text-align:center">Đăng nhập</h2>
         <form action="/action_page.php">
             <div class="row">
-
                 <div class="vl">
                     <span class="vl-innertext">or</span>
                 </div>
-
                 <div class="col">
                     <button (click)="login()" class="fb btn">
                         Đăng nhập với Facebook
                     </button>
-
-                    <!-- <button #loginRef class="google btn"> Đăng nhập với Google+
-                    </button> -->
                     <button class="google btn"> Đăng nhập với Google+
                     </button>
                 </div>
-
                 <div class="col">
                     <div class="hide-md-lg">
                         <p>đăng nhập bằng tải khoản Kagu</p>
                     </div>
-
-
                     <form #formSignIn="ngForm">
-
-
                         <input placeholder="Email" type="email" name="email" required #email="ngModel"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" ngModel>
                         <p class="alert alert-danger mt-2"
@@ -181,7 +190,6 @@
                             Vui lòng nhập email </p>
                         <p class="alert alert-danger mt-2" *ngIf="email?.errors?.pattern"> Email phải đúng định dạng
                         </p>
-
                         <input placeholder="Mật khẩu" type="password" #password="ngModel" required minlength="6"
                             maxlength="16" name="password" ngModel>
                         <p class="alert alert-danger mt-2"
@@ -190,12 +198,9 @@
                         <p class="alert alert-danger mt-2"
                             *ngIf="password?.errors?.minlength || password?.errors?.maxlength"> Mật
                             khẩu phải có từ 6 tới 16 kí tự </p>
-
                         <input type="submit" (click)="loginKagu()">
                     </form>
-
                 </div>
-
             </div>
         </form>
         <div class="bottom-container">

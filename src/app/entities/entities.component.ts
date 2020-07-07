@@ -5,7 +5,7 @@ import { SharingDataService } from "src/app/shared/sharing-data.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import Swal from "sweetalert2";
-import * as Category from '../../category.json';
+import * as Category from "../../category.json";
 @Component({
   selector: "app-entities",
   templateUrl: "./entities.component.html",
@@ -30,14 +30,11 @@ export class EntitiesComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {
-  }
-  ngAfterViewInit() {
     this.showCart();
     this.showUser();
-
+    this.getProductCategory();
     // this.googleSDK();
     this.fbLibrary();
-    this.getProductCategory();
   }
 
   ngDoCheck() {
@@ -128,8 +125,7 @@ export class EntitiesComponent implements OnInit {
         this.usernameContent = `Chào ${data.data.user.name} !`;
         location.reload();
       },
-      (err: any) => {
-      }
+      (err: any) => {}
     );
   }
 
@@ -154,8 +150,7 @@ export class EntitiesComponent implements OnInit {
         this.usernameContent = `Chào ${data.data.user.name} !`;
         location.reload();
       },
-      (err: any) => {
-      }
+      (err: any) => {}
     );
   }
 
@@ -164,7 +159,6 @@ export class EntitiesComponent implements OnInit {
 
     this._dataService.post(uri).subscribe(
       (data: any) => {
-
         Swal.fire({
           icon: "success",
           title: "Successul",
@@ -175,8 +169,7 @@ export class EntitiesComponent implements OnInit {
         location.reload();
         sessionStorage.removeItem("userKagu");
       },
-      (err: any) => {
-      }
+      (err: any) => {}
     );
   }
 
