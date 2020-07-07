@@ -60,7 +60,11 @@
 .navigationbar {
   display: flex;
   font-family: "EB Garamond", serif;
-
+  ul {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
   justify-content: space-around;
   /* Dropdown Button */
   .nav-item {
@@ -71,6 +75,8 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+        height: 70px;
+        padding-bottom: 20px;
         i {
           margin-right: 5px;
         }
@@ -159,7 +165,7 @@
   }
 
   /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
+  .dropbtn:hover .dropdown-content {
     display: block;
   }
 
@@ -198,6 +204,7 @@
         width: 350px;
         margin-left: 0px;
       }
+
       overflow: hidden;
       // height: x;
       input {
@@ -237,9 +244,9 @@
       button:hover {
         border: none;
         border-radius: 0px;
-        background-color: #74b0f7;
-        i {
-          color: white;
+        background-color: rgba($color: #74b0f7, $alpha: 0.3);
+        img#search {
+          src: url(../../assets/icons/search-white.png);
         }
       }
     }
@@ -287,6 +294,11 @@
     margin-bottom: 5px;
     margin-left: 40px;
   }
+  .removepadding {
+    padding-bottom: 0px;
+    padding-top: 0;
+  }
+
   .user {
     display: flex;
     align-items: center;
@@ -302,29 +314,32 @@
       // margin-left: 5px;
       color: rgba(0, 0, 0, 0.9);
       font-size: 20px;
-      @media all and (max-width: 992px) {
-        display: none;
-      }
-      @media all and (max-width: 768px) {
-        display: none;
-      }
-      @media all and (max-width: 576px) {
-        display: none;
-      }
+      // @media all and (max-width: 992px) {
+      //   display: none;
+      // }
+      // @media all and (max-width: 768px) {
+      //   display: none;
+      // }
+      // @media all and (max-width: 576px) {
+      //   display: none;
+      // }
     }
   }
   .dropbtn {
     color: black;
-    padding: 16px;
+    // padding: 16px;
     font-size: 20px;
     border: none;
     background-color: white;
+    i {
+      color: #74b0f7;
+    }
   }
 
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
-    display: inline-block;
+    display: block;
   }
 
   /* Dropdown Content (Hidden by Default) */
@@ -333,24 +348,24 @@
       width: 0;
       height: 0;
       position: absolute;
-      top: -15px;
-      left: 85px;
+      bottom: 190px;
+      left: 100px;
       border-left: 15px solid transparent;
       border-right: 15px solid transparent;
       border-bottom: 15px solid #f1f1f1;
     }
     button {
-      width: 100%;
+      // width: 100%;
       background-color: transparent;
     }
+
     display: none;
     position: absolute;
-    z-index: 1;
     background-color: #f1f1f1;
     width: 170px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    z-index: 1;
-    bottom: -120px;
+
+    bottom: -100px;
     left: -75px;
     button {
       font-size: 18px;
@@ -366,13 +381,17 @@
     // font-size: 17px;
   }
 
+  .dropdown-content:hover {
+    display: block;
+  }
+
   /* Change color of dropdown links on hover */
   .dropdown-content button:hover {
     background-color: #ddd;
   }
 
   /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
+  .btn:hover .dropdown-content {
     display: block;
   }
 }
@@ -413,8 +432,7 @@
     font-size: 25px;
     color: #74b0f7;
   }
-  i#notifi {
-    margin-bottom: 5px;
+  img#noti {
     margin-left: 40px;
   }
   .user {
@@ -568,11 +586,7 @@
     @media all and (max-width: 576px) {
       display: none;
     }
-    i {
-      p {
-        font-size: 15px;
-      }
-      font-size: 30px;
+    img {
       padding-left: 7px;
       padding-right: 15px;
       padding-bottom: 10px;
@@ -580,14 +594,16 @@
         padding-left: 0px;
       }
     }
-    i#fb {
+    img#fb {
+      padding-right: 25px;
       color: #4267b2;
     }
 
     i#yt {
       color: #ff0000;
     }
-    i#tw {
+    img#tw {
+      padding-right: 20px;
       color: #1da1f2;
     }
   }

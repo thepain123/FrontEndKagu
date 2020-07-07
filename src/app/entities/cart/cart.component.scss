@@ -82,7 +82,7 @@ section.cart {
       padding: 3px;
       background-color: rgba($color: #6190e8, $alpha: 0.5);
       border-radius: 10px;
-      width: 110px;
+      width: 125px;
 
       .code {
         border-right: solid 1px gray;
@@ -105,14 +105,10 @@ section.cart {
 
     .delete {
       align-items: center;
-      i {
-        font-size: 25px;
+      img {
+        // font-size: 25px;
         margin-left: 150px;
-        transition: all 0.5s;
-      }
-      i:hover {
-        transform: rotate(180deg);
-        color: #ff3c36;
+        // transition: all 0.5s;
       }
     }
   }
@@ -221,19 +217,12 @@ section.cart {
     .delete {
       display: flex;
       align-items: center;
-      i {
-        font-size: 25px;
+      img {
         margin-left: 120px;
 
-        transition: all 0.5s;
         @media all and (max-width: 520px) {
           margin-left: 40px;
-          font-size: 18px;
         }
-      }
-      i:hover {
-        transform: rotate(180deg);
-        color: #ff3c36;
       }
     }
     .amount {
@@ -367,15 +356,15 @@ section.cart {
   .delete {
     display: flex;
     align-items: center;
-    i {
-      font-size: 25px;
+    img {
+      // font-size: 25px;
       margin-left: 150px;
-      transition: all 0.5s;
+      // transition: all 0.5s;
     }
-    i:hover {
-      transform: rotate(180deg);
-      color: #ff3c36;
-    }
+    // i:hover {
+    //   transform: rotate(180deg);
+    //   color: #ff3c36;
+    // }
   }
   .sub-total {
     display: flex;

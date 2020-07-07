@@ -81,18 +81,20 @@
         <div class="stars-reviews">
             <div class="general">
                 <h2>{{product_detail.rating}} trên 5</h2>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
+                <img src="../../../assets/icons/star-black.png" alt="star">
+                <img src="../../../assets/icons/star-black.png" alt="star">
+                <img src="../../../assets/icons/star-black.png" alt="star">
+                <img src="../../../assets/icons/star-black.png" alt="star">
+                <img src="../../../assets/icons/star-black.png" alt="star">
+
+
                 <h5>200 lượt đánh giá</h5>
             </div>
             <div class="review-details">
 
                 <div class="five-stars">
                     <div>
-                        <span>5</span><i class="fa fa-star"></i>
+                        <span>5</span><img src="../../../assets/icons/star - vang.png" alt="star">
                     </div>
 
                     <div class="total">
@@ -100,25 +102,25 @@
                     </div>
                 </div>
                 <div class="four-stars">
-                    <div> <span>4</span><i class="fa fa-star"></i></div>
+                    <div> <span>4</span><img src="../../../assets/icons/star - vang.png" alt="star"></div>
                     <div class="total">
                         <div class="four-stars-percent"></div>
                     </div>
                 </div>
                 <div class="three-stars">
-                    <div> <span>3</span><i class="fa fa-star"></i></div>
+                    <div> <span>3</span><img src="../../../assets/icons/star - vang.png" alt="star"></div>
                     <div class="total">
                         <div class="three-stars-percent"></div>
                     </div>
                 </div>
                 <div class="two-stars">
-                    <div> <span>2</span><i class="fa fa-star"></i></div>
+                    <div> <span>2</span><img src="../../../assets/icons/star - vang.png" alt="star"></div>
                     <div class="total">
                         <div class="two-stars-percent"></div>
                     </div>
                 </div>
                 <div class="one-star">
-                    <div> <span>1</span><i class="fa fa-star"></i></div>
+                    <div> <span>1</span><img src="../../../assets/icons/star - vang.png" alt="star"></div>
                     <div class="total">
                         <div class="one-star-percent"></div>
                     </div>
@@ -128,7 +130,7 @@
         </div>
         <div *ngFor="let item of comment_list" class="review-component">
             <div class="user-info">
-                <i class="fa fa-user"></i>
+                <img src="../../../assets/icons/user.png" alt="star">
 
             </div>
             <div class="username">
@@ -137,10 +139,10 @@
             </div>
 
             <div class="review-content">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
+                <img src="../../../assets/icons/star - vang.png" alt="star">
+                <img src="../../../assets/icons/star - vang.png" alt="star">
+                <img src="../../../assets/icons/star - vang.png" alt="star">
+                <img src="../../../assets/icons/star - vang.png" alt="star">
                 <!-- <h3></h3> -->
                 <p>{{item.comment}}</p>
             </div>
@@ -158,11 +160,11 @@
 
         <div class="col-custom col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-12"
             *ngFor="let product of relatedProductList" (click)="showProductDetail(product.product_id)">
-            <img [src]="product.image[0].product_image" alt="product.image[0].image_description">
+            <img class="productImg" [src]="product.image[0].product_image" alt="product.image[0].image_description">
             <div class="product-item-info">
                 <h5>{{product.product_name}}</h5>
                 <h5>{{product.product_price}} ₫</h5>
-                <p>{{product.rating}} <i class="fa fa-star"></i> </p>
+                <p>{{product.rating}} <img src="../../../assets/icons/star - vang.png" alt="star"></p>
             </div>
         </div>
 

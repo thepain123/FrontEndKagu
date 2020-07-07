@@ -4,7 +4,7 @@
         <h2><a routerLink="">Kagu</a></h2>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-            <span><i class="fa fa-bars"></i></span>
+            <span><img src="../../assets/icons/bar.png" alt="cart"></span>
         </button>
     </div>
     <div class="navigationbar">
@@ -17,80 +17,85 @@
                     <li class="nav-item">
                         <div class="dropdown">
                             <div class="rowResponsive">
-                                <button class="dropbtn">Danh mục</button>
+
+                                <div class="dropbtn removepadding">
+                                    <button class="dropbtn"> Danh mục</button>
+                                    <div class="dropdown-content">
+                                        <div class="arrow-up"></div>
+                                        <div>
+                                            <a *ngFor="let item of productCatList, let i = index"
+                                                [routerLink]="item.routeLink"
+                                                (click)="selectCategory(i + 1)">{{item.cat_name}}</a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="cart-user-mobile">
                                     <div class="cart">
-                                        <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i>
+                                        <a routerLink="/gio-hang">
+                                            <img src="../../assets/icons/cart.png" alt="cart">
                                         </a><span>{{productQuantity}}</span>
 
                                     </div>
-                                    <i class="fa fa-user"></i>
+
+                                    <div class="user">
+
+                                        <div class="dropdown removepadding dropbtn">
+
+                                            <img class="dropbtn" src="../../assets/icons/user-blue.png" alt="user">
+                                            <div class="dropdown-content  login">
+                                                <div class="arrow-up"></div>
+
+                                                <div *ngIf="!loginCheck; else ElseContent">
+
+                                                    <button class="dropbtn" data-toggle="modal"
+                                                        data-target="#login">Đăng nhập</button>
+                                                    <button class="dropbtn" data-toggle="modal"
+                                                        data-target="#login">Đăng ký</button>
+
+                                                </div>
+
+                                                <ng-template #ElseContent>
+                                                    <div>
+                                                        <a routerLink="tai-khoan">Quản lý tài
+                                                            khoản</a>
+                                                        <button class="dropbtn1" (click)="logOut()">Đăng xuất</button>
+                                                    </div>
+
+                                                </ng-template>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="dropdown-content">
-                                <div class="arrow-up"></div>
-                                <div>
-                                    <a *ngFor="let item of productCatList, let i = index" [routerLink]="item.routeLink"
-                                        (click)="selectCategory(i + 1)">{{item.cat_name}}</a>
 
-                                </div>
-                            </div>
                         </div>
                     </li>
                 </ul>
                 <div class="kagu-form">
                     <input id="inputSearch" (keydown.enter)="search($event.target.value)" type="text"
                         placeholder="Tìm kiếm">
-                    <button (click)="searchButton()" class="btn btn-outline-success my-2 my-sm-0"><i
-                            class="fa fa-search"></i></button>
+                    <button (click)="searchButton()" class="btn btn-outline-success my-2 my-sm-0"> <img id="search"
+                            src="../../assets/icons/search.png" alt="fb">
+                    </button>
                 </div>
 
-                <div class="cart-user-mobile">
-                    <div class="cart">
-                        <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i>
-                        </a><span>{{productQuantity}}</span>
 
-                    </div>
-
-
-                    <div class="user">
-
-                        <div class="dropdown">
-                            <i class="fa fa-user dropbtn"></i>
-
-                            <div class="dropdown-content login">
-                                <div class="arrow-up"></div>
-                                <div *ngIf="!loginCheck; else ElseContent">
-                                    <!-- <a *ngFor="let item of productCatList, let i = index" [routerLink]="item.routeLink"
-                                        (click)="selectCategory(i + 1)">{{item.cat_name}}</a> -->
-                                    <button class="dropbtn" data-toggle="modal" data-target="#login">Đăng nhập</button>
-                                    <button class="dropbtn" data-toggle="modal" data-target="#login">Đăng ký</button>
-
-                                </div>
-
-                                <ng-template #ElseContent>
-                                    <div>
-                                        <button class="dropbtn"><a routerLink="tai-khoan">Quản lý tài khoản</a></button>
-                                        <button class="dropbtn" (click)="logOut()">Đăng xuất</button>
-                                    </div>
-
-                                </ng-template>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </div>
         </nav>
     </div>
     <div class="cart-user">
         <div class="cart">
-            <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i> </a><span>{{productQuantity}}</span>
+            <a routerLink="/gio-hang"> <img src="../../assets/icons/cart.png"
+                    alt="cart"></a><span>{{productQuantity}}</span>
 
         </div>
 
-        <i id="notifi" class="fa fa-bell"></i>
+        <img id="noti" src="../../assets/icons/bell.png" alt="noti">
+
         <div class="user">
 
             <div class="dropdown">
@@ -131,11 +136,11 @@
     <div class="row">
         <div class="channel col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
             <h4>Các kênh của cửa hàng</h4>
-            <i id="fb" class="fab fa-facebook"> </i>
+            <img id="fb" src="../../assets/icons/facebook.png" alt="fb">
             <span> facebook.com/kagu</span><br>
-            <i id="yt" class="fab fa-youtube"> </i>
+            <img src="../../assets/icons/youtube.png" alt="yt">
             <span> youtube.com/kagu</span><br>
-            <i id="tw" class="fab fa-twitter"> </i>
+            <img id="tw" src="../../assets/icons/twitter.png" alt="tw">
             <span>twitter.com/kagu</span>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
