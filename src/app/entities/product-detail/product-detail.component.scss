@@ -274,6 +274,9 @@ section {
       background-color: white;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      img {
+        margin-right: 5px;
+      }
     }
     .general:hover {
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -293,6 +296,9 @@ section {
       padding-bottom: 10px;
       i {
         font-size: 20px;
+      }
+      img {
+        padding-bottom: 15px;
       }
       span {
         font-size: 30px;
@@ -445,13 +451,16 @@ section {
     .col-custom:hover {
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
-    img {
+    img.productImg {
       max-width: 100%;
       max-height: 100%;
       width: 80%;
       width: 250px;
       height: 300px;
       padding-top: 15px;
+    }
+    img.icon {
+      padding-bottom: 3px;
     }
     .product-item-info {
       text-align: left;

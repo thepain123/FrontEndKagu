@@ -11,14 +11,25 @@
             </div>
             <div class="evaluate">
                 <h5>Đánh giá sản phẩm</h5>
-                <p (click)="selectSearchFunc(5)"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> (Từ 5 sao)</p>
-                <p (click)="selectSearchFunc(4)" class="fourstar"> <i class="fa fa-star"></i><i
-                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                        class="fa fa-star"></i> (Từ 4 sao)</p>
-                <p (click)="selectSearchFunc(3)" class="threestar"> <i class="fa fa-star"></i><i
-                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                        class="fa fa-star"></i> (Từ 3 sao)</p>
+                <p (click)="selectSearchFunc(5)">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star"> (Từ 5 sao)</p>
+                <p (click)="selectSearchFunc(4)" class="fourstar">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star.png" alt="star">
+                    (Từ 4 sao)</p>
+                <p (click)="selectSearchFunc(3)" class="threestar">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star - vang.png" alt="star">
+                    <img src="../../../assets/icons/star.png" alt="star">
+                    <img src="../../../assets/icons/star.png" alt="star"> (Từ 3 sao)</p>
 
             </div>
         </div>
@@ -49,8 +60,9 @@
             </div>
             <div class="sort">
                 <h5>Sắp xếp</h5>
-                <p (click)="selectSortFunc(2)">Giá tăng dần <i class="fa fa-sort-amount-up"></i></p>
-                <p (click)="selectSortFunc(3)">Giá giảm dần <i class="fa fa-sort-amount-down"></i></p>
+                <p (click)="selectSortFunc(2)">Giá tăng dần <img src="../../../assets/icons/sort up.png" alt="star"></p>
+                <p (click)="selectSortFunc(3)">Giá giảm dần <img src="../../../assets/icons/sort down.png" alt="star">
+                </p>
 
             </div>
         </div>
@@ -59,27 +71,14 @@
     </div>
 
     <div class="products">
-        <!-- <div class="row">
 
-            <div class="col-custom col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-12" *ngFor="let product of productList"
-                (click)="showProductDetail(product.product_id)">
-                <img [src]="product.image[1].product_image" alt="product.image[1].image_description">
-                <div class="product-info">
-                    <h5>{{product.product_name}}</h5>
-                    <h5>{{product.product_price}} ₫</h5>
-                    <p>{{product.rating}} <i class="fa fa-star"></i> </p>
-                </div>
-            </div>
-
-
-        </div> -->
         <div class="grid-container">
             <div class="grid-item" *ngFor="let product of productList" (click)="showProductDetail(product.product_id)">
-                <img [src]="product.image[1].product_image" alt="product.image[1].image_description">
+                <img class="imgPro" [src]="product.image[1].product_image" alt="product.image[1].image_description">
                 <div class="product-info">
                     <h5>{{product.product_name}}</h5>
                     <h5>{{product.product_price}} ₫</h5>
-                    <p>{{product.rating}} <i class="fa fa-star"></i> </p>
+                    <p>{{product.rating}} <img src="../../../assets/icons/star - vang.png" alt="star"> </p>
                 </div>
             </div>
         </div>

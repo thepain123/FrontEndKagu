@@ -22,7 +22,8 @@
                     <h4>{{product.productPrice}} ₫</h4>
                 </div>
                 <div class="delete">
-                    <i (click)="deleteProduct(product.productId)" class="fa fa-times"></i>
+                    <img (click)="deleteProduct(product.productId)" src="../../../assets/icons/times.png" alt="delete">
+
                 </div>
             </div>
 
@@ -58,7 +59,7 @@
                 </div>
 
                 <div class="delete">
-                    <i (click)="deleteProduct(product.productId)" class="fa fa-times"></i>
+                    <img (click)="deleteProduct(product.productId)" src="../../../assets/icons/times.png" alt="delete">
                 </div>
             </div>
 
@@ -80,8 +81,9 @@
             </form>
 
             <div *ngIf="enterDiscountcode" class="usedCode">
-                <span class="code">{{discountCodeHTML}}</span><span class="icon"> <i (click)="deleteDiscountCode()"
-                        class="fa fa-times"></i></span>
+                <span class="code">{{discountCodeHTML}}</span><span class="icon">
+                    <img (click)="deleteDiscountCode()" src="../../../assets/icons/times.png" alt="delete">
+                </span>
             </div>
 
         </div>
