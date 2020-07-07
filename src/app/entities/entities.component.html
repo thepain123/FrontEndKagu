@@ -16,7 +16,18 @@
 
                     <li class="nav-item">
                         <div class="dropdown">
-                            <button class="dropbtn">Danh mục</button>
+                            <div class="rowResponsive">
+                                <button class="dropbtn">Danh mục</button>
+                                <div class="cart-user-mobile">
+                                    <div class="cart">
+                                        <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i>
+                                        </a><span>{{productQuantity}}</span>
+                
+                                    </div>
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            
                             <div class="dropdown-content">
                                 <div class="arrow-up"></div>
                                 <div>
@@ -42,14 +53,7 @@
                             class="fa fa-search"></i></button>
                 </div>
 
-                <div class="cart-user-mobile">
-                    <div class="cart">
-                        <a routerLink="/gio-hang"><i class="fa fa-shopping-cart"></i>
-                        </a><span>{{productQuantity}}</span>
-
-                    </div>
-                    <i class="fa fa-user"></i>
-                </div>
+               
             </div>
         </nav>
     </div>

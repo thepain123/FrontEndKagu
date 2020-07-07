@@ -64,10 +64,31 @@
   font-family: "EB Garamond", serif;
   justify-content: space-around;
   /* Dropdown Button */
+  .nav-item{
+    width: 100%;
+    .dropdown{
+      width: 100%;
+      .rowResponsive{
+       
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+       i{
+         margin-right: 5px;
+       }
+        .cart{
+          span{
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
   @media all and (max-width: 768px) {
     display: flex;
     width: 100%;
   }
+  
   nav {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -230,8 +251,8 @@
 .cart-user-mobile {
   display: flex;
   font-family: "EB Garamond", serif;
-  align-items: center;
-  justify-content: space-around;
+  
+  justify-content: flex-end;
   padding-top: 15px;
 
   min-width: 0px;
@@ -241,6 +262,8 @@
     display: none;
   }
   div.cart {
+    margin-right: 20px;
+
     position: relative;
     span {
       position: absolute;

@@ -193,7 +193,7 @@ export class EntitiesComponent implements OnInit {
         this.loginAPIFG(email, name);
       },
       (error) => {
-        alert(JSON.stringify(error, undefined, 2));
+       
       }
     );
   }

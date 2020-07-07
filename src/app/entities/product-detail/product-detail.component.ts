@@ -163,7 +163,7 @@ export class ProductDetailComponent implements OnInit {
     }
     Swal.fire({
       icon: "success",
-      title: "Thành công :)",
+      title: "Thành công",
       text: "Thêm vào giỏ hàng thành công",
       showConfirmButton: false,
       timer: 1000,
