@@ -93,7 +93,7 @@ export class CategoriesComponent implements OnInit {
         sessionStorage.removeItem("catid");
         sessionStorage.removeItem("keyword");
         this.analisisUrl();
-        this.showProductByCategory();
+        // this.showProductByCategory();
         console.log("aloaloalo");
       }
     } else {

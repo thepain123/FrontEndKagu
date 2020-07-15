@@ -88,7 +88,7 @@
                 <img src="../../../assets/icons/star-black.png" alt="star">
 
 
-                <h5>200 lượt đánh giá</h5>
+                <h5>{{reviewCount}} lượt đánh giá</h5>
             </div>
             <div class="review-details">
 
@@ -139,15 +139,39 @@
             </div>
 
             <div class="review-content">
+                <h4 style="color: #fabd03;">{{item.rating}}/5</h4>
+
+                <!-- <img src="../../../assets/icons/star - vang.png" alt="star">
                 <img src="../../../assets/icons/star - vang.png" alt="star">
                 <img src="../../../assets/icons/star - vang.png" alt="star">
-                <img src="../../../assets/icons/star - vang.png" alt="star">
-                <img src="../../../assets/icons/star - vang.png" alt="star">
+                <img src="../../../assets/icons/star - vang.png" alt="star"> -->
                 <!-- <h3></h3> -->
                 <p>{{item.comment}}</p>
             </div>
         </div>
 
+        <div *ngIf="loginCheck; else loginToPostReview" class="post-review">
+            <div class="review">
+                <h4>Gửi nhận xét của bạn</h4>
+                <button (click)="selectRating(5)" [ngClass]="{outline : pickfivestar}">5 sao</button>
+                <button (click)="selectRating(4)" [ngClass]="{outline : pickfourstar}">4 sao</button>
+                <button (click)="selectRating(3)" [ngClass]="{outline : pickthreestar}">3 sao</button>
+                <button (click)="selectRating(2)" [ngClass]="{outline : picktwostar}">2 sao</button>
+                <button (click)="selectRating(1)" [ngClass]="{outline : pickonestar}">1 sao</button>
+                <form #formReview="ngForm">
+                    <textarea placeholder="Nhận xét của bạn" ngModel type="text" name="comment" required
+                        #comment="ngModel" cols="30" rows="10"></textarea>
+                </form>
+                <button (click)="postReview()" class="postReview">Gửi</button>
+            </div>
+
+        </div>
+        <ng-template #loginToPostReview>
+            <div>
+                <button class="postReview" data-toggle="modal" data-target="#login">Đăng nhập để gửi nhận xét</button>
+            </div>
+
+        </ng-template>
 
     </section>
 </ng-container>

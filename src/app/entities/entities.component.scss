@@ -1,7 +1,7 @@
 * {
   p,
   span {
-    font-family: "EB Garamond", serif;
+    //     // // font-family: "EB Garamond", serif;;
   }
 }
 .logo-navbar {
@@ -35,7 +35,7 @@
       display: inline;
     }
   }
-  font-family: "EB Garamond", serif;
+  // // font-family: "EB Garamond", serif;;
   color: rgb(116, 176, 247);
   a {
     color: rgb(116, 176, 247);
@@ -59,7 +59,7 @@
 }
 .navigationbar {
   display: flex;
-  font-family: "EB Garamond", serif;
+  // // font-family: "EB Garamond", serif;;
   ul {
     display: flex;
     align-items: center;
@@ -255,7 +255,7 @@
 
 .cart-user-mobile {
   display: flex;
-  font-family: "EB Garamond", serif;
+  // // font-family: "EB Garamond", serif;;
 
   align-items: center;
   justify-content: space-around;
@@ -314,6 +314,7 @@
       // margin-left: 5px;
       color: rgba(0, 0, 0, 0.9);
       font-size: 20px;
+      width: 100%;
       // @media all and (max-width: 992px) {
       //   display: none;
       // }
@@ -398,7 +399,7 @@
 
 .cart-user {
   display: flex;
-  font-family: "EB Garamond", serif;
+  // // font-family: "EB Garamond", serif;;
 
   align-items: center;
 
@@ -580,7 +581,7 @@
     font-weight: bold;
   }
   h4 {
-    font-family: "EB Garamond", serif;
+    // // font-family: "EB Garamond", serif;;
   }
   .channel {
     @media all and (max-width: 576px) {
@@ -615,7 +616,7 @@ div#login {
   th,
   span,
   input {
-    font-family: "EB Garamond", serif;
+    // // font-family: "EB Garamond", serif;;
   }
 
   input {
@@ -625,20 +626,20 @@ div#login {
     padding-right: 20px;
     border-radius: 1px;
     border: 1px solid #ccc;
-    font-family: "EB Garamond", serif;
+    // // font-family: "EB Garamond", serif;;
   }
 
   h2 {
-    font-family: "EB Garamond", serif;
+    // // font-family: "EB Garamond", serif;;
 
     margin-left: 30px;
     margin-top: 30px;
   }
   button {
-    font-family: "EB Garamond", serif;
+    // // font-family: "EB Garamond", serif;;
   }
   .btn {
-    font-family: "EB Garamond", serif;
+    // // font-family: "EB Garamond", serif;;
   }
 }
 
@@ -660,6 +661,7 @@ div#login {
 
   /* style the container */
   .container {
+    padding-bottom: 50px;
     position: relative;
     border-radius: 5px;
     background-color: #f2f2f2;
@@ -792,3 +794,35 @@ div#login {
   }
 }
 // responsive
+
+#modalsignUp {
+  input {
+    width: 100%;
+    padding: 15px;
+    margin: 5px;
+    padding-right: 20px;
+    border-radius: 1px;
+    border: 1px solid #ccc;
+    // // font-family: "EB Garamond", serif;;
+    height: 45px;
+  }
+  button.success {
+    height: 40px;
+    text-align: center;
+    background-color: rgba($color: #6190e8, $alpha: 0.5);
+  }
+  header {
+    h2 {
+      // // font-family: "EB Garamond", serif;;
+      margin-left: 30px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      // // font-family: "EB Garamond", serif;;
+    }
+  }
+}
+::ng-deep button {
+  // // font-family: "EB Garamond", serif;;
+}
