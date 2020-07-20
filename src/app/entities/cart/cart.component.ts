@@ -16,7 +16,10 @@ export class CartComponent implements OnInit {
   cartNull: boolean = true;
   price: number;
   totalPriceOfAllProduct: number = 0;
+  totalPriceOfAllProductOrigin: string;
   totalPriceOfAllProductFormat: string;
+  discountPercent: string;
+  discountMoneyFormat: string;
   enterDiscountcode: boolean = false;
   discountCodeHTML;
   constructor(
@@ -111,10 +114,12 @@ export class CartComponent implements OnInit {
     for (let i = 0; i < this.cart.length; i++) {
       this.totalPriceOfAllProduct += this.cart[i].totalPrice;
     }
+
     let temp, convert: number;
     temp = this.totalPriceOfAllProduct;
     convert = temp.toLocaleString("de-DE");
     this.totalPriceOfAllProductFormat = convert.toString();
+    this.totalPriceOfAllProductOrigin = convert.toString();
   }
   checkOut() {
     localStorage.setItem("cart", JSON.stringify(this.cart));
@@ -143,6 +148,7 @@ export class CartComponent implements OnInit {
         (data: any) => {
           this.totalPriceOfAllProduct = data.data.lastMoney;
           this.totalPriceOfAllProductFormat = data.data.lastMoneyFormat;
+          this.discountMoneyFormat = data.data.discountMoneyFormat;
           this.discountCodeHTML = code;
           this.enterDiscountcode = true;
           if (!sessionStorage.getItem("discountCode")) {

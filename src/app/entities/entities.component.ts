@@ -14,6 +14,7 @@ import * as Category from "../../category.json";
 export class EntitiesComponent implements OnInit {
   @ViewChild("formSignIn", { static: false }) formSignIn: NgForm;
   @ViewChild("loginRef", { static: true }) loginElement: ElementRef;
+  @ViewChild("formSignUp", { static: false }) formSignUp: NgForm;
 
   auth2: any;
   productCatList: any;
@@ -94,15 +95,23 @@ export class EntitiesComponent implements OnInit {
       minPrice: "0",
       maxPrice: "0",
     };
+    console.log("alolo");
+
     sessionStorage.removeItem("catid");
+    sessionStorage.removeItem("url");
+
     sessionStorage.setItem("keyword", JSON.stringify(productByKeyword));
     this.sharingDataSerive.loadingFlag(11);
     this.router.navigate([`/tim-kiem`]);
   }
   searchButton() {
+    sessionStorage.removeItem("catid");
+    sessionStorage.removeItem("url");
+
+    console.log("alolo");
     var keyword = (document.getElementById("inputSearch") as HTMLInputElement)
       .value;
-    sessionStorage.removeItem("catid");
+
     sessionStorage.setItem("keyword", JSON.stringify(keyword));
     this.sharingDataSerive.loadingFlag(10);
     this.router.navigate([`/tim-kiem`]);
@@ -185,9 +194,7 @@ export class EntitiesComponent implements OnInit {
 
         this.loginAPIFG(email, name);
       },
-      (error) => {
-       
-      }
+      (error) => {}
     );
   }
   googleSDK() {
@@ -260,5 +267,23 @@ export class EntitiesComponent implements OnInit {
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     })(document, "script", "facebook-jssdk");
+  }
+
+  _handleOnSubmitSignUp() {
+    const uri = "auth/register";
+    this._dataService.post(uri, this.formSignUp.value).subscribe(
+      (data: any) => {
+        Swal.fire({
+          icon: "success",
+          title: "Successul",
+          text: "Đăng ký thành công",
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
 }

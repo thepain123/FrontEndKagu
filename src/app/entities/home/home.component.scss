@@ -3,21 +3,21 @@
 //     padding: 0px;
 // }
 * {
-  p,
-  span {
-    font-family: "EB Garamond", serif;
-  }
-  h2,
-  h3,
-  h4,
-  h5,
-  p,
-  span,
-  td,
-  a,
-  button.checkout {
-    font-family: "EB Garamond", serif;
-  }
+  // p,
+  // span {
+  //   // font-family: "EB Garamond", serif;
+  // }
+  // h2,
+  // h3,
+  // h4,
+  // h5,
+  // p,
+  // span,
+  // td,
+  // a,
+  // button.checkout {
+  //   // font-family: "EB Garamond", serif;
+  // }
   section.products {
     padding: 25px 70px 25px 70px;
   }
@@ -45,9 +45,9 @@
   padding-left: 60px;
   padding-right: 60px;
   text-align: center;
-  h2 {
-    font-family: "EB Garamond", serif;
-  }
+  // h2 {
+  //   // font-family: "EB Garamond", serif;
+  // }
 
   .row {
     width: 100%;
@@ -285,7 +285,7 @@ a.carousel-control-next span {
   }
 }
 .content {
-  font-family: "EB Garamond", serif;
+  // font-family: "EB Garamond", serif;
 
   padding: 50px;
   @media all and (max-width: 992px) {

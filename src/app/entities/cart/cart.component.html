@@ -87,7 +87,11 @@
             </div>
 
         </div>
-        <h3>Tổng tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
+        <h3>Tạm tính : {{totalPriceOfAllProductOrigin}} ₫</h3>
+        <div *ngIf="enterDiscountcode" class="usedCode">
+            <h3>Giảm giá : {{discountMoneyFormat}} ₫</h3>
+        </div>
+        <h3>Thành tiền tiền : {{totalPriceOfAllProductFormat}} ₫</h3>
     </div>
 
     <ng-template #ElseContentName3>

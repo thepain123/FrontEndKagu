@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { DataService } from "src/app/shared/data.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Title, Meta } from "@angular/platform-browser";
 import Swal from "sweetalert2";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-product-detail",
@@ -10,12 +11,22 @@ import Swal from "sweetalert2";
   styleUrls: ["./product-detail.component.scss"],
 })
 export class ProductDetailComponent implements OnInit {
+  @ViewChild("formReview", { static: false }) formReview: NgForm;
+
   relatedProductList: any = [];
   product_id: any;
   product_detail: any;
   bigImage: any;
   quantity: number = 1;
   comment_list: any;
+  reviewCount: number;
+  pickfivestar: boolean = false;
+  pickfourstar: boolean = false;
+  pickthreestar: boolean = false;
+  picktwostar: boolean = false;
+  pickonestar: boolean = false;
+  rating: number;
+  loginCheck: boolean = false;
   constructor(
     private _dataService: DataService,
     private router: Router,
@@ -25,6 +36,10 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (sessionStorage.getItem("userKagu")) {
+      this.loginCheck = true;
+    }
+
     this.title.setTitle("Chi tiết sản phẩm");
     this.meta.updateTag({
       name: "description",
@@ -34,6 +49,69 @@ export class ProductDetailComponent implements OnInit {
     this.getParamsFromURL();
     this.getRelatedProducts();
     this.getProductReview();
+  }
+
+  selectRating(rating) {
+    this.rating = rating;
+    switch (rating) {
+      case 5:
+        this.pickfivestar = true;
+        this.pickfourstar = false;
+        this.pickthreestar = false;
+        this.picktwostar = false;
+        this.pickonestar = false;
+        break;
+      case 4:
+        this.pickfivestar = false;
+        this.pickfourstar = true;
+        this.pickthreestar = false;
+        this.picktwostar = false;
+        this.pickonestar = false;
+        break;
+      case 3:
+        this.pickfivestar = false;
+        this.pickfourstar = false;
+        this.pickthreestar = true;
+        this.picktwostar = false;
+        this.pickonestar = false;
+        break;
+      case 2:
+        this.pickfivestar = false;
+        this.pickfourstar = false;
+        this.pickthreestar = false;
+        this.picktwostar = true;
+        this.pickonestar = false;
+        break;
+      case 1:
+        this.pickfivestar = false;
+        this.pickfourstar = false;
+        this.pickthreestar = false;
+        this.picktwostar = false;
+        this.pickonestar = true;
+        break;
+      default:
+        break;
+    }
+  }
+
+  postReview() {
+    console.log(this.rating);
+
+    console.log(this.formReview.value);
+
+    let uri = "user/post-review";
+    let message = {
+      productId: this.product_id,
+      rating: this.rating,
+      comment: this.formReview.value.comment,
+    };
+    this._dataService.post(uri, message).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.getProductReview();
+      },
+      (err: any) => {}
+    );
   }
   getProductReview() {
     let uri = "data/get-comment-product";
@@ -46,6 +124,7 @@ export class ProductDetailComponent implements OnInit {
         console.log(data);
 
         this.comment_list = data.data;
+        this.reviewCount = this.comment_list.length;
         console.log(this.comment_list);
       },
       (err: any) => {}

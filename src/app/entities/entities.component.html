@@ -106,7 +106,7 @@
                         <!-- <a *ngFor="let item of productCatList, let i = index" [routerLink]="item.routeLink"
                             (click)="selectCategory(i + 1)">{{item.cat_name}}</a> -->
                         <button class="dropbtn" data-toggle="modal" data-target="#login">Đăng nhập</button>
-                        <button class="dropbtn" data-toggle="modal" data-target="#login">Đăng ký</button>
+                        <button class="dropbtn" data-toggle="modal" data-target="#modalsignUp">Đăng ký</button>
 
                     </div>
 
@@ -169,8 +169,8 @@
 
 
 <div class="modal socialLoginForm" id="login">
-    <div class="container">
-        <h2 style="text-align:center">Đăng nhập</h2>
+    <div class="container" style="padding-bottom: 50px">
+        <h2 style=" text-align:center">Đăng nhập</h2>
         <form action="/action_page.php">
             <div class="row">
                 <div class="vl">
@@ -208,17 +208,65 @@
                 </div>
             </div>
         </form>
-        <div class="bottom-container">
-            <div class="row">
-                <div class="col">
-                    <a href="#" style="color:white" class="btn">Đăng ký</a>
-                </div>
-                <div class="col">
-                    <a href="#" style="color:white" class="btn">Quên mật khẩu?</a>
-                </div>
-            </div>
-        </div>
+
     </div>
 
 
 </div>
+
+<div class="modal fade" id="modalsignUp">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <header class="head-form mb-0">
+                <h2>Đăng ký</h2>
+            </header>
+
+            <!-- Modal Header -->
+            <!-- 	<div class="modal-header">
+                        <h4 class="modal-title" id="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div> -->
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <form #formSignUp="ngForm">
+
+                    <input type="text" name="name" #name="ngModel" ngModel placeholder="Họ tên" class="form-control" />
+                    <input placeholder="Email" type="email" name="email" required #email="ngModel"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" ngModel class="form-control">
+
+                    <p *ngIf="email?.errors?.required && (email.dirty || email.touched)">
+                        Vui lòng nhập email </p>
+                    <p *ngIf="email?.errors?.pattern"> Email phải đúng định dạng </p>
+                    <input placeholder="Mật khẩu" type="password" #password="ngModel" required minlength="6"
+                        maxlength="16" name="password" ngModel class="form-control">
+                    <p *ngIf="password?.errors?.required && (password.dirty || password.touched)">
+                        Vui lòng nhập mật khẩu </p>
+                    <p *ngIf="password?.errors?.minlength || password?.errors?.maxlength"> Mật
+                        khẩu phải có từ 6 tới 16 kí tự </p>
+                    <input placeholder="Xác nhận mật khẩu" type="password" name="confirmPassword"
+                        #confirmPassword="ngModel" required minlength="6" maxlength="16" ngModel class="form-control">
+                    <p *ngIf="confirmPassword?.errors?.required && (confirmPassword.dirty || confirmPassword.touched)">
+                        Vui lòng nhập mật khẩu </p>
+                    <p *ngIf="confirmPassword?.errors?.minlength || confirmPassword?.errors?.maxlength"> Mật
+                        khẩu phải có từ 6 tới 16 kí tự </p>
+                    <input type="text" name="phone" #phone="ngModel" ngModel placeholder="Số điện thoại"
+                        class="form-control" />
+                    <input type="text" name="address" #address="ngModel" ngModel placeholder="Địa chỉ"
+                        class="form-control" />
+
+                </form>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer" id="modal-footer">
+                <button type="submit" (click)="_handleOnSubmitSignUp()" class="btn success">Đăng
+                    ký</button>
+                <button id="btnDong" type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
